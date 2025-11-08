@@ -936,3 +936,496 @@ body.dark-mode .dark-mode-toggle .icon-moon {
         max-width: 100%;
     }
 }
+
+/* ============================================
+   NEW FEATURES - SOCIAL PROOF & ADD-ONS
+   ============================================ */
+
+/* Social Proof Banner */
+.social-proof-banner {
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.social-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+}
+
+.stat-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.stat-text strong {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.trust-badge {
+    background: var(--bg-primary);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.recent-booking {
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Add-Ons Section */
+.add-ons-section {
+    margin-top: 30px;
+    padding: 25px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--border-color);
+}
+
+.add-ons-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.add-ons-subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.add-ons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.add-on-card {
+    background: var(--bg-primary);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.add-on-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+}
+
+.add-on-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.addon-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.add-on-header label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.addon-icon {
+    font-size: 1.5rem;
+}
+
+.addon-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.addon-price {
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.addon-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.addon-select,
+.addon-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    margin-top: 10px;
+}
+
+.add-ons-total {
+    text-align: right;
+    padding: 15px;
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+/* Competitor Comparison */
+.competitor-comparison {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 25px;
+    border-radius: var(--radius-lg);
+    margin: 30px 0;
+    text-align: center;
+}
+
+.comparison-header h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.comparison-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.comparison-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.comparison-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.comparison-value {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.our-price {
+    color: #fbbf24;
+}
+
+.competitor-price {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.comparison-divider {
+    font-size: 1.5rem;
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.savings-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    font-size: 1.2rem;
+    display: inline-block;
+}
+
+.savings-badge strong {
+    color: #fbbf24;
+    font-size: 1.5rem;
+}
+
+/* Dynamic Pricing Notice */
+.dynamic-pricing-notice {
+    margin: 20px 0;
+}
+
+.pricing-alert {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 15px 20px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.alert-icon {
+    font-size: 1.5rem;
+}
+
+.alert-text {
+    font-weight: 600;
+}
+
+/* Tip Calculator */
+.tip-calculator {
+    background: var(--bg-tertiary);
+    padding: 25px;
+    border-radius: var(--radius-lg);
+    margin: 25px 0;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.tip-calculator h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.tip-description {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.tip-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.tip-option {
+    background: var(--bg-primary);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.tip-option:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.tip-option.recommended {
+    border-color: var(--secondary-color);
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+}
+
+.tip-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.tip-amount {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.tip-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Referral Section */
+.referral-section {
+    margin: 25px 0;
+}
+
+.referral-card {
+    background: linear-gradient(135deg, var(--primary-color), #2563eb);
+    color: white;
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.referral-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.referral-card p {
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.referral-code-display {
+    margin-bottom: 20px;
+}
+
+.referral-label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.code-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.code {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+}
+
+.btn-copy {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-copy:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-share {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-share:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Checklist Section */
+.checklist-section {
+    margin: 25px 0;
+}
+
+.checklist-card {
+    background: var(--bg-tertiary);
+    padding: 25px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    border: 2px solid var(--border-color);
+}
+
+.checklist-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.checklist-card p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+
+@media (max-width: 640px) {
+    .social-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .add-ons-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tip-options {
+        grid-template-columns: 1fr;
+    }
+
+    .code-box {
+        flex-direction: column;
+    }
+
+    .share-buttons {
+        flex-direction: column;
+    }
+
+    .btn-share {
+        width: 100%;
+    }
+}
+

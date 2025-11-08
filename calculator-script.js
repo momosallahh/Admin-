@@ -523,8 +523,16 @@ function calculateEstimate() {
             optionalFees += totalHours * (config.pricing?.fees?.optional_fees?.packing_service_per_hour || 60);
         }
 
-        // Total cost
-        const baseCost = laborCost + truckFee + truckEquipmentFee + fuelSurcharge + distanceCost + optionalFees;
+        // Apply dynamic pricing
+        const dynamicPricing = calculateDynamicPricingMultiplier();
+
+        // Calculate add-ons
+        const addOnsTotal = calculateAddOns();
+
+        // Total cost (with dynamic pricing and add-ons)
+        let baseCost = laborCost + truckFee + truckEquipmentFee + fuelSurcharge + distanceCost + optionalFees;
+        baseCost = baseCost * dynamicPricing.multiplier; // Apply dynamic pricing
+        baseCost += addOnsTotal; // Add selected add-ons
 
         const lowMultiplier = config.pricing?.calculation_settings?.cost_range_low_multiplier || 0.90;
         const highMultiplier = config.pricing?.calculation_settings?.cost_range_high_multiplier || 1.15;
@@ -548,6 +556,9 @@ function calculateEstimate() {
             fuelSurcharge,
             distanceCost,
             optionalFees,
+            addOnsTotal,
+            dynamicPricingMultiplier: dynamicPricing.multiplier,
+            dynamicPricingReasons: dynamicPricing.reasons,
             baseCost,
             costLow,
             costHigh,
@@ -675,6 +686,15 @@ function displayPartialResults() {
     document.getElementById('crewSize').textContent = `${calculationResults.numMovers} Movers`;
     document.getElementById('estTime').textContent = `${calculationResults.totalHours.toFixed(1)} Hours`;
 
+    // Show competitor comparison
+    const avgCost = (calculationResults.costLow + calculationResults.costHigh) / 2;
+    showCompetitorComparison(avgCost);
+
+    // Show dynamic pricing notice if applicable
+    if (calculationResults.dynamicPricingReasons) {
+        showDynamicPricingNotice(calculationResults.dynamicPricingReasons);
+    }
+
     // Show partial results, hide move details
     document.getElementById('moveDetailsSection').style.display = 'none';
     document.getElementById('partialResults').style.display = 'block';
@@ -721,6 +741,12 @@ function displayFullResults() {
 
     // Scroll to results
     document.getElementById('fullResults').scrollIntoView({ behavior: 'smooth' });
+
+    // Show tip calculator
+    showTipCalculator(results.laborCost);
+
+    // Generate referral code
+    generateReferralCode();
 
     // Send to webhook if not admin mode
     if (!isAdminMode) {
@@ -1000,6 +1026,323 @@ function loadDarkModePreference() {
         document.body.classList.add('dark-mode');
     }
 }
+
+// ============================================
+// NEW FEATURES - DYNAMIC PRICING & ADD-ONS
+// ============================================
+
+// State for add-ons
+let selectedAddOns = {};
+let addOnsTotalCost = 0;
+
+// Initialize social proof
+function initializeSocialProof() {
+    const socialProof = config.social_proof;
+    if (!socialProof?.enabled) return;
+
+    const banner = document.getElementById('socialProofBanner');
+    if (!banner) return;
+
+    // Set stats
+    document.getElementById('avgRating').textContent = socialProof.average_rating;
+    document.getElementById('totalReviews').textContent = socialProof.total_reviews.toLocaleString();
+    document.getElementById('totalCustomers').textContent = socialProof.total_customers_this_month.toLocaleString();
+
+    // Add trust badges
+    const badgesContainer = document.getElementById('trustBadges');
+    badgesContainer.innerHTML = socialProof.trust_badges.map(badge =>
+        `<span class="trust-badge">${badge}</span>`
+    ).join('');
+
+    // Show recent booking animation
+    if (socialProof.recent_bookings?.length > 0) {
+        let currentIndex = 0;
+        const showBooking = () => {
+            const booking = socialProof.recent_bookings[currentIndex];
+            const bookingEl = document.getElementById('recentBooking');
+            bookingEl.textContent = `${booking.name} from ${booking.location} just got a quote ${booking.minutes_ago} minutes ago`;
+            currentIndex = (currentIndex + 1) % socialProof.recent_bookings.length;
+        };
+        showBooking();
+        setInterval(showBooking, 8000);
+    }
+
+    banner.style.display = 'block';
+}
+
+// Calculate dynamic pricing multiplier
+function calculateDynamicPricingMultiplier(moveDate = new Date()) {
+    const dynamicPricing = config.pricing?.dynamic_pricing;
+    if (!dynamicPricing?.enabled) return { multiplier: 1, reasons: [] };
+
+    let multiplier = 1;
+    const reasons = [];
+
+    // Peak season
+    if (dynamicPricing.peak_season?.enabled) {
+        const month = moveDate.getMonth() + 1; // 0-indexed
+        if (dynamicPricing.peak_season.months.includes(month)) {
+            multiplier *= dynamicPricing.peak_season.multiplier;
+            reasons.push(dynamicPricing.peak_season.description);
+        }
+    }
+
+    // Weekend pricing
+    if (dynamicPricing.weekend_pricing?.enabled) {
+        const day = moveDate.getDay();
+        if (dynamicPricing.weekend_pricing.days.includes(day)) {
+            multiplier *= dynamicPricing.weekend_pricing.multiplier;
+            reasons.push(dynamicPricing.weekend_pricing.description);
+        }
+    }
+
+    // Month end
+    if (dynamicPricing.month_end?.enabled) {
+        const date = moveDate.getDate();
+        if (dynamicPricing.month_end.days.includes(date)) {
+            multiplier *= dynamicPricing.month_end.multiplier;
+            reasons.push(dynamicPricing.month_end.description);
+        }
+    }
+
+    return { multiplier, reasons };
+}
+
+// Calculate add-ons
+function calculateAddOns() {
+    const addOnsConfig = config.pricing?.add_on_services;
+    if (!addOnsConfig) return 0;
+
+    let total = 0;
+
+    // Packing materials (auto-calculate based on weight)
+    if (selectedAddOns.packing_materials && addOnsConfig.packing_materials?.enabled) {
+        const weight = getTotalWeight() || window.aiEstimation?.weight || 0;
+        const bedrooms = Math.max(1, Math.floor(weight / 2000)); // Rough estimate
+        const packingItems = addOnsConfig.packing_materials.items;
+
+        Object.values(packingItems).forEach(item => {
+            if (item.per_bedroom) {
+                total += item.price * item.per_bedroom * bedrooms;
+            } else if (item.per_move) {
+                total += item.price * item.per_move;
+            }
+        });
+
+        document.getElementById('packingPrice').textContent = `$${Math.round(total)}`;
+    }
+
+    // Insurance
+    if (selectedAddOns.insurance && addOnsConfig.insurance?.enabled) {
+        const weight = getTotalWeight() || window.aiEstimation?.weight || 0;
+        const level = document.getElementById('insuranceLevel').value;
+        const option = addOnsConfig.insurance.options.find(o => o.level === level);
+
+        if (option) {
+            if (option.rate_per_pound) {
+                const insuranceCost = weight * option.rate_per_pound;
+                total += insuranceCost;
+                document.getElementById('insurancePrice').textContent = `$${Math.round(insuranceCost)}`;
+            } else if (option.base_price) {
+                total += option.base_price;
+                document.getElementById('insurancePrice').textContent = `$${option.base_price}`;
+            }
+        }
+    }
+
+    // Assembly
+    if (selectedAddOns.assembly && addOnsConfig.assembly?.enabled) {
+        const items = parseInt(document.getElementById('assemblyItems').value) || 0;
+        total += items * addOnsConfig.assembly.price_per_item;
+    }
+
+    // Storage (first month free)
+    if (selectedAddOns.storage && addOnsConfig.storage?.enabled) {
+        total += addOnsConfig.storage.first_month_price;
+    }
+
+    // Junk removal
+    if (selectedAddOns.junk && addOnsConfig.junk_removal?.enabled) {
+        const items = parseInt(document.getElementById('junkItems').value) || 0;
+        total += items * addOnsConfig.junk_removal.price_per_item;
+    }
+
+    // Cleaning
+    if (selectedAddOns.cleaning && addOnsConfig.cleaning?.enabled) {
+        const weight = getTotalWeight() || window.aiEstimation?.weight || 0;
+        const bedrooms = Math.floor(weight / 2000);
+
+        if (bedrooms <= 1) total += addOnsConfig.cleaning.studio_1br;
+        else if (bedrooms === 2) total += addOnsConfig.cleaning['2br'];
+        else if (bedrooms === 3) total += addOnsConfig.cleaning['3br'];
+        else total += addOnsConfig.cleaning['4br_plus'];
+
+        document.getElementById('cleaningPrice').textContent = `$${total}`;
+    }
+
+    addOnsTotalCost = total;
+
+    // Update total display
+    if (total > 0) {
+        document.getElementById('addOnsTotal').style.display = 'block';
+        document.getElementById('addOnsTotalAmount').textContent = `$${Math.round(total)}`;
+    } else {
+        document.getElementById('addOnsTotal').style.display = 'none';
+    }
+
+    return total;
+}
+
+// Setup add-on event listeners
+function setupAddOnListeners() {
+    // Show add-ons section when move details are filled
+    document.getElementById('moveDetailsSection').addEventListener('input', () => {
+        const addOnsSection = document.getElementById('addOnsSection');
+        if (config.ui_settings?.features?.enable_add_on_services !== false) {
+            addOnsSection.style.display = 'block';
+        }
+    });
+
+    // Add-on checkboxes
+    ['packing', 'insurance', 'assembly', 'storage', 'junk', 'cleaning'].forEach(addon => {
+        const checkbox = document.getElementById(`addon_${addon}`);
+        if (!checkbox) return;
+
+        checkbox.addEventListener('change', (e) => {
+            selectedAddOns[addon === 'packing' ? 'packing_materials' : addon] = e.target.checked;
+
+            // Show/hide additional inputs
+            if (addon === 'insurance') {
+                document.getElementById('insuranceLevel').style.display = e.target.checked ? 'block' : 'none';
+            } else if (addon === 'assembly') {
+                document.getElementById('assemblyItems').style.display = e.target.checked ? 'block' : 'none';
+            } else if (addon === 'junk') {
+                document.getElementById('junkItems').style.display = e.target.checked ? 'block' : 'none';
+            }
+
+            calculateAddOns();
+        });
+    });
+
+    // Input changes for quantity-based add-ons
+    ['assemblyItems', 'junkItems', 'insuranceLevel'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', calculateAddOns);
+    });
+}
+
+// Show competitor comparison
+function showCompetitorComparison(ourPrice) {
+    const compConfig = config.competitor_comparison;
+    if (!compConfig?.enabled) return;
+
+    const industryAverage = ourPrice * compConfig.industry_average_multiplier;
+    const savings = industryAverage - ourPrice;
+
+    document.getElementById('ourQuote').textContent = `$${Math.round(ourPrice).toLocaleString()}`;
+    document.getElementById('competitorQuote').textContent = `$${Math.round(industryAverage).toLocaleString()}`;
+    document.getElementById('savingsAmount').textContent = `$${Math.round(savings).toLocaleString()}`;
+    document.getElementById('competitorComparison').style.display = 'block';
+}
+
+// Show tip calculator
+function showTipCalculator(laborCost) {
+    const tipConfig = config.tip_calculator;
+    if (!tipConfig?.enabled) return;
+
+    const tip15 = laborCost * (tipConfig.suggested_percentage_low / 100);
+    const tip18 = laborCost * 0.18;
+    const tip20 = laborCost * (tipConfig.suggested_percentage_high / 100);
+
+    document.getElementById('tip15').textContent = `$${Math.round(tip15)}`;
+    document.getElementById('tip18').textContent = `$${Math.round(tip18)}`;
+    document.getElementById('tip20').textContent = `$${Math.round(tip20)}`;
+    document.getElementById('tipCalculator').style.display = 'block';
+}
+
+// Generate referral code
+function generateReferralCode() {
+    const refConfig = config.referral_program;
+    if (!refConfig?.enabled) return;
+
+    const code = `${refConfig.code_prefix}${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
+    document.getElementById('referralCode').textContent = code;
+    document.getElementById('referralSection').style.display = 'block';
+
+    // Copy button
+    document.getElementById('copyReferralBtn')?.addEventListener('click', () => {
+        navigator.clipboard.writeText(code);
+        alert('Referral code copied to clipboard!');
+    });
+}
+
+// Show dynamic pricing notice
+function showDynamicPricingNotice(reasons) {
+    if (reasons.length === 0) return;
+
+    const notice = reasons.join(' + ');
+    document.getElementById('pricingAlertText').textContent = `⚡ ${notice} - Limited availability!`;
+    document.getElementById('dynamicPricingNotice').style.display = 'block';
+}
+
+// Download moving checklist
+function downloadMovingChecklist() {
+    const checklistConfig = config.moving_checklist;
+    if (!checklistConfig?.enabled) return;
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFontSize(20);
+    doc.setTextColor(59, 130, 246);
+    doc.text('Your Moving Checklist', 20, 20);
+
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.text(`Prepared for: ${leadData?.name || 'Valued Customer'}`, 20, 30);
+
+    let y = 45;
+    doc.setFontSize(12);
+    doc.setTextColor(0);
+
+    checklistConfig.items.forEach((item, index) => {
+        if (y > 270) {
+            doc.addPage();
+            y = 20;
+        }
+
+        let timeframe;
+        if (item.weeks_before) timeframe = `${item.weeks_before} weeks before`;
+        else if (item.days_before) timeframe = `${item.days_before} days before`;
+        else timeframe = 'Moving Day';
+
+        doc.setFont(undefined, 'bold');
+        doc.text(`□ ${timeframe}:`, 20, y);
+        doc.setFont(undefined, 'normal');
+        doc.text(item.task, 30, y + 5);
+
+        y += 15;
+    });
+
+    doc.save('moving-checklist.pdf');
+}
+
+// Setup feature event listeners
+function setupFeatureListeners() {
+    document.getElementById('downloadChecklistBtn')?.addEventListener('click', downloadMovingChecklist);
+
+    // Show checklist after full results
+    if (config.moving_checklist?.enabled) {
+        document.getElementById('checklistSection').style.display = 'block';
+    }
+}
+
+// Initialize all new features
+document.addEventListener('DOMContentLoaded', () => {
+    initializeSocialProof();
+    setupAddOnListeners();
+    setupFeatureListeners();
+});
 
 // ============================================
 // CONSOLE BANNER
