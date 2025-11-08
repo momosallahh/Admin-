@@ -1,0 +1,127 @@
+{
+  "categories": {
+    "living_room": {
+      "name": "Living Room",
+      "items": {
+        "sofa_3seat": { "name": "Sofa (3-seat)", "weight": 350, "icon": "🛋️" },
+        "sofa_2seat": { "name": "Loveseat (2-seat)", "weight": 224, "icon": "🛋️" },
+        "armchair": { "name": "Armchair", "weight": 100, "icon": "🪑" },
+        "recliner": { "name": "Recliner", "weight": 150, "icon": "🪑" },
+        "coffee_table": { "name": "Coffee Table", "weight": 75, "icon": "🪑" },
+        "end_table": { "name": "End Table", "weight": 35, "icon": "🪑" },
+        "tv_stand": { "name": "TV Stand", "weight": 85, "icon": "📺" },
+        "entertainment_center": { "name": "Entertainment Center", "weight": 250, "icon": "📺" },
+        "bookshelf_small": { "name": "Bookshelf (Small)", "weight": 70, "icon": "📚" },
+        "bookshelf_large": { "name": "Bookshelf (Large)", "weight": 150, "icon": "📚" },
+        "lamp_floor": { "name": "Floor Lamp", "weight": 25, "icon": "💡" },
+        "lamp_table": { "name": "Table Lamp", "weight": 10, "icon": "💡" }
+      }
+    },
+    "bedroom": {
+      "name": "Bedroom",
+      "items": {
+        "king_bed": { "name": "King Bed (frame + mattress)", "weight": 350, "icon": "🛏️" },
+        "queen_bed": { "name": "Queen Bed (frame + mattress)", "weight": 300, "icon": "🛏️" },
+        "full_bed": { "name": "Full Bed (frame + mattress)", "weight": 250, "icon": "🛏️" },
+        "twin_bed": { "name": "Twin Bed (frame + mattress)", "weight": 175, "icon": "🛏️" },
+        "bunk_bed": { "name": "Bunk Bed", "weight": 300, "icon": "🛏️" },
+        "nightstand": { "name": "Nightstand", "weight": 50, "icon": "🪑" },
+        "dresser_small": { "name": "Dresser (3-4 drawers)", "weight": 150, "icon": "🗄️" },
+        "dresser_large": { "name": "Dresser (6+ drawers)", "weight": 250, "icon": "🗄️" },
+        "chest_of_drawers": { "name": "Chest of Drawers", "weight": 175, "icon": "🗄️" },
+        "wardrobe": { "name": "Wardrobe/Armoire", "weight": 300, "icon": "🚪" },
+        "mirror_large": { "name": "Large Mirror", "weight": 50, "icon": "🪞" },
+        "vanity": { "name": "Vanity Table", "weight": 125, "icon": "💄" }
+      }
+    },
+    "dining": {
+      "name": "Dining Room",
+      "items": {
+        "dining_table_small": { "name": "Dining Table (4-seater)", "weight": 150, "icon": "🍽️" },
+        "dining_table_large": { "name": "Dining Table (6+ seater)", "weight": 250, "icon": "🍽️" },
+        "dining_chair": { "name": "Dining Chair", "weight": 35, "icon": "🪑" },
+        "bench": { "name": "Dining Bench", "weight": 75, "icon": "🪑" },
+        "china_cabinet": { "name": "China Cabinet", "weight": 300, "icon": "🗄️" },
+        "buffet": { "name": "Buffet/Sideboard", "weight": 200, "icon": "🗄️" },
+        "bar_cart": { "name": "Bar Cart", "weight": 50, "icon": "🍷" }
+      }
+    },
+    "office": {
+      "name": "Office/Study",
+      "items": {
+        "desk_small": { "name": "Desk (Small)", "weight": 100, "icon": "🖥️" },
+        "desk_large": { "name": "Desk (Large/Executive)", "weight": 200, "icon": "🖥️" },
+        "office_chair": { "name": "Office Chair", "weight": 50, "icon": "🪑" },
+        "filing_cabinet_2drawer": { "name": "Filing Cabinet (2-drawer)", "weight": 75, "icon": "🗄️" },
+        "filing_cabinet_4drawer": { "name": "Filing Cabinet (4-drawer)", "weight": 150, "icon": "🗄️" },
+        "bookshelf_office": { "name": "Office Bookshelf", "weight": 125, "icon": "📚" },
+        "computer_desk": { "name": "Computer Desk", "weight": 125, "icon": "💻" }
+      }
+    },
+    "appliances": {
+      "name": "Appliances",
+      "items": {
+        "refrigerator": { "name": "Refrigerator", "weight": 300, "icon": "🧊" },
+        "freezer": { "name": "Freezer (Upright)", "weight": 250, "icon": "❄️" },
+        "washer": { "name": "Washing Machine", "weight": 200, "icon": "🧺" },
+        "dryer": { "name": "Dryer", "weight": 150, "icon": "🧺" },
+        "dishwasher": { "name": "Dishwasher", "weight": 175, "icon": "🍽️" },
+        "stove": { "name": "Stove/Range", "weight": 250, "icon": "🔥" },
+        "microwave": { "name": "Microwave", "weight": 50, "icon": "📻" },
+        "tv_small": { "name": "TV (32-42 inch)", "weight": 35, "icon": "📺" },
+        "tv_medium": { "name": "TV (43-55 inch)", "weight": 50, "icon": "📺" },
+        "tv_large": { "name": "TV (55+ inch)", "weight": 75, "icon": "📺" }
+      }
+    },
+    "outdoor": {
+      "name": "Outdoor/Patio",
+      "items": {
+        "patio_table": { "name": "Patio Table", "weight": 100, "icon": "🌞" },
+        "patio_chair": { "name": "Patio Chair", "weight": 30, "icon": "🪑" },
+        "grill": { "name": "BBQ Grill", "weight": 150, "icon": "🔥" },
+        "patio_umbrella": { "name": "Patio Umbrella", "weight": 40, "icon": "☂️" },
+        "lawn_mower": { "name": "Lawn Mower", "weight": 90, "icon": "🌱" },
+        "bike": { "name": "Bicycle", "weight": 30, "icon": "🚲" },
+        "exercise_equipment": { "name": "Exercise Equipment", "weight": 150, "icon": "🏋️" }
+      }
+    },
+    "boxes": {
+      "name": "Boxes & Bins",
+      "items": {
+        "small_box": { "name": "Small Box (1.5 cu ft)", "weight": 30, "icon": "📦" },
+        "medium_box": { "name": "Medium Box (3 cu ft)", "weight": 45, "icon": "📦" },
+        "large_box": { "name": "Large Box (4.5 cu ft)", "weight": 60, "icon": "📦" },
+        "wardrobe_box": { "name": "Wardrobe Box", "weight": 25, "icon": "👔" },
+        "plastic_bin": { "name": "Plastic Storage Bin", "weight": 35, "icon": "🗃️" }
+      }
+    },
+    "miscellaneous": {
+      "name": "Miscellaneous",
+      "items": {
+        "rug_small": { "name": "Rug (Small)", "weight": 20, "icon": "🧶" },
+        "rug_large": { "name": "Rug (Large)", "weight": 50, "icon": "🧶" },
+        "piano_upright": { "name": "Upright Piano", "weight": 600, "icon": "🎹" },
+        "piano_grand": { "name": "Grand Piano", "weight": 1200, "icon": "🎹" },
+        "safe_small": { "name": "Safe (Small)", "weight": 200, "icon": "🔒" },
+        "safe_large": { "name": "Safe (Large)", "weight": 500, "icon": "🔒" },
+        "pool_table": { "name": "Pool Table", "weight": 1000, "icon": "🎱" },
+        "mattress_only": { "name": "Mattress Only (Queen)", "weight": 150, "icon": "🛏️" }
+      }
+    }
+  },
+  "ai_estimation_defaults": {
+    "studio": { "weight": 2000, "cubic_feet": 285, "typical_items": 25 },
+    "one_bedroom": { "weight": 3500, "cubic_feet": 500, "typical_items": 40 },
+    "two_bedroom": { "weight": 5500, "cubic_feet": 785, "typical_items": 65 },
+    "three_bedroom": { "weight": 8000, "cubic_feet": 1142, "typical_items": 95 },
+    "four_bedroom": { "weight": 10500, "cubic_feet": 1500, "typical_items": 125 },
+    "five_bedroom_plus": { "weight": 13000, "cubic_feet": 1857, "typical_items": 155 }
+  },
+  "multipliers": {
+    "stairs_per_floor": 1.15,
+    "elevator_available": 0.95,
+    "long_walk": 1.1,
+    "packing_required": 1.3,
+    "fragile_items": 1.2
+  }
+}
