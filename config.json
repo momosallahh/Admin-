@@ -1,0 +1,197 @@
+{
+  "company": {
+    "name": "Your Moving Company",
+    "phone": "(555) 123-4567",
+    "email": "info@yourmovingcompany.com",
+    "website": "https://yourmovingcompany.com",
+    "logo_url": "",
+    "brand_color": "#3b82f6"
+  },
+
+  "pricing": {
+    "labor": {
+      "hourly_rate_per_mover": 45,
+      "minimum_hours": 2,
+      "overtime_rate_multiplier": 1.5,
+      "overtime_starts_after_hours": 8
+    },
+
+    "crew": {
+      "default_movers": 2,
+      "auto_calculate_crew": true,
+      "crew_sizing": {
+        "0_500_lbs": 1,
+        "501_2000_lbs": 2,
+        "2001_5000_lbs": 3,
+        "5001_8000_lbs": 4,
+        "8001_plus_lbs": 5
+      }
+    },
+
+    "trucks": {
+      "10ft": {
+        "max_cubic_feet": 400,
+        "max_weight": 2800,
+        "daily_rate": 89,
+        "hourly_rate": 0,
+        "name": "10ft Truck (Studio/Small 1BR)"
+      },
+      "16ft": {
+        "max_cubic_feet": 800,
+        "max_weight": 5600,
+        "daily_rate": 129,
+        "hourly_rate": 0,
+        "name": "16ft Truck (1-2 BR Apartment)"
+      },
+      "20ft": {
+        "max_cubic_feet": 1000,
+        "max_weight": 7000,
+        "daily_rate": 169,
+        "hourly_rate": 0,
+        "name": "20ft Truck (2-3 BR House)"
+      },
+      "26ft": {
+        "max_cubic_feet": 1500,
+        "max_weight": 10000,
+        "daily_rate": 199,
+        "hourly_rate": 0,
+        "name": "26ft Truck (3+ BR House)"
+      }
+    },
+
+    "fees": {
+      "fuel_surcharge_per_mile": 2.00,
+      "truck_equipment_fee": 150,
+      "start_cost_per_mile": 5.00,
+      "start_cost_applies_to_first_miles": 10,
+      "regular_cost_per_mile_after_start": 2.50,
+
+      "optional_fees": {
+        "stairs_per_flight": 50,
+        "long_carry_per_50ft": 35,
+        "elevator_wait_per_30min": 40,
+        "packing_service_per_hour": 60,
+        "assembly_disassembly_per_item": 25,
+        "appliance_disconnect_reconnect": 75,
+        "piano_moving_upright": 200,
+        "piano_moving_grand": 400,
+        "storage_first_month": 150
+      }
+    },
+
+    "distance_pricing": {
+      "local_max_miles": 50,
+      "local_pricing_mode": "hourly",
+      "long_distance_min_miles": 51,
+      "long_distance_base_rate": 500,
+      "long_distance_per_mile": 3.50,
+      "long_distance_includes_loading_unloading": true
+    },
+
+    "calculation_settings": {
+      "pounds_to_cubic_feet_divisor": 7,
+      "loading_rate_lbs_per_mover_per_hour": 1000,
+      "unloading_rate_lbs_per_mover_per_hour": 1200,
+      "average_truck_speed_mph": 45,
+      "cost_range_low_multiplier": 0.90,
+      "cost_range_high_multiplier": 1.15,
+      "packing_time_multiplier": 1.3,
+      "stairs_time_multiplier": 1.15,
+      "fragile_items_time_multiplier": 1.2
+    }
+  },
+
+  "lead_capture": {
+    "require_email": true,
+    "require_phone": false,
+    "show_partial_estimate_first": true,
+    "partial_estimate_shows": {
+      "cost_range": true,
+      "truck_size": true,
+      "crew_size": true,
+      "labor_hours": false,
+      "breakdown": false
+    },
+    "full_estimate_requires_email": true
+  },
+
+  "integrations": {
+    "webhook": {
+      "enabled": false,
+      "url": "https://hooks.zapier.com/hooks/catch/YOUR_WEBHOOK_ID/",
+      "method": "POST",
+      "include_inventory_list": true,
+      "send_on_partial_view": false,
+      "send_on_full_view": true
+    },
+
+    "zapier": {
+      "enabled": false,
+      "webhook_url": "",
+      "instructions": "Create a Zap with 'Webhooks by Zapier' trigger, then paste the webhook URL above"
+    },
+
+    "trello": {
+      "enabled": false,
+      "api_key": "",
+      "token": "",
+      "board_id": "",
+      "list_id": "",
+      "instructions": "Get API credentials from https://trello.com/app-key"
+    },
+
+    "hubspot": {
+      "enabled": false,
+      "api_key": "",
+      "instructions": "Add your HubSpot API key to create deals automatically"
+    },
+
+    "email": {
+      "enabled": false,
+      "service": "mailto",
+      "smtp_instructions": "For production, use a service like SendGrid, Mailgun, or AWS SES"
+    },
+
+    "sms": {
+      "enabled": false,
+      "twilio_account_sid": "",
+      "twilio_auth_token": "",
+      "twilio_phone_number": "",
+      "instructions": "Add Twilio credentials to enable 'Text me this quote' feature"
+    }
+  },
+
+  "ui_settings": {
+    "theme": {
+      "primary_color": "#3b82f6",
+      "secondary_color": "#10b981",
+      "accent_color": "#f59e0b",
+      "dark_mode_available": true,
+      "default_dark_mode": false
+    },
+
+    "branding": {
+      "show_powered_by": true,
+      "powered_by_text": "Powered by RoutineMoves",
+      "powered_by_url": "https://routinemoves.ai",
+      "custom_footer_text": ""
+    },
+
+    "features": {
+      "enable_inventory_mode": true,
+      "enable_ai_quick_estimate": true,
+      "enable_pdf_export": true,
+      "enable_email_quote": true,
+      "enable_sms_quote": false,
+      "enable_admin_mode": true,
+      "show_cost_breakdown": true,
+      "show_tips_and_recommendations": true
+    }
+  },
+
+  "admin_mode": {
+    "enabled": true,
+    "password": "admin123",
+    "instructions": "Add ?admin=true to URL and enter password to test without lead capture"
+  }
+}
