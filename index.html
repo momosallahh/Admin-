@@ -461,6 +461,135 @@
             transform: none;
         }
 
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .back-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-button:hover {
+            background: #f0f4ff;
+            transform: translateY(-2px);
+        }
+
+        .back-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .next-button {
+            flex: 2;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .share-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-button:hover {
+            background: #f0f4ff;
+            transform: translateY(-2px);
+        }
+
+        .restart-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .restart-button:hover {
+            background: #f0f4ff;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            background: #fff5f5;
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            color: #ff6b6b;
+            font-weight: 600;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            color: #059669;
+            font-weight: 600;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
         /* Results */
         .results-screen.show {
             display: block;
@@ -873,12 +1002,36 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
             .header h1 {
-                font-size: 28px;
+                font-size: 24px;
+            }
+
+            .header .subtitle {
+                font-size: 16px;
+            }
+
+            .content {
+                padding: 30px 20px;
             }
 
             .hero h2 {
-                font-size: 24px;
+                font-size: 22px;
+            }
+
+            .hero p {
+                font-size: 16px;
             }
 
             .social-proof-stats {
@@ -886,9 +1039,14 @@
                 gap: 15px;
             }
 
+            .stat-number {
+                font-size: 32px;
+            }
+
             .featured-testimonial {
                 flex-direction: column;
                 text-align: center;
+                padding: 20px;
             }
 
             .question-text {
@@ -905,12 +1063,71 @@
 
             .form-input {
                 font-size: 16px !important;
-                padding: 20px !important;
+                padding: 18px !important;
             }
 
             .button, .submit-button {
-                padding: 20px !important;
+                padding: 18px !important;
                 font-size: 16px !important;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .back-button, .next-button {
+                width: 100%;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+            }
+
+            .share-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .score-circle {
+                width: 150px;
+                height: 150px;
+                font-size: 48px;
+            }
+
+            .score-label {
+                font-size: 14px;
+            }
+
+            .result-title {
+                font-size: 24px;
+            }
+
+            .result-description {
+                font-size: 16px;
+            }
+
+            .email-form {
+                padding: 30px 25px;
+            }
+
+            .cta-box {
+                padding: 30px 25px;
+            }
+
+            .exit-intent-modal {
+                padding: 30px 20px;
+            }
+
+            .exit-intent-modal h2 {
+                font-size: 24px;
+            }
+
+            .score-popup {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                width: auto;
             }
         }
     </style>
@@ -986,14 +1203,18 @@
                 <div class="email-form">
                     <h3>Get Your Personalized Routine Report</h3>
                     <p>See which AI routines you need + estimated ROI for your business</p>
+                    <div class="error-message" id="emailError"></div>
+                    <div class="success-message" id="emailSuccess"></div>
                     <form id="emailForm" onsubmit="submitEmail(event)">
                         <div class="form-group">
-                            <input type="email" class="form-input" id="email" placeholder="Email Address" required>
+                            <input type="email" class="form-input" id="email" placeholder="Email Address" required aria-label="Email Address">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" id="firstName" placeholder="First Name" required>
+                            <input type="text" class="form-input" id="firstName" placeholder="First Name" required aria-label="First Name">
                         </div>
-                        <button type="submit" class="submit-button">Start My Assessment →</button>
+                        <button type="submit" class="submit-button" id="submitEmailBtn">
+                            <span>Start My Assessment →</span>
+                        </button>
                         <div class="privacy-text">🔒 We respect your privacy. No spam, ever.</div>
                     </form>
                 </div>
@@ -1219,7 +1440,10 @@
                     </div>
                 </div>
 
-                <button class="button" id="nextButton" onclick="nextQuestion()" disabled>Next Question →</button>
+                <div class="button-group">
+                    <button class="back-button" id="backButton" onclick="previousQuestion()" disabled>← Back</button>
+                    <button class="button next-button" id="nextButton" onclick="nextQuestion()" disabled>Next Question →</button>
+                </div>
             </div>
 
             <!-- Results Screen -->
@@ -1268,6 +1492,24 @@
                     <p>Let's walk you through implementing your top 3 routines. No long-term commitment required.</p>
                     <button class="cta-button" onclick="bookDemo()">Schedule Free Strategy Call →</button>
                 </div>
+
+                <div style="text-align: center;">
+                    <h3 style="color: #2d3748; margin-bottom: 15px;">Share Your Results</h3>
+                    <div class="share-buttons">
+                        <button class="share-button" onclick="shareOnTwitter()">
+                            <span>🐦</span> Share on Twitter
+                        </button>
+                        <button class="share-button" onclick="shareOnLinkedIn()">
+                            <span>💼</span> Share on LinkedIn
+                        </button>
+                        <button class="share-button" onclick="copyLink()">
+                            <span>🔗</span> Copy Link
+                        </button>
+                    </div>
+                    <button class="restart-button" onclick="restartAssessment()">
+                        🔄 Retake Assessment
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1291,8 +1533,42 @@
     </div>
 
     <script>
+        /*
+         * ========================================
+         * MOAT ASSESSMENT - ENHANCED VERSION
+         * ========================================
+         *
+         * NEW FEATURES ADDED:
+         * -------------------
+         * 1. ✅ Back Button - Navigate to previous questions
+         * 2. ✅ Progress Saving - Automatically saves progress to localStorage
+         * 3. ✅ Resume Functionality - Offers to resume incomplete assessments (valid for 7 days)
+         * 4. ✅ Restart Assessment - Retake the assessment anytime
+         * 5. ✅ Share Results - Share on Twitter, LinkedIn, or copy link
+         * 6. ✅ Loading States - Visual feedback during form submission
+         * 7. ✅ Email Validation - Better email format validation
+         * 8. ✅ Error Handling - Improved error handling for webhook failures
+         * 9. ✅ Dynamic Spots Counter - Realistic countdown that persists daily
+         * 10. ✅ Keyboard Navigation - Use Enter (next), Backspace (back), 1-4 (select option)
+         * 11. ✅ Mobile Responsive - Enhanced mobile experience
+         * 12. ✅ Accessibility - Added ARIA labels for form inputs
+         *
+         * KEYBOARD SHORTCUTS:
+         * -------------------
+         * Enter: Next question
+         * Backspace: Previous question
+         * 1-4: Select answer option
+         *
+         * SETUP INSTRUCTIONS:
+         * -------------------
+         * 1. Replace ZAPIER_WEBHOOK_URL below with your actual Zapier webhook URL
+         * 2. Update CALENDLY_URL if you have a different scheduling link
+         * 3. Test the assessment flow completely
+         * 4. Monitor browser console for any errors
+         */
+
         // Configuration
-        const ZAPIER_WEBHOOK_URL = 'YOUR_ZAPIER_WEBHOOK_URL_HERE'; // ⚠️ REPLACE THIS!
+        const ZAPIER_WEBHOOK_URL = 'YOUR_ZAPIER_WEBHOOK_URL_HERE'; // ⚠️ REPLACE THIS with your actual webhook URL
         const CALENDLY_URL = 'https://calendly.com/routinemoves/strategy-call';
 
         // State
@@ -1301,6 +1577,14 @@
         let userData = {};
         const totalQuestions = 10;
         let exitIntentShown = false;
+        let finalScore = 0;
+
+        // Initialize - Load saved progress on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            updateSpotsCounter();
+            addKeyboardNavigation();
+        });
 
         // Routine definitions
         const routines = {
@@ -1316,19 +1600,124 @@
             10: { name: 'Google Ads Routine', cost: 199, description: 'AI optimizes ad spend, 50% better ROI' }
         };
 
-        // Email submission
+        // Email submission with loading state and validation
         function submitEmail(event) {
             event.preventDefault();
+
+            const emailInput = document.getElementById('email');
+            const firstNameInput = document.getElementById('firstName');
+            const submitBtn = document.getElementById('submitEmailBtn');
+            const errorDiv = document.getElementById('emailError');
+            const successDiv = document.getElementById('emailSuccess');
+
+            // Clear previous messages
+            errorDiv.classList.remove('show');
+            successDiv.classList.remove('show');
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                errorDiv.textContent = '⚠️ Please enter a valid email address.';
+                errorDiv.classList.add('show');
+                return;
+            }
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Starting...</span><span class="loading-spinner"></span>';
+
             userData = {
-                firstName: document.getElementById('firstName').value,
-                email: document.getElementById('email').value,
+                firstName: firstNameInput.value.trim(),
+                email: emailInput.value.trim(),
                 timestamp: new Date().toISOString()
             };
+
             console.log('User data captured:', userData);
-            document.getElementById('landingScreen').style.display = 'none';
-            document.getElementById('quizScreen').style.display = 'block';
-            updateProgress();
-            startScorePopups();
+
+            // Save to localStorage
+            saveProgress();
+
+            // Show success message briefly
+            successDiv.textContent = '✓ Great! Let\'s get started...';
+            successDiv.classList.add('show');
+
+            setTimeout(() => {
+                document.getElementById('landingScreen').style.display = 'none';
+                document.getElementById('quizScreen').style.display = 'block';
+                updateProgress();
+                startScorePopups();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Start My Assessment →</span>';
+            }, 800);
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            const progress = {
+                currentQuestion,
+                answers,
+                userData,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('moatAssessmentProgress', JSON.stringify(progress));
+        }
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('moatAssessmentProgress');
+            if (saved) {
+                try {
+                    const progress = JSON.parse(saved);
+                    // Check if saved data is less than 7 days old
+                    const savedDate = new Date(progress.timestamp);
+                    const now = new Date();
+                    const daysDiff = (now - savedDate) / (1000 * 60 * 60 * 24);
+
+                    if (daysDiff < 7 && progress.currentQuestion && progress.currentQuestion < totalQuestions) {
+                        // Ask user if they want to resume
+                        if (confirm('You have an incomplete assessment. Would you like to continue where you left off?')) {
+                            currentQuestion = progress.currentQuestion;
+                            answers = progress.answers || {};
+                            userData = progress.userData || {};
+
+                            // Show quiz screen if they were in the middle
+                            if (Object.keys(userData).length > 0) {
+                                document.getElementById('landingScreen').style.display = 'none';
+                                document.getElementById('quizScreen').style.display = 'block';
+
+                                // Restore question state
+                                document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+                                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+
+                                // Restore selected options
+                                Object.keys(answers).forEach(qNum => {
+                                    const question = document.querySelector(`[data-question="${qNum}"]`);
+                                    if (question) {
+                                        const options = question.querySelectorAll('.option');
+                                        options.forEach(opt => {
+                                            if (parseInt(opt.dataset.points) === answers[qNum]) {
+                                                opt.classList.add('selected');
+                                            }
+                                        });
+                                    }
+                                });
+
+                                updateProgress();
+                                updateNavigationButtons();
+                            }
+                        } else {
+                            localStorage.removeItem('moatAssessmentProgress');
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error loading progress:', e);
+                }
+            }
+        }
+
+        // Clear progress
+        function clearProgress() {
+            localStorage.removeItem('moatAssessmentProgress');
         }
 
         // Select option
@@ -1337,7 +1726,47 @@
             allOptions.forEach(opt => opt.classList.remove('selected'));
             element.classList.add('selected');
             answers[questionNum] = parseInt(element.dataset.points);
-            document.getElementById('nextButton').disabled = false;
+            updateNavigationButtons();
+            saveProgress();
+        }
+
+        // Update navigation buttons state
+        function updateNavigationButtons() {
+            const nextBtn = document.getElementById('nextButton');
+            const backBtn = document.getElementById('backButton');
+
+            // Enable/disable next button based on current answer
+            if (answers[currentQuestion]) {
+                nextBtn.disabled = false;
+            } else {
+                nextBtn.disabled = true;
+            }
+
+            // Enable/disable back button
+            if (currentQuestion > 1) {
+                backBtn.disabled = false;
+            } else {
+                backBtn.disabled = true;
+            }
+
+            // Update next button text
+            if (currentQuestion === totalQuestions) {
+                nextBtn.textContent = 'See My Results →';
+            } else {
+                nextBtn.textContent = 'Next Question →';
+            }
+        }
+
+        // Previous question
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                currentQuestion--;
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                updateProgress();
+                updateNavigationButtons();
+                saveProgress();
+            }
         }
 
         // Next question
@@ -1346,18 +1775,9 @@
                 document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
                 currentQuestion++;
                 document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
-                
-                if (currentQuestion === totalQuestions) {
-                    document.getElementById('nextButton').textContent = 'See My Results →';
-                }
-                
-                if (answers[currentQuestion]) {
-                    document.getElementById('nextButton').disabled = false;
-                } else {
-                    document.getElementById('nextButton').disabled = true;
-                }
-                
                 updateProgress();
+                updateNavigationButtons();
+                saveProgress();
             } else {
                 showResults();
             }
@@ -1394,7 +1814,8 @@
             const totalScore = Object.values(answers).reduce((a, b) => a + b, 0);
             const maxScore = 100;
             const percentage = Math.round((totalScore / maxScore) * 100);
-            
+
+            finalScore = percentage; // Save for sharing
             animateScore(percentage);
             
             // Determine needs based on individual scores
@@ -1605,23 +2026,168 @@
             
             // Send to Zapier
             try {
-                const response = await fetch(ZAPIER_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload)
-                });
-                
-                if (response.ok) {
-                    console.log('✅ Data sent successfully to Zapier!');
+                // Check if webhook URL is configured
+                if (ZAPIER_WEBHOOK_URL && ZAPIER_WEBHOOK_URL !== 'YOUR_ZAPIER_WEBHOOK_URL_HERE') {
+                    const response = await fetch(ZAPIER_WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        console.log('✅ Data sent successfully to Zapier!');
+                    } else {
+                        console.error('❌ Failed to send data. Status:', response.status);
+                    }
                 } else {
-                    console.error('❌ Failed to send data. Status:', response.status);
+                    console.warn('⚠️ Zapier webhook URL not configured. Please update ZAPIER_WEBHOOK_URL in the code.');
+                    console.log('Data that would be sent:', payload);
                 }
             } catch (error) {
                 console.error('Error sending to backend:', error);
                 // Fail silently - don't interrupt user experience
             }
+
+            // Clear saved progress after completion
+            clearProgress();
+        }
+
+        // Restart Assessment
+        function restartAssessment() {
+            if (confirm('Are you sure you want to restart the assessment? Your current results will be lost.')) {
+                // Reset all state
+                currentQuestion = 1;
+                answers = {};
+                userData = {};
+                exitIntentShown = false;
+                finalScore = 0;
+
+                // Clear localStorage
+                clearProgress();
+
+                // Reset UI
+                document.getElementById('resultsScreen').classList.remove('show');
+                document.getElementById('resultsScreen').style.display = 'none';
+                document.getElementById('quizScreen').style.display = 'none';
+                document.getElementById('landingScreen').style.display = 'block';
+
+                // Clear form
+                document.getElementById('email').value = '';
+                document.getElementById('firstName').value = '';
+
+                // Clear selected options
+                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+
+                // Reset questions
+                document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+                document.querySelector('[data-question="1"]').classList.add('active');
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Share on Twitter
+        function shareOnTwitter() {
+            const text = `I just scored ${finalScore}% on the Moat Assessment! 🏰 Find out how protected your moving business is from competitors.`;
+            const url = window.location.href;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+            window.open(twitterUrl, '_blank', 'width=550,height=420');
+        }
+
+        // Share on LinkedIn
+        function shareOnLinkedIn() {
+            const url = window.location.href;
+            const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+            window.open(linkedInUrl, '_blank', 'width=550,height=420');
+        }
+
+        // Copy Link
+        function copyLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                // Show feedback
+                const btn = event.target.closest('.share-button');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<span>✓</span> Link Copied!';
+                btn.style.background = '#d1fae5';
+                btn.style.borderColor = '#10b981';
+                btn.style.color = '#059669';
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = 'white';
+                    btn.style.borderColor = '#667eea';
+                    btn.style.color = '#667eea';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy link. Please copy manually: ' + url);
+            });
+        }
+
+        // Dynamic spots counter
+        function updateSpotsCounter() {
+            const spotsElement = document.getElementById('spotsLeft');
+            if (spotsElement) {
+                // Get or initialize spot count in localStorage
+                let spots = localStorage.getItem('moatAssessmentSpots');
+                if (!spots) {
+                    // Start with a random number between 25-45
+                    spots = Math.floor(Math.random() * 21) + 25;
+                    localStorage.setItem('moatAssessmentSpots', spots);
+                    localStorage.setItem('moatAssessmentSpotsDate', new Date().toDateString());
+                } else {
+                    spots = parseInt(spots);
+                    const savedDate = localStorage.getItem('moatAssessmentSpotsDate');
+                    const today = new Date().toDateString();
+
+                    // Reset count if it's a new day
+                    if (savedDate !== today) {
+                        spots = Math.floor(Math.random() * 21) + 25;
+                        localStorage.setItem('moatAssessmentSpots', spots);
+                        localStorage.setItem('moatAssessmentSpotsDate', today);
+                    } else {
+                        // Occasionally decrease the count
+                        if (Math.random() < 0.3 && spots > 10) {
+                            spots -= 1;
+                            localStorage.setItem('moatAssessmentSpots', spots);
+                        }
+                    }
+                }
+                spotsElement.textContent = spots;
+            }
+
+            // Update every 2-5 minutes
+            const nextUpdate = (Math.random() * 180000) + 120000; // 2-5 minutes in ms
+            setTimeout(updateSpotsCounter, nextUpdate);
+        }
+
+        // Keyboard navigation
+        function addKeyboardNavigation() {
+            document.addEventListener('keydown', function(e) {
+                const quizScreen = document.getElementById('quizScreen');
+                if (quizScreen.style.display !== 'none') {
+                    if (e.key === 'Enter' && !document.getElementById('nextButton').disabled) {
+                        nextQuestion();
+                    } else if (e.key === 'Backspace' && !document.getElementById('backButton').disabled) {
+                        e.preventDefault();
+                        previousQuestion();
+                    } else if (e.key >= '1' && e.key <= '4') {
+                        // Select option 1-4 with number keys
+                        const activeQuestion = document.querySelector('.question.active');
+                        if (activeQuestion) {
+                            const options = activeQuestion.querySelectorAll('.option');
+                            const optionIndex = parseInt(e.key) - 1;
+                            if (options[optionIndex]) {
+                                options[optionIndex].click();
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         // Book demo
