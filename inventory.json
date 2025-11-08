@@ -8,7 +8,7 @@
         "armchair": { "name": "Armchair", "weight": 100, "icon": "🪑" },
         "recliner": { "name": "Recliner", "weight": 150, "icon": "🪑" },
         "coffee_table": { "name": "Coffee Table", "weight": 75, "icon": "☕" },
-        "end_table": { "name": "End Table", "weight": 35, "icon": "🏮" },
+        "end_table": { "name": "End Table", "weight": 35, "icon": "🪔" },
         "tv_stand": { "name": "TV Stand", "weight": 85, "icon": "📺" },
         "entertainment_center": { "name": "Entertainment Center", "weight": 250, "icon": "📺" },
         "bookshelf_small": { "name": "Bookshelf (Small)", "weight": 70, "icon": "📚" },
@@ -25,11 +25,11 @@
         "full_bed": { "name": "Full Bed (frame + mattress)", "weight": 250, "icon": "🛏️" },
         "twin_bed": { "name": "Twin Bed (frame + mattress)", "weight": 175, "icon": "🛏️" },
         "bunk_bed": { "name": "Bunk Bed", "weight": 300, "icon": "🛏️" },
-        "nightstand": { "name": "Nightstand", "weight": 50, "icon": "🛋️" },
+        "nightstand": { "name": "Nightstand", "weight": 50, "icon": "🕯️" },
         "dresser_small": { "name": "Dresser (3-4 drawers)", "weight": 150, "icon": "🗄️" },
         "dresser_large": { "name": "Dresser (6+ drawers)", "weight": 250, "icon": "🗄️" },
         "chest_of_drawers": { "name": "Chest of Drawers", "weight": 175, "icon": "🗄️" },
-        "wardrobe": { "name": "Wardrobe/Armoire", "weight": 300, "icon": "🚪" },
+        "wardrobe": { "name": "Wardrobe/Armoire", "weight": 300, "icon": "👗" },
         "mirror_large": { "name": "Large Mirror", "weight": 50, "icon": "🪞" },
         "vanity": { "name": "Vanity Table", "weight": 125, "icon": "💄" }
       }
@@ -67,7 +67,7 @@
         "dryer": { "name": "Dryer", "weight": 150, "icon": "🧺" },
         "dishwasher": { "name": "Dishwasher", "weight": 175, "icon": "🍽️" },
         "stove": { "name": "Stove/Range", "weight": 250, "icon": "🔥" },
-        "microwave": { "name": "Microwave", "weight": 50, "icon": "📻" },
+        "microwave": { "name": "Microwave", "weight": 50, "icon": "⏲️" },
         "tv_small": { "name": "TV (32-42 inch)", "weight": 35, "icon": "📺" },
         "tv_medium": { "name": "TV (43-55 inch)", "weight": 50, "icon": "📺" },
         "tv_large": { "name": "TV (55+ inch)", "weight": 75, "icon": "📺" }
@@ -76,7 +76,7 @@
     "outdoor": {
       "name": "Outdoor/Patio",
       "items": {
-        "patio_table": { "name": "Patio Table", "weight": 100, "icon": "🌞" },
+        "patio_table": { "name": "Patio Table", "weight": 100, "icon": "🍽️" },
         "patio_chair": { "name": "Patio Chair", "weight": 30, "icon": "🪑" },
         "grill": { "name": "BBQ Grill", "weight": 150, "icon": "🔥" },
         "patio_umbrella": { "name": "Patio Umbrella", "weight": 40, "icon": "☂️" },
@@ -98,8 +98,8 @@
     "miscellaneous": {
       "name": "Miscellaneous",
       "items": {
-        "rug_small": { "name": "Rug (Small)", "weight": 20, "icon": "🧶" },
-        "rug_large": { "name": "Rug (Large)", "weight": 50, "icon": "🧶" },
+        "rug_small": { "name": "Rug (Small)", "weight": 20, "icon": "🎨" },
+        "rug_large": { "name": "Rug (Large)", "weight": 50, "icon": "🖼️" },
         "piano_upright": { "name": "Upright Piano", "weight": 600, "icon": "🎹" },
         "piano_grand": { "name": "Grand Piano", "weight": 1200, "icon": "🎹" },
         "safe_small": { "name": "Safe (Small)", "weight": 200, "icon": "🔒" },

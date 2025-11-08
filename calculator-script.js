@@ -462,7 +462,10 @@ function calculateEstimate() {
             : parseInt(numMoversInput);
 
         // Calculate truck size
-        const truckInfo = calculateTruckSize(totalCubicFeet);
+        const truckSizeInput = document.getElementById('truckSize').value;
+        const truckInfo = truckSizeInput === 'auto'
+            ? calculateTruckSize(totalCubicFeet)
+            : getManualTruckInfo(truckSizeInput);
 
         // Calculate labor time
         const loadingRate = config.pricing?.calculation_settings?.loading_rate_lbs_per_mover_per_hour || 1000;
@@ -643,6 +646,21 @@ function calculateTruckSize(cubicFeet) {
         daily_rate: totalRate,
         count: trucksNeeded,
         displayName: `${trucksNeeded} × ${trucks['26ft'].name.split(' ')[0]} Trucks`
+    };
+}
+
+function getManualTruckInfo(truckSize) {
+    const trucks = config.pricing?.trucks;
+    if (!trucks) return { name: '16ft Truck', daily_rate: 129, count: 1, displayName: '16ft Truck' };
+
+    const truck = trucks[truckSize];
+    if (!truck) return { name: '16ft Truck', daily_rate: 129, count: 1, displayName: '16ft Truck' };
+
+    return {
+        name: truck.name,
+        daily_rate: truck.daily_rate,
+        count: 1,
+        displayName: truck.name
     };
 }
 
