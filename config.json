@@ -99,6 +99,110 @@
       "packing_time_multiplier": 1.3,
       "stairs_time_multiplier": 1.15,
       "fragile_items_time_multiplier": 1.2
+    },
+
+    "dynamic_pricing": {
+      "enabled": true,
+      "peak_season": {
+        "enabled": true,
+        "months": [5, 6, 7, 8, 9],
+        "multiplier": 1.20,
+        "description": "Peak moving season (May-Sep)"
+      },
+      "weekend_pricing": {
+        "enabled": true,
+        "days": [0, 6],
+        "multiplier": 1.15,
+        "description": "Weekend moves (Sat/Sun)"
+      },
+      "month_end": {
+        "enabled": true,
+        "days": [1, 28, 29, 30, 31],
+        "multiplier": 1.25,
+        "description": "First/last of month rush"
+      },
+      "holidays": {
+        "enabled": true,
+        "multiplier": 1.30,
+        "dates": ["2024-07-04", "2024-09-02", "2024-11-28"],
+        "description": "Holiday pricing"
+      },
+      "rush_move": {
+        "enabled": true,
+        "within_days": 3,
+        "multiplier": 1.50,
+        "description": "Rush move (within 3 days)"
+      }
+    },
+
+    "add_on_services": {
+      "packing_materials": {
+        "enabled": true,
+        "name": "Packing Materials Kit",
+        "description": "Complete packing supplies delivered",
+        "auto_calculate": true,
+        "items": {
+          "small_box": { "name": "Small Box", "price": 2.50, "per_bedroom": 5 },
+          "medium_box": { "name": "Medium Box", "price": 3.00, "per_bedroom": 10 },
+          "large_box": { "name": "Large Box", "price": 3.50, "per_bedroom": 8 },
+          "wardrobe_box": { "name": "Wardrobe Box", "price": 8.00, "per_bedroom": 2 },
+          "bubble_wrap": { "name": "Bubble Wrap Roll", "price": 12.00, "per_move": 2 },
+          "packing_tape": { "name": "Packing Tape", "price": 4.00, "per_move": 3 },
+          "markers": { "name": "Markers", "price": 3.00, "per_move": 1 }
+        }
+      },
+      "insurance": {
+        "enabled": true,
+        "name": "Moving Insurance",
+        "description": "Protect your belongings",
+        "options": [
+          {
+            "level": "basic",
+            "name": "Basic Coverage ($0.60/lb)",
+            "rate_per_pound": 0.60,
+            "max_coverage": 5000,
+            "price_calculation": "weight"
+          },
+          {
+            "level": "premium",
+            "name": "Full Replacement Value",
+            "base_price": 150,
+            "per_1000_value": 5,
+            "description": "Full replacement cost coverage"
+          }
+        ]
+      },
+      "assembly": {
+        "enabled": true,
+        "name": "Furniture Assembly/Disassembly",
+        "price_per_item": 25,
+        "description": "Professional assembly service",
+        "common_items": ["Bed Frame", "Desk", "Bookshelf", "Dining Table", "TV Stand"]
+      },
+      "storage": {
+        "enabled": true,
+        "name": "Climate-Controlled Storage",
+        "first_month_price": 0,
+        "regular_monthly_price": 150,
+        "promotion": "First month FREE",
+        "description": "Secure, climate-controlled storage"
+      },
+      "junk_removal": {
+        "enabled": true,
+        "name": "Junk Removal Service",
+        "price_per_item": 35,
+        "truck_load_price": 250,
+        "description": "We'll haul away unwanted items"
+      },
+      "cleaning": {
+        "enabled": true,
+        "name": "Move-Out Cleaning",
+        "studio_1br": 150,
+        "2br": 225,
+        "3br": 300,
+        "4br_plus": 400,
+        "description": "Professional deep cleaning"
+      }
     }
   },
 
@@ -162,6 +266,56 @@
     }
   },
 
+  "social_proof": {
+    "enabled": true,
+    "total_customers_this_month": 2847,
+    "total_reviews": 1200,
+    "average_rating": 4.9,
+    "recent_bookings": [
+      { "name": "Sarah", "location": "Chicago", "minutes_ago": 12 },
+      { "name": "Mike", "location": "Austin", "minutes_ago": 45 },
+      { "name": "Jennifer", "location": "Seattle", "minutes_ago": 67 }
+    ],
+    "trust_badges": ["Licensed & Insured", "5-Star Rated", "Family Owned"]
+  },
+
+  "competitor_comparison": {
+    "enabled": true,
+    "industry_average_multiplier": 1.27,
+    "show_savings_badge": true,
+    "competitor_names": ["Industry Average", "Typical Moving Company"]
+  },
+
+  "tip_calculator": {
+    "enabled": true,
+    "suggested_percentage_low": 15,
+    "suggested_percentage_high": 20,
+    "show_in_final_results": true,
+    "description": "Industry standard is 15-20% of labor cost or $20-40 per mover"
+  },
+
+  "referral_program": {
+    "enabled": true,
+    "discount_amount": 100,
+    "description": "Refer a friend, you both get $100 off",
+    "code_prefix": "REF",
+    "show_after_quote": true
+  },
+
+  "moving_checklist": {
+    "enabled": true,
+    "generate_pdf": true,
+    "items": [
+      { "weeks_before": 4, "task": "Reserve elevator and get parking permits" },
+      { "weeks_before": 3, "task": "Start decluttering and donate unwanted items" },
+      { "weeks_before": 2, "task": "Begin packing non-essential items" },
+      { "weeks_before": 1, "task": "Confirm move date and details with company" },
+      { "days_before": 3, "task": "Pack essential bag for moving day" },
+      { "days_before": 1, "task": "Defrost refrigerator and prepare appliances" },
+      { "moving_day": true, "task": "Have cash/tip ready for movers" }
+    ]
+  },
+
   "ui_settings": {
     "theme": {
       "primary_color": "#3b82f6",
@@ -186,7 +340,14 @@
       "enable_sms_quote": false,
       "enable_admin_mode": true,
       "show_cost_breakdown": true,
-      "show_tips_and_recommendations": true
+      "show_tips_and_recommendations": true,
+      "enable_dynamic_pricing": true,
+      "enable_add_on_services": true,
+      "enable_social_proof": true,
+      "enable_competitor_comparison": true,
+      "enable_tip_calculator": true,
+      "enable_referral_program": true,
+      "enable_moving_checklist": true
     }
   },
 

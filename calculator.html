@@ -33,6 +33,26 @@
             <p class="subtitle">Get your free instant quote in 2 minutes</p>
         </header>
 
+        <!-- Social Proof Banner -->
+        <div class="social-proof-banner" id="socialProofBanner" style="display: none;">
+            <div class="social-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">⭐</span>
+                    <span class="stat-text"><strong id="avgRating">4.9</strong>/5 from <span id="totalReviews">1,200</span>+ reviews</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">👥</span>
+                    <span class="stat-text"><strong id="totalCustomers">2,847</strong> happy customers this month</span>
+                </div>
+            </div>
+            <div class="trust-badges" id="trustBadges">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="recent-booking" id="recentBooking">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
         <!-- Mode Switcher -->
         <div class="mode-switcher">
             <button class="mode-btn active" data-mode="inventory">
@@ -187,6 +207,102 @@
 
                 </div>
 
+                <!-- Add-On Services Section -->
+                <div class="add-ons-section" id="addOnsSection" style="display: none;">
+                    <h3>🎁 Add Extra Services (Optional)</h3>
+                    <p class="add-ons-subtitle">Enhance your move with these popular add-ons</p>
+
+                    <div class="add-ons-grid">
+                        <!-- Packing Materials -->
+                        <div class="add-on-card" data-addon="packing_materials">
+                            <div class="add-on-header">
+                                <input type="checkbox" id="addon_packing" class="addon-checkbox">
+                                <label for="addon_packing">
+                                    <span class="addon-icon">📦</span>
+                                    <span class="addon-name">Packing Materials Kit</span>
+                                </label>
+                                <span class="addon-price" id="packingPrice">$0</span>
+                            </div>
+                            <p class="addon-description">Complete supplies delivered to you</p>
+                        </div>
+
+                        <!-- Insurance -->
+                        <div class="add-on-card" data-addon="insurance">
+                            <div class="add-on-header">
+                                <input type="checkbox" id="addon_insurance" class="addon-checkbox">
+                                <label for="addon_insurance">
+                                    <span class="addon-icon">🛡️</span>
+                                    <span class="addon-name">Moving Insurance</span>
+                                </label>
+                                <span class="addon-price" id="insurancePrice">$0</span>
+                            </div>
+                            <p class="addon-description">Protect your belongings</p>
+                            <select id="insuranceLevel" class="addon-select" style="display: none;">
+                                <option value="basic">Basic ($0.60/lb)</option>
+                                <option value="premium">Full Replacement</option>
+                            </select>
+                        </div>
+
+                        <!-- Assembly -->
+                        <div class="add-on-card" data-addon="assembly">
+                            <div class="add-on-header">
+                                <input type="checkbox" id="addon_assembly" class="addon-checkbox">
+                                <label for="addon_assembly">
+                                    <span class="addon-icon">🔧</span>
+                                    <span class="addon-name">Furniture Assembly</span>
+                                </label>
+                                <span class="addon-price">$25/item</span>
+                            </div>
+                            <p class="addon-description">We'll assemble/disassemble furniture</p>
+                            <input type="number" id="assemblyItems" class="addon-input" min="0" placeholder="# of items" style="display: none;">
+                        </div>
+
+                        <!-- Storage -->
+                        <div class="add-on-card" data-addon="storage">
+                            <div class="add-on-header">
+                                <input type="checkbox" id="addon_storage" class="addon-checkbox">
+                                <label for="addon_storage">
+                                    <span class="addon-icon">🏢</span>
+                                    <span class="addon-name">Storage (1st Month FREE)</span>
+                                </label>
+                                <span class="addon-price">$0</span>
+                            </div>
+                            <p class="addon-description">Climate-controlled storage</p>
+                        </div>
+
+                        <!-- Junk Removal -->
+                        <div class="add-on-card" data-addon="junk">
+                            <div class="add-on-header">
+                                <input type="checkbox" id="addon_junk" class="addon-checkbox">
+                                <label for="addon_junk">
+                                    <span class="addon-icon">🗑️</span>
+                                    <span class="addon-name">Junk Removal</span>
+                                </label>
+                                <span class="addon-price">$35/item</span>
+                            </div>
+                            <p class="addon-description">We'll haul away unwanted items</p>
+                            <input type="number" id="junkItems" class="addon-input" min="0" placeholder="# of items" style="display: none;">
+                        </div>
+
+                        <!-- Cleaning -->
+                        <div class="add-on-card" data-addon="cleaning">
+                            <div class="add-on-header">
+                                <input type="checkbox" id="addon_cleaning" class="addon-checkbox">
+                                <label for="addon_cleaning">
+                                    <span class="addon-icon">🧹</span>
+                                    <span class="addon-name">Move-Out Cleaning</span>
+                                </label>
+                                <span class="addon-price" id="cleaningPrice">$0</span>
+                            </div>
+                            <p class="addon-description">Professional deep cleaning</p>
+                        </div>
+                    </div>
+
+                    <div class="add-ons-total" id="addOnsTotal" style="display: none;">
+                        <strong>Add-Ons Total:</strong> <span id="addOnsTotalAmount">$0</span>
+                    </div>
+                </div>
+
                 <button class="btn btn-primary btn-large" id="calculateBtn">
                     🧮 Calculate My Cost
                 </button>
@@ -228,6 +344,35 @@
                         <span class="fact-icon">⏱️</span>
                         <span class="fact-label">Est. Time</span>
                         <span class="fact-value" id="estTime">—</span>
+                    </div>
+                </div>
+
+                <!-- Competitor Comparison -->
+                <div class="competitor-comparison" id="competitorComparison" style="display: none;">
+                    <div class="comparison-header">
+                        <h3>💰 You're Getting a Great Deal!</h3>
+                    </div>
+                    <div class="comparison-grid">
+                        <div class="comparison-item">
+                            <span class="comparison-label">Our Quote:</span>
+                            <span class="comparison-value our-price" id="ourQuote">$1,450</span>
+                        </div>
+                        <div class="comparison-divider">vs</div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Industry Average:</span>
+                            <span class="comparison-value competitor-price" id="competitorQuote">$1,850</span>
+                        </div>
+                    </div>
+                    <div class="savings-badge">
+                        🎉 YOU SAVE: <strong id="savingsAmount">$400</strong>
+                    </div>
+                </div>
+
+                <!-- Dynamic Pricing Notice -->
+                <div class="dynamic-pricing-notice" id="dynamicPricingNotice" style="display: none;">
+                    <div class="pricing-alert">
+                        <span class="alert-icon">⚡</span>
+                        <span class="alert-text" id="pricingAlertText"></span>
                     </div>
                 </div>
 
@@ -291,6 +436,58 @@
                 <div class="move-summary">
                     <h3>Move Details</h3>
                     <div id="moveSummaryContent"></div>
+                </div>
+
+                <!-- Tip Calculator -->
+                <div class="tip-calculator" id="tipCalculator" style="display: none;">
+                    <h3>💵 Suggested Tip for Your Movers</h3>
+                    <p class="tip-description">Industry standard is 15-20% of labor cost or $20-40 per mover</p>
+                    <div class="tip-options">
+                        <div class="tip-option">
+                            <span class="tip-label">15% (Good)</span>
+                            <span class="tip-amount" id="tip15">$0</span>
+                        </div>
+                        <div class="tip-option recommended">
+                            <span class="tip-label">18% (Recommended)</span>
+                            <span class="tip-amount" id="tip18">$0</span>
+                        </div>
+                        <div class="tip-option">
+                            <span class="tip-label">20% (Excellent)</span>
+                            <span class="tip-amount" id="tip20">$0</span>
+                        </div>
+                    </div>
+                    <p class="tip-note">💡 Tip: Have cash ready on moving day</p>
+                </div>
+
+                <!-- Referral Program -->
+                <div class="referral-section" id="referralSection" style="display: none;">
+                    <div class="referral-card">
+                        <h3>🎁 Refer a Friend, Get $100 Off!</h3>
+                        <p>Share your unique code and you both save $100</p>
+                        <div class="referral-code-display">
+                            <span class="referral-label">Your Referral Code:</span>
+                            <div class="code-box">
+                                <span class="code" id="referralCode">REF123ABC</span>
+                                <button class="btn-copy" id="copyReferralBtn">📋 Copy</button>
+                            </div>
+                        </div>
+                        <div class="share-buttons">
+                            <button class="btn-share" id="shareEmailBtn">📧 Email</button>
+                            <button class="btn-share" id="shareTextBtn">💬 Text</button>
+                            <button class="btn-share" id="shareSocialBtn">🔗 Share</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moving Checklist -->
+                <div class="checklist-section" id="checklistSection" style="display: none;">
+                    <div class="checklist-card">
+                        <h3>📋 Your Moving Checklist</h3>
+                        <p>Stay organized with our comprehensive moving timeline</p>
+                        <button class="btn btn-outline" id="downloadChecklistBtn">
+                            📥 Download Moving Checklist PDF
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Action Buttons -->
