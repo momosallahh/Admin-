@@ -2004,36 +2004,55 @@
             
             // Prepare payload
             const payload = {
+                id: Date.now(), // Unique ID
                 firstName: userData.firstName || 'Unknown',
                 email: userData.email || 'no-email@example.com',
                 companyName: userData.companyName || 'Not Provided',
                 score: percentage,
                 priority: priority,
                 timestamp: userData.timestamp,
-                criticalRoutines: criticalRoutines.join(', ') || 'None',
-                recommendedRoutines: recommendedRoutines.join(', ') || 'None',
-                optionalRoutines: optionalRoutines.join(', ') || 'None',
+                criticalRoutines: criticalRoutines,
+                criticalRoutinesText: criticalRoutines.join(', ') || 'None',
+                recommendedRoutines: recommendedRoutines,
+                recommendedRoutinesText: recommendedRoutines.join(', ') || 'None',
+                optionalRoutines: optionalRoutines,
+                optionalRoutinesText: optionalRoutines.join(', ') || 'None',
                 criticalCount: criticalRoutines.length,
                 recommendedCount: recommendedRoutines.length,
                 monthlyLoss: monthlyLoss,
                 annualLoss: annualLoss,
-                answers: JSON.stringify(answers),
+                answers: answers,
+                answersJSON: JSON.stringify(answers),
                 status: 'new',
-                source: 'Moat Assessment V2'
+                source: 'Moat Assessment V2',
+                lastContact: new Date().toISOString(),
+                notes: []
             };
-            
+
             console.log('Sending to backend:', payload);
+
+            // ✅ SAVE TO LOCALSTORAGE FOR DASHBOARD
+            saveLeadToLocalStorage(payload);
             
             // Send to Zapier
             try {
                 // Check if webhook URL is configured
                 if (ZAPIER_WEBHOOK_URL && ZAPIER_WEBHOOK_URL !== 'YOUR_ZAPIER_WEBHOOK_URL_HERE') {
+                    // Create webhook-friendly payload
+                    const webhookPayload = {
+                        ...payload,
+                        criticalRoutines: payload.criticalRoutinesText,
+                        recommendedRoutines: payload.recommendedRoutinesText,
+                        optionalRoutines: payload.optionalRoutinesText,
+                        answers: payload.answersJSON
+                    };
+
                     const response = await fetch(ZAPIER_WEBHOOK_URL, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(payload)
+                        body: JSON.stringify(webhookPayload)
                     });
 
                     if (response.ok) {
@@ -2052,6 +2071,34 @@
 
             // Clear saved progress after completion
             clearProgress();
+        }
+
+        // Save lead to localStorage for dashboard
+        function saveLeadToLocalStorage(lead) {
+            try {
+                // Get existing leads
+                let leads = JSON.parse(localStorage.getItem('moatAssessmentLeads') || '[]');
+
+                // Add new lead
+                leads.push(lead);
+
+                // Save back to localStorage
+                localStorage.setItem('moatAssessmentLeads', JSON.stringify(leads));
+
+                console.log('✅ Lead saved to localStorage for dashboard!');
+                console.log(`📊 Total leads in database: ${leads.length}`);
+
+                // Show subtle notification
+                const notification = document.createElement('div');
+                notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #10b981; color: white; padding: 15px 25px; border-radius: 12px; font-weight: 700; z-index: 9999; animation: slideIn 0.3s ease-out;';
+                notification.textContent = '✅ Results saved! View in Dashboard →';
+                notification.onclick = () => window.open('dashboard.html', '_blank');
+                document.body.appendChild(notification);
+
+                setTimeout(() => notification.remove(), 5000);
+            } catch (error) {
+                console.error('Error saving lead to localStorage:', error);
+            }
         }
 
         // Restart Assessment
