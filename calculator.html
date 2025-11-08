@@ -368,12 +368,47 @@
                     </div>
                 </div>
 
+                <!-- Move Risk Score -->
+                <div class="risk-score-badge" id="riskScoreBadge" style="display: none;">
+                    <div class="risk-score-content">
+                        <span class="risk-icon" id="riskIcon">✅</span>
+                        <div class="risk-info">
+                            <span class="risk-label" id="riskLabel">Low Risk Move</span>
+                            <span class="risk-message" id="riskMessage">Your move looks straightforward!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Generated Summary -->
+                <div class="ai-summary-section" id="aiSummarySection" style="display: none;">
+                    <h3>📋 Move Summary</h3>
+                    <p class="ai-summary-text" id="aiSummaryText"></p>
+                </div>
+
+                <!-- Smart Upsell Recommendations -->
+                <div class="upsell-section" id="upsellSection" style="display: none;">
+                    <h3>💡 Recommended for Your Move</h3>
+                    <div class="upsell-cards" id="upsellCards">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
                 <!-- Dynamic Pricing Notice -->
                 <div class="dynamic-pricing-notice" id="dynamicPricingNotice" style="display: none;">
                     <div class="pricing-alert">
                         <span class="alert-icon">⚡</span>
                         <span class="alert-text" id="pricingAlertText"></span>
                     </div>
+                </div>
+
+                <!-- Crew Availability Calendar -->
+                <div class="crew-availability" id="crewAvailability" style="display: none;">
+                    <h3>📅 Available Move Dates</h3>
+                    <p class="availability-subtitle">Select your preferred move date</p>
+                    <div class="availability-calendar" id="availabilityCalendar">
+                        <!-- Dynamically populated -->
+                    </div>
+                    <p class="availability-note">✨ Dates in green are available | ⚠️ Yellow = limited availability</p>
                 </div>
 
                 <!-- Lead Capture Form -->
@@ -389,7 +424,7 @@
                         <div class="form-row">
                             <input type="tel" id="leadPhone" placeholder="Phone (optional)">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-large">
+                        <button type="submit" class="btn btn-primary btn-large" id="getQuoteBtn">
                             📧 Get Full Quote
                         </button>
                     </form>
@@ -407,9 +442,70 @@
                     <p class="customer-name">Prepared for: <span id="customerName"></span></p>
                 </div>
 
+                <!-- AI Generated Summary (Full Version) -->
+                <div class="ai-summary-full" id="aiSummaryFull" style="display: none;">
+                    <div class="summary-card">
+                        <h3>📋 Your Move at a Glance</h3>
+                        <p class="summary-text" id="aiSummaryFullText"></p>
+                    </div>
+                </div>
+
+                <!-- Three-Tier Pricing Options -->
+                <div class="three-tier-pricing" id="threeTierPricing" style="display: none;">
+                    <h3>Choose Your Service Level</h3>
+                    <p class="tier-subtitle">Select the level of service that best fits your needs</p>
+                    <div class="pricing-tiers">
+                        <div class="pricing-tier" data-tier="saver" id="tierSaver">
+                            <div class="tier-header">
+                                <h4 class="tier-name">Saver</h4>
+                                <p class="tier-description">Basic service - great value</p>
+                            </div>
+                            <div class="tier-price">
+                                <span class="tier-price-amount" id="priceSaver">$1,200</span>
+                                <span class="tier-price-range" id="priceSaverRange">$1,080 - $1,380</span>
+                            </div>
+                            <ul class="tier-features" id="featuresSaver">
+                                <!-- Dynamically populated -->
+                            </ul>
+                            <button class="btn btn-tier" data-tier="saver">Select Saver</button>
+                        </div>
+
+                        <div class="pricing-tier tier-recommended" data-tier="standard" id="tierStandard">
+                            <div class="tier-badge">MOST POPULAR</div>
+                            <div class="tier-header">
+                                <h4 class="tier-name">Standard</h4>
+                                <p class="tier-description">Most popular choice</p>
+                            </div>
+                            <div class="tier-price">
+                                <span class="tier-price-amount" id="priceStandard">$1,450</span>
+                                <span class="tier-price-range" id="priceStandardRange">$1,300 - $1,670</span>
+                            </div>
+                            <ul class="tier-features" id="featuresStandard">
+                                <!-- Dynamically populated -->
+                            </ul>
+                            <button class="btn btn-tier btn-recommended" data-tier="standard">Select Standard</button>
+                        </div>
+
+                        <div class="pricing-tier tier-premium" data-tier="white_glove" id="tierWhiteGlove">
+                            <div class="tier-header">
+                                <h4 class="tier-name">White Glove</h4>
+                                <p class="tier-description">Premium service</p>
+                            </div>
+                            <div class="tier-price">
+                                <span class="tier-price-amount" id="priceWhiteGlove">$1,950</span>
+                                <span class="tier-price-range" id="priceWhiteGloveRange">$1,750 - $2,240</span>
+                            </div>
+                            <ul class="tier-features" id="featuresWhiteGlove">
+                                <!-- Dynamically populated -->
+                            </ul>
+                            <button class="btn btn-tier btn-premium" data-tier="white_glove">Select White Glove</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Cost Summary -->
                 <div class="cost-summary">
-                    <h3>Total Cost Estimate</h3>
+                    <h3>Selected Service: <span id="selectedTierName">Standard</span></h3>
                     <div class="cost-range-large">
                         <span id="finalCostLow">$0</span> — <span id="finalCostHigh">$0</span>
                     </div>
@@ -492,6 +588,12 @@
 
                 <!-- Action Buttons -->
                 <div class="action-buttons">
+                    <button class="btn btn-primary btn-book-now" id="bookNowBtn" style="display: none;">
+                        📅 <span id="bookNowText">Book Your Move Today</span>
+                    </button>
+                    <button class="btn btn-success btn-call-office" id="callOfficeBtn" style="display: none;">
+                        📞 Call Office: <span id="officePhone">(555) 123-4567</span>
+                    </button>
                     <button class="btn btn-primary" id="downloadPdfBtn">
                         📄 Download PDF Quote
                     </button>

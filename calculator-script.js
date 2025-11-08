@@ -1342,7 +1342,534 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSocialProof();
     setupAddOnListeners();
     setupFeatureListeners();
+    setupAdvancedFeatures();
 });
+
+// ============================================
+// ADVANCED FEATURES - NEW IMPLEMENTATION
+// ============================================
+
+// State for selected tier and move date
+let selectedTier = 'standard';
+let selectedMoveDate = null;
+let moveRiskScore = 0;
+
+// Setup advanced features
+function setupAdvancedFeatures() {
+    // Booking buttons
+    setupBookingButtons();
+
+    // Three-tier pricing listeners
+    setupTierPricingListeners();
+
+    // Crew availability calendar listeners
+    setupCrewAvailability();
+
+    // SMS quote (if enabled)
+    if (config.integrations?.sms?.enabled) {
+        document.getElementById('textQuoteBtn').style.display = 'inline-block';
+    }
+}
+
+// ============================================
+// BOOKING & CALL OFFICE INTEGRATION
+// ============================================
+
+function setupBookingButtons() {
+    const bookingConfig = config.booking;
+    if (!bookingConfig?.enabled) return;
+
+    // Show buttons
+    if (bookingConfig.show_book_button) {
+        const bookBtn = document.getElementById('bookNowBtn');
+        bookBtn.style.display = 'inline-block';
+
+        // Set button text based on urgency
+        const daysUntilMove = selectedMoveDate ? getDaysUntilDate(selectedMoveDate) : null;
+        const buttonText = (daysUntilMove && daysUntilMove < 10)
+            ? bookingConfig.cta_text_urgent
+            : bookingConfig.cta_text_normal;
+
+        document.getElementById('bookNowText').textContent = buttonText;
+
+        // Click handler
+        bookBtn.addEventListener('click', () => {
+            if (bookingConfig.book_now_url) {
+                window.open(bookingConfig.book_now_url, '_blank');
+            } else {
+                alert('Please contact us to book your move!');
+            }
+        });
+    }
+
+    if (bookingConfig.show_call_button) {
+        const callBtn = document.getElementById('callOfficeBtn');
+        callBtn.style.display = 'inline-block';
+        document.getElementById('officePhone').textContent = bookingConfig.phone || config.company.phone;
+
+        // Click-to-call
+        callBtn.addEventListener('click', () => {
+            window.location.href = `tel:${bookingConfig.phone.replace(/[^\d]/g, '')}`;
+        });
+    }
+}
+
+function getDaysUntilDate(dateString) {
+    const moveDate = new Date(dateString);
+    const today = new Date();
+    const diffTime = moveDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+}
+
+// ============================================
+// AI-GENERATED SUMMARY
+// ============================================
+
+function generateAISummary(results) {
+    if (!results) return;
+
+    const { totalWeight, distance, numMovers, truckSize, totalHours, costLow, costHigh } = results;
+
+    // Generate natural language summary
+    const avgCost = Math.round((costLow + costHigh) / 2);
+    const truckName = truckSize.toLowerCase();
+    const timeDesc = totalHours < 4 ? 'quick' : totalHours < 8 ? 'half-day' : 'full-day';
+
+    const summary = `Your move requires a ${truckName}, ${numMovers} professional ${numMovers === 1 ? 'mover' : 'movers'}, and will take approximately ${totalHours.toFixed(1)} hours. This is a ${timeDesc} move covering ${distance} miles with ${Math.round(totalWeight).toLocaleString()} lbs of belongings. Your total cost will be between $${Math.round(costLow).toLocaleString()} and $${Math.round(costHigh).toLocaleString()}, with an average of $${avgCost.toLocaleString()}.`;
+
+    // Show in partial results
+    document.getElementById('aiSummaryText').textContent = summary;
+    document.getElementById('aiSummarySection').style.display = 'block';
+
+    // Show in full results
+    const fullSummary = `${summary} We've analyzed your move and prepared a detailed breakdown below. ${results.dynamicPricingReasons?.length > 0 ? 'Note: ' + results.dynamicPricingReasons.join(', ') + '.' : ''}`;
+    document.getElementById('aiSummaryFullText').textContent = fullSummary;
+    document.getElementById('aiSummaryFull').style.display = 'block';
+}
+
+// ============================================
+// MOVE RISK SCORE
+// ============================================
+
+function calculateMoveRiskScore(results) {
+    const riskConfig = config.move_risk_score;
+    if (!riskConfig?.enabled) return;
+
+    const { totalWeight, distance, stairs, totalCubicFeet } = results;
+    let score = 0;
+
+    // Weight factor
+    if (totalWeight > riskConfig.factors.weight_threshold_high) {
+        score += 30;
+    } else if (totalWeight > 5000) {
+        score += 15;
+    }
+
+    // Distance factor
+    if (distance > riskConfig.factors.long_distance_threshold) {
+        score += 25;
+    } else if (distance > 50) {
+        score += 10;
+    }
+
+    // Stairs factor
+    if (stairs >= riskConfig.factors.stairs_high_risk) {
+        score += 20;
+    } else if (stairs > 0) {
+        score += 10;
+    }
+
+    // Complexity factor (large volume)
+    if (totalCubicFeet > 1200) {
+        score += 15;
+    }
+
+    // Check if packing service not selected
+    if (!document.getElementById('packingService').checked && getTotalItems() > 30) {
+        score += 10;
+    }
+
+    moveRiskScore = score;
+
+    // Determine risk level
+    let riskLevel = 'low';
+    if (score > riskConfig.risk_levels.medium.max_score) {
+        riskLevel = 'high';
+    } else if (score > riskConfig.risk_levels.low.max_score) {
+        riskLevel = 'medium';
+    }
+
+    const levelConfig = riskConfig.risk_levels[riskLevel];
+
+    // Display risk score
+    document.getElementById('riskIcon').textContent = levelConfig.icon;
+    document.getElementById('riskLabel').textContent = levelConfig.label;
+    document.getElementById('riskLabel').style.color = levelConfig.color;
+    document.getElementById('riskMessage').textContent = levelConfig.message;
+    document.getElementById('riskScoreBadge').style.display = 'block';
+}
+
+// ============================================
+// THREE-TIER PRICING
+// ============================================
+
+function setupTierPricingListeners() {
+    document.querySelectorAll('.btn-tier').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tier = e.target.dataset.tier;
+            selectPricingTier(tier);
+        });
+    });
+}
+
+function displayThreeTierPricing(baseResults) {
+    const tierConfig = config.three_tier_pricing;
+    if (!tierConfig?.enabled) return;
+
+    const tiers = tierConfig.tiers;
+
+    // Calculate prices for each tier
+    Object.keys(tiers).forEach(tierKey => {
+        const tier = tiers[tierKey];
+        const multiplier = tier.multiplier;
+
+        const tierLow = baseResults.costLow * multiplier;
+        const tierHigh = baseResults.costHigh * multiplier;
+        const tierAvg = (tierLow + tierHigh) / 2;
+
+        // Update prices
+        const tierKeyFormatted = tierKey.replace('_', '');
+        const capitalizedKey = tierKeyFormatted.charAt(0).toUpperCase() + tierKeyFormatted.slice(1);
+
+        document.getElementById(`price${capitalizedKey}`).textContent = `$${Math.round(tierAvg).toLocaleString()}`;
+        document.getElementById(`price${capitalizedKey}Range`).textContent =
+            `$${Math.round(tierLow).toLocaleString()} - $${Math.round(tierHigh).toLocaleString()}`;
+
+        // Populate features
+        const featuresList = document.getElementById(`features${capitalizedKey}`);
+        featuresList.innerHTML = tier.features.map(feature => `<li>${feature}</li>`).join('');
+    });
+
+    // Show three-tier pricing
+    document.getElementById('threeTierPricing').style.display = 'block';
+
+    // Auto-select standard tier
+    selectPricingTier('standard');
+}
+
+function selectPricingTier(tier) {
+    selectedTier = tier;
+
+    // Remove all selected classes
+    document.querySelectorAll('.pricing-tier').forEach(t => t.classList.remove('tier-selected'));
+
+    // Add selected class
+    const tierElement = document.querySelector(`[data-tier="${tier}"]`).closest('.pricing-tier');
+    if (tierElement) {
+        tierElement.classList.add('tier-selected');
+    }
+
+    // Update selected tier name
+    const tierName = config.three_tier_pricing.tiers[tier]?.name || 'Standard';
+    document.getElementById('selectedTierName').textContent = tierName;
+
+    // Recalculate final costs
+    updateFinalCostsWithTier();
+}
+
+function updateFinalCostsWithTier() {
+    if (!calculationResults) return;
+
+    const multiplier = config.three_tier_pricing?.tiers[selectedTier]?.multiplier || 1.0;
+    const finalLow = calculationResults.costLow * multiplier;
+    const finalHigh = calculationResults.costHigh * multiplier;
+
+    document.getElementById('finalCostLow').textContent = `$${Math.round(finalLow).toLocaleString()}`;
+    document.getElementById('finalCostHigh').textContent = `$${Math.round(finalHigh).toLocaleString()}`;
+}
+
+// ============================================
+// ENHANCED AI MODE - AUTO-FILL INVENTORY
+// ============================================
+
+function enhancedAIAutoFill(homeSize) {
+    const aiConfig = config.ai_enhanced;
+    if (!aiConfig?.enabled || !aiConfig?.auto_fill_inventory) return;
+
+    const inventoryList = aiConfig.home_type_inventory[homeSize];
+    if (!inventoryList) return;
+
+    // Clear existing selections
+    selectedItems = {};
+
+    // Auto-fill inventory
+    inventoryList.forEach(itemSpec => {
+        const parts = itemSpec.split(':');
+        const itemKey = parts[0];
+        const quantity = parts.length > 1 ? parseInt(parts[1]) : 1;
+
+        // Find the item in inventory
+        Object.entries(inventory.categories).forEach(([categoryKey, category]) => {
+            if (category.items[itemKey]) {
+                const fullKey = `${categoryKey}_${itemKey}`;
+                selectedItems[fullKey] = quantity;
+            }
+        });
+    });
+
+    // Re-render inventory to show selections
+    renderInventoryCategories();
+    updateInventorySummary();
+
+    // Show move details section
+    document.getElementById('moveDetailsSection').style.display = 'block';
+    updateProgress(2);
+
+    console.log(`✅ Auto-filled ${Object.keys(selectedItems).length} items for ${homeSize}`);
+}
+
+// Update parseAIInput to use enhanced auto-fill
+function parseAIInputEnhanced(input) {
+    const parsed = parseAIInput(input); // Use existing logic
+
+    // If home size detected, auto-fill inventory
+    if (parsed.homeSize && config.ai_enhanced?.auto_fill_inventory) {
+        enhancedAIAutoFill(parsed.homeSize);
+    }
+
+    return parsed;
+}
+
+// ============================================
+// CREW AVAILABILITY CALENDAR
+// ============================================
+
+function setupCrewAvailability() {
+    const crewConfig = config.crew_availability;
+    if (!crewConfig?.enabled) return;
+
+    // Generate calendar
+    renderCrewAvailabilityCalendar();
+
+    // Show calendar in partial results
+    document.getElementById('crewAvailability').style.display = 'block';
+}
+
+function renderCrewAvailabilityCalendar() {
+    const crewConfig = config.crew_availability;
+    if (!crewConfig?.show_calendar) return;
+
+    const calendar = document.getElementById('availabilityCalendar');
+    const availableDates = crewConfig.available_dates || [];
+    const limitedDates = crewConfig.limited_availability_dates || [];
+
+    calendar.innerHTML = availableDates.map(dateStr => {
+        const date = new Date(dateStr);
+        const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+        const dayNum = date.getDate();
+        const monthName = date.toLocaleDateString('en-US', { month: 'short' });
+
+        const isLimited = limitedDates.includes(dateStr);
+        const className = isLimited ? 'limited' : 'available';
+
+        return `
+            <div class="availability-date ${className}" data-date="${dateStr}">
+                <span class="date-label">${dayName}, ${monthName}</span>
+                <span class="date-number">${dayNum}</span>
+            </div>
+        `;
+    }).join('');
+
+    // Add click handlers
+    document.querySelectorAll('.availability-date').forEach(dateEl => {
+        dateEl.addEventListener('click', () => {
+            // Remove previous selection
+            document.querySelectorAll('.availability-date').forEach(d => d.classList.remove('selected'));
+
+            // Select this date
+            dateEl.classList.add('selected');
+            selectedMoveDate = dateEl.dataset.date;
+
+            // Update booking button text based on urgency
+            setupBookingButtons();
+        });
+    });
+}
+
+// ============================================
+// SMART UPSELL ENGINE
+// ============================================
+
+function generateSmartUpsells(results) {
+    const upsellConfig = config.smart_upsells;
+    if (!upsellConfig?.enabled) return;
+
+    const upsells = [];
+    const rules = upsellConfig.rules;
+
+    // Extra mover recommendation
+    if (rules.extra_mover?.enabled) {
+        const weight = results.totalWeight;
+        if (weight >= rules.extra_mover.trigger_weight_min && weight <= rules.extra_mover.trigger_weight_max) {
+            upsells.push({
+                icon: '👷',
+                title: 'Add Extra Mover',
+                message: rules.extra_mover.message,
+                benefit: rules.extra_mover.benefit,
+                action: 'Upgrade Crew'
+            });
+        }
+    }
+
+    // Protection materials
+    if (rules.protection_materials?.enabled && !selectedAddOns.packing_materials) {
+        const hasFragileItems = checkForFragileItems();
+        if (hasFragileItems) {
+            upsells.push({
+                icon: '🛡️',
+                title: 'Protection Materials',
+                message: rules.protection_materials.message,
+                benefit: rules.protection_materials.benefit,
+                action: 'Add Protection'
+            });
+        }
+    }
+
+    // Packing service
+    if (rules.packing_service?.enabled) {
+        const itemCount = getTotalItems();
+        if (itemCount >= rules.packing_service.trigger_item_count && !document.getElementById('packingService').checked) {
+            upsells.push({
+                icon: '📦',
+                title: 'Professional Packing',
+                message: rules.packing_service.message,
+                benefit: rules.packing_service.benefit,
+                action: 'Add Packing Service'
+            });
+        }
+    }
+
+    // Insurance upgrade
+    if (rules.insurance_upgrade?.enabled && !selectedAddOns.insurance) {
+        const estimatedValue = results.totalWeight * 5; // Rough estimate $5/lb
+        if (estimatedValue >= rules.insurance_upgrade.trigger_value_estimate) {
+            upsells.push({
+                icon: '🔒',
+                title: 'Full Insurance Coverage',
+                message: rules.insurance_upgrade.message,
+                benefit: rules.insurance_upgrade.benefit,
+                action: 'Add Insurance'
+            });
+        }
+    }
+
+    // White glove recommendation
+    if (rules.white_glove_recommendation?.enabled) {
+        if (moveRiskScore >= rules.white_glove_recommendation.trigger_risk_score) {
+            upsells.push({
+                icon: '⭐',
+                title: 'White Glove Service',
+                message: rules.white_glove_recommendation.message,
+                benefit: rules.white_glove_recommendation.benefit,
+                action: 'Upgrade to White Glove'
+            });
+        }
+    }
+
+    // Display upsells
+    if (upsells.length > 0) {
+        displayUpsells(upsells);
+    }
+}
+
+function checkForFragileItems() {
+    const fragileKeywords = config.smart_upsells?.rules?.protection_materials?.fragile_item_keywords || [];
+
+    for (const [itemKey, quantity] of Object.entries(selectedItems)) {
+        if (quantity > 0) {
+            const itemName = itemKey.toLowerCase();
+            if (fragileKeywords.some(keyword => itemName.includes(keyword))) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function displayUpsells(upsells) {
+    const container = document.getElementById('upsellCards');
+
+    container.innerHTML = upsells.map(upsell => `
+        <div class="upsell-card">
+            <div class="upsell-header">
+                <span class="upsell-icon">${upsell.icon}</span>
+                <h4 class="upsell-title">${upsell.title}</h4>
+            </div>
+            <p class="upsell-message">${upsell.message}</p>
+            <p class="upsell-benefit">✓ ${upsell.benefit}</p>
+        </div>
+    `).join('');
+
+    document.getElementById('upsellSection').style.display = 'block';
+}
+
+// ============================================
+// SMS QUOTE DELIVERY
+// ============================================
+
+function textQuoteEnhanced() {
+    const smsConfig = config.integrations?.sms;
+
+    if (!smsConfig?.enabled || !smsConfig?.twilio_account_sid) {
+        alert('SMS integration requires Twilio credentials in config.json. Contact your administrator to enable this feature.');
+        return;
+    }
+
+    // In production, this would call Twilio API
+    const phoneNumber = leadData.phone || prompt('Enter phone number to receive quote:');
+
+    if (phoneNumber) {
+        alert(`Quote will be sent to ${phoneNumber} via SMS. (In production, this would use Twilio API)`);
+        console.log('SMS quote requested for:', phoneNumber);
+    }
+}
+
+// Override existing textQuote function
+window.textQuote = textQuoteEnhanced;
+
+// ============================================
+// INTEGRATION WITH EXISTING CALCULATION FLOW
+// ============================================
+
+// Override displayPartialResults to include new features
+const originalDisplayPartialResults = displayPartialResults;
+function displayPartialResults() {
+    // Call original function
+    if (typeof originalDisplayPartialResults === 'function') {
+        originalDisplayPartialResults();
+    }
+
+    // Add new features
+    generateAISummary(calculationResults);
+    calculateMoveRiskScore(calculationResults);
+    generateSmartUpsells(calculationResults);
+}
+
+// Override displayFullResults to include new features
+const originalDisplayFullResults = displayFullResults;
+function displayFullResults() {
+    // Call original function first
+    if (typeof originalDisplayFullResults === 'function') {
+        originalDisplayFullResults();
+    }
+
+    // Add three-tier pricing
+    displayThreeTierPricing(calculationResults);
+
+    // Show booking buttons
+    setupBookingButtons();
+}
 
 // ============================================
 // CONSOLE BANNER
@@ -1351,3 +1878,4 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log('%c🚚 Moving Cost Calculator', 'color: #3b82f6; font-size: 20px; font-weight: bold;');
 console.log('%cPowered by RoutineMoves', 'color: #10b981; font-size: 12px;');
 console.log('%cAdd ?admin=true to URL for admin mode', 'color: #666; font-size: 10px;');
+console.log('%c✨ Advanced Features Enabled', 'color: #f59e0b; font-size: 10px; font-weight: bold;');

@@ -355,5 +355,166 @@
     "enabled": true,
     "password": "admin123",
     "instructions": "Add ?admin=true to URL and enter password to test without lead capture"
+  },
+
+  "booking": {
+    "enabled": true,
+    "phone": "(555) 123-4567",
+    "book_now_url": "https://yourmovingcompany.com/book",
+    "calendar_url": "",
+    "show_call_button": true,
+    "show_book_button": true,
+    "cta_text_urgent": "Book Now - Limited Availability!",
+    "cta_text_normal": "Book Your Move Today"
+  },
+
+  "three_tier_pricing": {
+    "enabled": true,
+    "tiers": {
+      "saver": {
+        "name": "Saver",
+        "multiplier": 0.85,
+        "description": "Basic service - great value",
+        "features": [
+          "Professional movers",
+          "Basic equipment included",
+          "Standard insurance coverage"
+        ]
+      },
+      "standard": {
+        "name": "Standard",
+        "multiplier": 1.0,
+        "description": "Most popular choice",
+        "recommended": true,
+        "features": [
+          "Professional movers",
+          "Full equipment & padding",
+          "Enhanced insurance coverage",
+          "Furniture protection"
+        ]
+      },
+      "white_glove": {
+        "name": "White Glove",
+        "multiplier": 1.35,
+        "description": "Premium service",
+        "features": [
+          "Expert white-glove movers",
+          "Premium equipment & materials",
+          "Full replacement insurance",
+          "Complete furniture protection",
+          "Unpacking & setup service",
+          "Same-day assembly"
+        ]
+      }
+    }
+  },
+
+  "move_risk_score": {
+    "enabled": true,
+    "factors": {
+      "weight_threshold_high": 8000,
+      "stairs_high_risk": 3,
+      "long_distance_threshold": 100,
+      "fragile_items_threshold": 5,
+      "unpacked_penalty": 20
+    },
+    "risk_levels": {
+      "low": {
+        "max_score": 30,
+        "label": "Low Risk Move",
+        "color": "#10b981",
+        "icon": "✅",
+        "message": "Your move looks straightforward!"
+      },
+      "medium": {
+        "max_score": 60,
+        "label": "Medium Risk Move",
+        "color": "#f59e0b",
+        "icon": "⚠️",
+        "message": "We recommend extra protection services"
+      },
+      "high": {
+        "max_score": 100,
+        "label": "Complex Move",
+        "color": "#ef4444",
+        "icon": "🔴",
+        "message": "We recommend White Glove service"
+      }
+    }
+  },
+
+  "crew_availability": {
+    "enabled": true,
+    "show_calendar": true,
+    "available_dates": [
+      "2025-11-15",
+      "2025-11-16",
+      "2025-11-17",
+      "2025-11-20",
+      "2025-11-21",
+      "2025-11-23",
+      "2025-11-24",
+      "2025-11-27",
+      "2025-11-28",
+      "2025-12-01",
+      "2025-12-02",
+      "2025-12-04"
+    ],
+    "limited_availability_dates": [
+      "2025-11-22",
+      "2025-11-29",
+      "2025-12-03"
+    ],
+    "display_days": 14
+  },
+
+  "smart_upsells": {
+    "enabled": true,
+    "rules": {
+      "extra_mover": {
+        "enabled": true,
+        "trigger_weight_min": 1800,
+        "trigger_weight_max": 2200,
+        "message": "💡 Your move is close to requiring an extra mover. Adding one more person could reduce your move time by 30%!",
+        "benefit": "Faster move, less time charged"
+      },
+      "protection_materials": {
+        "enabled": true,
+        "trigger_no_packing_selected": true,
+        "fragile_item_keywords": ["piano", "tv", "mirror", "glass"],
+        "message": "🛡️ We noticed you have fragile items. Add protection materials for peace of mind!",
+        "benefit": "Prevent damage to valuables"
+      },
+      "packing_service": {
+        "enabled": true,
+        "trigger_item_count": 50,
+        "message": "📦 With this many items, our packing service could save you days of work!",
+        "benefit": "Professional packing in hours, not days"
+      },
+      "insurance_upgrade": {
+        "enabled": true,
+        "trigger_value_estimate": 10000,
+        "message": "🔒 For moves this size, we strongly recommend full replacement insurance.",
+        "benefit": "Complete protection for your belongings"
+      },
+      "white_glove_recommendation": {
+        "enabled": true,
+        "trigger_risk_score": 60,
+        "message": "⭐ Based on your move complexity, White Glove service ensures everything is handled perfectly.",
+        "benefit": "Expert care, zero stress"
+      }
+    }
+  },
+
+  "ai_enhanced": {
+    "enabled": true,
+    "auto_fill_inventory": true,
+    "home_type_inventory": {
+      "studio": ["twin_bed", "nightstand", "sofa_2seat", "coffee_table", "tv_small", "desk_small", "small_box:15", "medium_box:10"],
+      "one_bedroom": ["queen_bed", "nightstand:2", "dresser_small", "sofa_3seat", "coffee_table", "tv_stand", "tv_medium", "dining_table_small", "dining_chair:2", "desk_small", "small_box:20", "medium_box:15", "large_box:10"],
+      "two_bedroom": ["queen_bed", "full_bed", "nightstand:3", "dresser_large", "sofa_3seat", "armchair", "coffee_table", "end_table:2", "tv_stand", "tv_large", "dining_table_large", "dining_chair:4", "desk_large", "bookshelf_large", "small_box:30", "medium_box:25", "large_box:15"],
+      "three_bedroom": ["king_bed", "queen_bed", "twin_bed", "nightstand:4", "dresser_large:2", "sofa_3seat", "loveseat", "armchair", "coffee_table", "end_table:2", "entertainment_center", "tv_large", "dining_table_large", "dining_chair:6", "desk_large", "bookshelf_large:2", "small_box:45", "medium_box:35", "large_box:25"],
+      "four_bedroom": ["king_bed", "queen_bed:2", "twin_bed", "nightstand:5", "dresser_large:3", "sofa_3seat", "loveseat", "armchair:2", "coffee_table", "end_table:3", "entertainment_center", "tv_large:2", "dining_table_large", "dining_chair:8", "desk_large:2", "bookshelf_large:3", "filing_cabinet_4drawer", "small_box:60", "medium_box:50", "large_box:35"]
+    }
   }
 }
