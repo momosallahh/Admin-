@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free moving cost calculator - Get instant estimate for your move with accurate pricing based on inventory, distance, and labor.">
+    <title>Moving Cost Calculator - Get Your Free Quote</title>
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Moving Cost Calculator - Free Instant Quote" />
+    <meta property="og:description" content="Calculate your moving costs in minutes. Get accurate estimates based on inventory, distance, and crew size." />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="calculator-styles.css">
+
+    <!-- PDF Export Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+    </button>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Header -->
+        <header class="header">
+            <h1>Moving Cost Calculator</h1>
+            <p class="subtitle">Get your free instant quote in 2 minutes</p>
+        </header>
+
+        <!-- Mode Switcher -->
+        <div class="mode-switcher">
+            <button class="mode-btn active" data-mode="inventory">
+                📦 Full Inventory
+            </button>
+            <button class="mode-btn" data-mode="ai">
+                ⚡ Quick Estimate
+            </button>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="progress-text" id="progressText">Step 1 of 3: Select Items</p>
+
+        <!-- Main Content Area -->
+        <div class="content-wrapper">
+
+            <!-- ============================================ -->
+            <!-- INVENTORY MODE -->
+            <!-- ============================================ -->
+            <div id="inventoryMode" class="mode-content active">
+
+                <!-- Inventory Summary Bar -->
+                <div class="inventory-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Items:</span>
+                        <span class="summary-value" id="totalItems">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Weight:</span>
+                        <span class="summary-value" id="totalWeight">0 lbs</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Volume:</span>
+                        <span class="summary-value" id="totalCubicFeet">0 cu ft</span>
+                    </div>
+                </div>
+
+                <!-- Inventory Categories -->
+                <div class="inventory-categories" id="inventoryCategories">
+                    <!-- Dynamically loaded from inventory.json -->
+                </div>
+
+            </div>
+
+            <!-- ============================================ -->
+            <!-- AI QUICK ESTIMATE MODE -->
+            <!-- ============================================ -->
+            <div id="aiMode" class="mode-content">
+
+                <div class="ai-input-section">
+                    <h2>Describe Your Move</h2>
+                    <p class="ai-hint">Tell us about your move and we'll estimate everything for you</p>
+
+                    <textarea
+                        id="aiInput"
+                        class="ai-textarea"
+                        placeholder="Example: I have a 2-bedroom apartment on the 3rd floor with no elevator. Moving about 20 miles away. I have a couch, queen bed, dining table, and about 30 boxes."
+                        rows="5"
+                    ></textarea>
+
+                    <button class="btn btn-primary" id="aiEstimateBtn">
+                        ⚡ Generate Estimate
+                    </button>
+
+                    <!-- AI Parsed Results -->
+                    <div id="aiParsedResults" class="ai-parsed-results" style="display: none;">
+                        <h3>We detected:</h3>
+                        <ul id="aiDetectedList"></ul>
+                        <p class="ai-confidence">You can adjust details below before calculating</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ============================================ -->
+            <!-- MOVE DETAILS FORM (Common to both modes) -->
+            <!-- ============================================ -->
+            <div class="move-details-section" id="moveDetailsSection" style="display: none;">
+
+                <h2>Move Details</h2>
+
+                <div class="form-grid">
+
+                    <!-- Distance -->
+                    <div class="form-group">
+                        <label for="distance">Distance (miles)</label>
+                        <input type="number" id="distance" min="1" value="10" required>
+                        <small>Enter the distance between pickup and delivery</small>
+                    </div>
+
+                    <!-- Number of Movers -->
+                    <div class="form-group">
+                        <label for="numMovers">Number of Movers</label>
+                        <select id="numMovers">
+                            <option value="auto">Auto-Calculate (Recommended)</option>
+                            <option value="1">1 Mover</option>
+                            <option value="2">2 Movers</option>
+                            <option value="3">3 Movers</option>
+                            <option value="4">4 Movers</option>
+                            <option value="5">5+ Movers</option>
+                        </select>
+                    </div>
+
+                    <!-- Hourly Rate (Editable) -->
+                    <div class="form-group">
+                        <label for="hourlyRate">Hourly Rate per Mover ($)</label>
+                        <input type="number" id="hourlyRate" min="25" max="150" value="45" step="5">
+                        <small>Adjust if needed</small>
+                    </div>
+
+                    <!-- Stairs/Floors -->
+                    <div class="form-group">
+                        <label for="stairs">Stairs/Floors</label>
+                        <select id="stairs">
+                            <option value="0">No Stairs (Ground floor/Elevator)</option>
+                            <option value="1">1 Flight of Stairs</option>
+                            <option value="2">2 Flights of Stairs</option>
+                            <option value="3">3+ Flights of Stairs</option>
+                        </select>
+                    </div>
+
+                    <!-- Packing Service -->
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="packingService">
+                            Add Packing Service (+30%)
+                        </label>
+                    </div>
+
+                    <!-- Long Carry -->
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="longCarry">
+                            Long Carry (50+ ft from truck)
+                        </label>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-primary btn-large" id="calculateBtn">
+                    🧮 Calculate My Cost
+                </button>
+
+            </div>
+
+            <!-- ============================================ -->
+            <!-- PARTIAL RESULTS (Before Lead Capture) -->
+            <!-- ============================================ -->
+            <div class="results-section partial-results" id="partialResults" style="display: none;">
+
+                <div class="results-hero">
+                    <h2>Your Estimated Moving Cost</h2>
+                    <div class="cost-range">
+                        <div class="cost-amount">
+                            <span class="cost-label">Low Estimate</span>
+                            <span class="cost-value" id="costLow">$0</span>
+                        </div>
+                        <div class="cost-divider">—</div>
+                        <div class="cost-amount">
+                            <span class="cost-label">High Estimate</span>
+                            <span class="cost-value" id="costHigh">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-facts">
+                    <div class="fact-item">
+                        <span class="fact-icon">🚚</span>
+                        <span class="fact-label">Truck Size</span>
+                        <span class="fact-value" id="truckSize">—</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-icon">👷</span>
+                        <span class="fact-label">Crew Size</span>
+                        <span class="fact-value" id="crewSize">—</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-icon">⏱️</span>
+                        <span class="fact-label">Est. Time</span>
+                        <span class="fact-value" id="estTime">—</span>
+                    </div>
+                </div>
+
+                <!-- Lead Capture Form -->
+                <div class="lead-capture">
+                    <h3>Get Full Breakdown + PDF Quote</h3>
+                    <p>Enter your details to see itemized costs and download your quote</p>
+
+                    <form id="leadCaptureForm" class="lead-form">
+                        <div class="form-row">
+                            <input type="text" id="leadName" placeholder="Your Name" required>
+                            <input type="email" id="leadEmail" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="tel" id="leadPhone" placeholder="Phone (optional)">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">
+                            📧 Get Full Quote
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- ============================================ -->
+            <!-- FULL RESULTS (After Lead Capture) -->
+            <!-- ============================================ -->
+            <div class="results-section full-results" id="fullResults" style="display: none;">
+
+                <div class="results-header">
+                    <h2>Your Complete Moving Quote</h2>
+                    <p class="customer-name">Prepared for: <span id="customerName"></span></p>
+                </div>
+
+                <!-- Cost Summary -->
+                <div class="cost-summary">
+                    <h3>Total Cost Estimate</h3>
+                    <div class="cost-range-large">
+                        <span id="finalCostLow">$0</span> — <span id="finalCostHigh">$0</span>
+                    </div>
+                </div>
+
+                <!-- Line Item Breakdown -->
+                <div class="breakdown-section">
+                    <h3>Cost Breakdown</h3>
+                    <table class="breakdown-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Details</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="breakdownTableBody">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Move Details Summary -->
+                <div class="move-summary">
+                    <h3>Move Details</h3>
+                    <div id="moveSummaryContent"></div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="downloadPdfBtn">
+                        📄 Download PDF Quote
+                    </button>
+                    <button class="btn btn-secondary" id="emailQuoteBtn">
+                        📧 Email This Quote
+                    </button>
+                    <button class="btn btn-secondary" id="textQuoteBtn" style="display: none;">
+                        💬 Text Me This Quote
+                    </button>
+                    <button class="btn btn-outline" id="startOverBtn">
+                        🔄 Start New Quote
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p id="brandingText">Powered by <a href="https://routinemoves.ai" target="_blank">RoutineMoves</a></p>
+            <p class="disclaimer">Estimates are approximate and subject to change based on actual move conditions.</p>
+        </footer>
+
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Calculating your estimate...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="calculator-script.js"></script>
+
+</body>
+</html>
