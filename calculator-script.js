@@ -71,6 +71,20 @@ function applyConfigToUI() {
     // Set hourly rate
     if (config.pricing?.labor?.hourly_rate_per_mover) {
         document.getElementById('hourlyRate').value = config.pricing.labor.hourly_rate_per_mover;
+
+        // Lock hourly rate if not allowed to edit
+        if (config.pricing.labor.allow_customer_to_edit_rate === false) {
+            const hourlyRateInput = document.getElementById('hourlyRate');
+            hourlyRateInput.disabled = true;
+            hourlyRateInput.style.backgroundColor = 'var(--bg-tertiary)';
+            hourlyRateInput.style.cursor = 'not-allowed';
+
+            // Update label to show it's locked
+            const label = document.querySelector('label[for="hourlyRate"]');
+            if (label) {
+                label.innerHTML = 'Hourly Rate per Mover ($) <span style="color: var(--text-tertiary); font-size: 0.85rem;">• Set by company</span>';
+            }
+        }
     }
 
     // Set branding
@@ -523,7 +537,8 @@ function calculateEstimate() {
             numMovers,
             hourlyRate,
             totalHours,
-            truckSize: truckInfo.name,
+            truckSize: truckInfo.displayName || truckInfo.name,
+            truckCount: truckInfo.count,
             truckFee,
             truckEquipmentFee,
             laborCost,
@@ -535,7 +550,7 @@ function calculateEstimate() {
             costHigh,
             breakdown: {
                 'Labor Cost': { detail: `${totalHours.toFixed(1)} hrs × ${numMovers} movers × $${hourlyRate}/hr`, amount: laborCost },
-                'Truck Rental': { detail: truckInfo.name, amount: truckFee },
+                'Truck Rental': { detail: truckInfo.count > 1 ? `${truckInfo.count} × ${truckInfo.name}` : truckInfo.displayName || truckInfo.name, amount: truckFee },
                 'Truck & Equipment Fee': { detail: 'Standard equipment fee', amount: truckEquipmentFee },
                 'Fuel Surcharge': { detail: `${distance} miles × $${(config.pricing?.fees?.fuel_surcharge_per_mile || 2).toFixed(2)}/mile`, amount: fuelSurcharge },
                 'Distance Fee': { detail: `Mileage charges`, amount: distanceCost }
@@ -582,12 +597,53 @@ function calculateCrewSize(weight) {
 
 function calculateTruckSize(cubicFeet) {
     const trucks = config.pricing?.trucks;
-    if (!trucks) return { name: '16ft Truck', daily_rate: 129 };
+    if (!trucks) return { name: '16ft Truck', daily_rate: 129, count: 1 };
 
-    if (cubicFeet <= 400) return { name: trucks['10ft'].name, daily_rate: trucks['10ft'].daily_rate };
-    if (cubicFeet <= 800) return { name: trucks['16ft'].name, daily_rate: trucks['16ft'].daily_rate };
-    if (cubicFeet <= 1000) return { name: trucks['20ft'].name, daily_rate: trucks['20ft'].daily_rate };
-    return { name: trucks['26ft'].name, daily_rate: trucks['26ft'].daily_rate };
+    // Single truck sizing
+    if (cubicFeet <= 400) {
+        return {
+            name: trucks['10ft'].name,
+            daily_rate: trucks['10ft'].daily_rate,
+            count: 1,
+            displayName: trucks['10ft'].name
+        };
+    }
+    if (cubicFeet <= 800) {
+        return {
+            name: trucks['16ft'].name,
+            daily_rate: trucks['16ft'].daily_rate,
+            count: 1,
+            displayName: trucks['16ft'].name
+        };
+    }
+    if (cubicFeet <= 1000) {
+        return {
+            name: trucks['20ft'].name,
+            daily_rate: trucks['20ft'].daily_rate,
+            count: 1,
+            displayName: trucks['20ft'].name
+        };
+    }
+    if (cubicFeet <= 1500) {
+        return {
+            name: trucks['26ft'].name,
+            daily_rate: trucks['26ft'].daily_rate,
+            count: 1,
+            displayName: trucks['26ft'].name
+        };
+    }
+
+    // Multiple trucks needed for large moves
+    const maxTruckSize = 1500; // 26ft truck capacity
+    const trucksNeeded = Math.ceil(cubicFeet / maxTruckSize);
+    const totalRate = trucks['26ft'].daily_rate * trucksNeeded;
+
+    return {
+        name: trucks['26ft'].name,
+        daily_rate: totalRate,
+        count: trucksNeeded,
+        displayName: `${trucksNeeded} × ${trucks['26ft'].name.split(' ')[0]} Trucks`
+    };
 }
 
 // ============================================

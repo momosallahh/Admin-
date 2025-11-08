@@ -11,6 +11,7 @@
   "pricing": {
     "labor": {
       "hourly_rate_per_mover": 45,
+      "allow_customer_to_edit_rate": false,
       "minimum_hours": 2,
       "overtime_rate_multiplier": 1.5,
       "overtime_starts_after_hours": 8
