@@ -2823,7 +2823,11 @@ function getTotalWeight() {
     let total = 0;
 
     Object.entries(selectedItems).forEach(([itemKey, quantity]) => {
-        const [categoryKey, itemName] = itemKey.split('_');
+        // FIX: Split only on the FIRST underscore to handle items like "living_room_sofa_3seat"
+        const firstUnderscore = itemKey.indexOf('_');
+        const categoryKey = itemKey.substring(0, firstUnderscore);
+        const itemName = itemKey.substring(firstUnderscore + 1);
+
         const item = inventory.categories[categoryKey]?.items[itemName];
         if (item) {
             total += item.weight * quantity;
