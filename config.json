@@ -1,0 +1,86 @@
+{
+  "company": {
+    "name": "Premium Movers Co.",
+    "phone": "+1-800-MOVE-NOW",
+    "email": "booking@premiummovers.com",
+    "bookingUrl": "https://calendly.com/premiummovers/booking",
+    "logo": "🚚"
+  },
+  "pricing": {
+    "baseHourlyRate": 120,
+    "perMoverRate": 60,
+    "mileageRate": 2.5,
+    "tiers": {
+      "saver": {
+        "multiplier": 0.85,
+        "name": "Saver",
+        "features": ["Basic moving service", "Standard loading/unloading", "Basic equipment", "Limited insurance ($0.60/lb)"]
+      },
+      "standard": {
+        "multiplier": 1.0,
+        "name": "Standard",
+        "features": ["Professional crew", "Full equipment set", "Furniture protection", "Standard insurance", "Same-day confirmation", "⭐ Most Popular"]
+      },
+      "whiteGlove": {
+        "multiplier": 1.35,
+        "name": "White Glove",
+        "features": ["Premium crew (background-checked)", "Complete packing service", "Full protection & wrapping", "Premium insurance (full value)", "Guaranteed on-time arrival", "Concierge support", "Post-move cleanup"]
+      }
+    },
+    "seasonalMultipliers": {
+      "peak": { "months": [5, 6, 7, 8, 9], "multiplier": 1.2, "label": "Peak Season" },
+      "weekend": { "multiplier": 1.15, "label": "Weekend" },
+      "monthEnd": { "multiplier": 1.25, "label": "Month-End Rush" },
+      "rush": { "daysThreshold": 3, "multiplier": 1.5, "label": "Rush Service (<3 days)" },
+      "holiday": { "multiplier": 1.3, "label": "Holiday Period" },
+      "longDistance": { "milesThreshold": 100, "multiplier": 1.1, "label": "Long Distance" },
+      "walkUp": { "multiplier": 1.1, "label": "Walk-Up (No Elevator)" }
+    }
+  },
+  "addOns": {
+    "packingPerRoom": 85,
+    "insuranceBasicPerLb": 0.60,
+    "insuranceFullPercent": 2,
+    "assemblyPerItem": 25,
+    "cleaning": {
+      "studio": 100,
+      "oneBed": 125,
+      "twoBed": 175,
+      "threeBed": 225,
+      "fourBed": 250
+    },
+    "junkRemovalPerItem": 35,
+    "storagePerMonth": 150
+  },
+  "inventory": {
+    "studio": {
+      "beds": 1, "dressers": 1, "nightstands": 1, "sofas": 1, "chairs": 2,
+      "diningTable": 0, "tvStand": 1, "boxes": 15, "estimatedWeight": 1500
+    },
+    "1bedroom": {
+      "beds": 1, "dressers": 2, "nightstands": 2, "sofas": 1, "chairs": 3,
+      "diningTable": 1, "tvStand": 1, "boxes": 25, "estimatedWeight": 2500
+    },
+    "2bedroom": {
+      "beds": 2, "dressers": 2, "nightstands": 2, "sofas": 1, "chairs": 4,
+      "diningTable": 1, "tvStand": 1, "coffeeTable": 1, "boxes": 35, "estimatedWeight": 3800
+    },
+    "3bedroom": {
+      "beds": 3, "dressers": 3, "nightstands": 4, "sofas": 2, "chairs": 6,
+      "diningTable": 1, "tvStand": 1, "coffeeTable": 1, "bookshelf": 2, "boxes": 50, "estimatedWeight": 5500
+    },
+    "4bedroom": {
+      "beds": 4, "dressers": 4, "nightstands": 6, "sofas": 2, "chairs": 8,
+      "diningTable": 1, "tvStand": 2, "coffeeTable": 2, "bookshelf": 3, "boxes": 70, "estimatedWeight": 7500
+    }
+  },
+  "weights": {
+    "bed": 150, "dresser": 120, "nightstand": 40, "sofa": 200, "chair": 25,
+    "diningTable": 100, "tvStand": 60, "coffeeTable": 40, "bookshelf": 80, "box": 30
+  },
+  "referral": {
+    "discountAmount": 100,
+    "enabled": true
+  },
+  "competitorAvgMultiplier": 1.27
+}
