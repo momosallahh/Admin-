@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Moving Calculator - Instant Moving Quote</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🚚</span>
+                <span class="logo-text">Super Moving Calculator</span>
+            </div>
+            <div class="header-actions">
+                <button class="btn-secondary" id="callOfficeBtn">
+                    <span>📞</span> Call Office
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Get Your Instant Moving Quote</h1>
+            <p class="hero-subtitle">Premium moving services with transparent pricing. Get an AI-powered estimate in 60 seconds.</p>
+        </div>
+    </section>
+
+    <!-- Main Calculator -->
+    <main class="calculator-container">
+        <div class="container">
+            <div class="calculator-grid">
+
+                <!-- Left Column: Input Form -->
+                <div class="calculator-form">
+
+                    <!-- Step 1: Move Details -->
+                    <div class="card">
+                        <h2 class="card-title">
+                            <span class="step-number">1</span>
+                            Move Details
+                        </h2>
+
+                        <div class="form-group">
+                            <label for="moveDate">Move Date</label>
+                            <input type="date" id="moveDate" class="form-control" required>
+                            <small class="help-text" id="urgencyText"></small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pickupAddress">Pickup Address</label>
+                                <input type="text" id="pickupAddress" class="form-control" placeholder="123 Main St, City, State" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="deliveryAddress">Delivery Address</label>
+                                <input type="text" id="deliveryAddress" class="form-control" placeholder="456 Oak Ave, City, State" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="distance">Distance (miles)</label>
+                                <input type="number" id="distance" class="form-control" placeholder="25" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="homeSize">Home Size</label>
+                                <select id="homeSize" class="form-control">
+                                    <option value="">Select size...</option>
+                                    <option value="studio">Studio</option>
+                                    <option value="1bedroom">1 Bedroom</option>
+                                    <option value="2bedroom">2 Bedroom</option>
+                                    <option value="3bedroom">3 Bedroom</option>
+                                    <option value="4bedroom">4+ Bedroom</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="hasStairs" class="checkbox">
+                                    Walk-up / Stairs (no elevator)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Inventory -->
+                    <div class="card">
+                        <h2 class="card-title">
+                            <span class="step-number">2</span>
+                            Your Inventory
+                            <span class="badge" id="totalItemsBadge">0 items</span>
+                        </h2>
+
+                        <div class="auto-inventory-hint">
+                            <p>💡 <strong>Smart Tip:</strong> Select your home size above, and we'll auto-fill a typical inventory!</p>
+                        </div>
+
+                        <div id="inventoryGrid" class="inventory-grid">
+                            <!-- Dynamic inventory items -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="itemValue">Estimated Total Value ($)</label>
+                            <input type="number" id="itemValue" class="form-control" placeholder="10000" min="0">
+                            <small class="help-text">Used for insurance calculations</small>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Photo Upload -->
+                    <div class="card">
+                        <h2 class="card-title">
+                            <span class="step-number">3</span>
+                            Upload Photos/Videos (Optional)
+                        </h2>
+                        <p class="card-description">Get a more accurate estimate by uploading photos or videos of your items</p>
+
+                        <div class="upload-zone" id="uploadZone">
+                            <div class="upload-icon">📸</div>
+                            <p class="upload-text">Click or drag files here</p>
+                            <small class="upload-hint">Supports: JPG, PNG, MP4 (max 10MB each)</small>
+                            <input type="file" id="fileUpload" accept="image/*,video/*" multiple hidden>
+                        </div>
+
+                        <div id="uploadedFiles" class="uploaded-files"></div>
+                    </div>
+
+                    <!-- Step 4: Add-Ons -->
+                    <div class="card">
+                        <h2 class="card-title">
+                            <span class="step-number">4</span>
+                            Add-On Services
+                        </h2>
+
+                        <div class="addon-list">
+                            <div class="addon-item">
+                                <div class="addon-header">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="addonPacking">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <div class="addon-info">
+                                        <h4>📦 Professional Packing</h4>
+                                        <p>Full packing service with materials included</p>
+                                    </div>
+                                </div>
+                                <div class="addon-price" id="packingPrice">+$0</div>
+                            </div>
+
+                            <div class="addon-item">
+                                <div class="addon-header">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="addonInsurance">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <div class="addon-info">
+                                        <h4>🛡️ Full Value Insurance</h4>
+                                        <p>Complete protection for all items</p>
+                                    </div>
+                                </div>
+                                <div class="addon-price" id="insurancePrice">+$0</div>
+                            </div>
+
+                            <div class="addon-item">
+                                <div class="addon-header">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="addonAssembly">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <div class="addon-info">
+                                        <h4>🔧 Furniture Assembly/Disassembly</h4>
+                                        <p>Professional assembly service</p>
+                                        <input type="number" id="assemblyItems" class="inline-input" min="0" value="0" placeholder="# items">
+                                    </div>
+                                </div>
+                                <div class="addon-price" id="assemblyPrice">+$0</div>
+                            </div>
+
+                            <div class="addon-item">
+                                <div class="addon-header">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="addonCleaning">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <div class="addon-info">
+                                        <h4>🧹 Post-Move Cleaning</h4>
+                                        <p>Professional cleaning of old residence</p>
+                                    </div>
+                                </div>
+                                <div class="addon-price" id="cleaningPrice">+$0</div>
+                            </div>
+
+                            <div class="addon-item">
+                                <div class="addon-header">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="addonJunk">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <div class="addon-info">
+                                        <h4>🗑️ Junk Removal</h4>
+                                        <p>Disposal of unwanted items</p>
+                                        <input type="number" id="junkItems" class="inline-input" min="0" value="0" placeholder="# items">
+                                    </div>
+                                </div>
+                                <div class="addon-price" id="junkPrice">+$0</div>
+                            </div>
+
+                            <div class="addon-item">
+                                <div class="addon-header">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="addonStorage">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <div class="addon-info">
+                                        <h4>📦 Storage (First Month Free)</h4>
+                                        <p>Secure storage facility access</p>
+                                        <input type="number" id="storageMonths" class="inline-input" min="1" value="1" placeholder="months">
+                                    </div>
+                                </div>
+                                <div class="addon-price" id="storagePrice">+$0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Live Quote & Summary -->
+                <div class="calculator-summary">
+
+                    <!-- Live Quote Card -->
+                    <div class="card quote-card sticky">
+                        <div class="quote-header">
+                            <h3>Your Instant Quote</h3>
+                            <div class="quote-badge">Live Preview</div>
+                        </div>
+
+                        <!-- Tier Selection -->
+                        <div class="tier-selector">
+                            <button class="tier-btn" data-tier="saver">
+                                <span class="tier-name">Saver</span>
+                                <span class="tier-discount">Save 15%</span>
+                            </button>
+                            <button class="tier-btn active" data-tier="standard">
+                                <span class="tier-name">Standard</span>
+                                <span class="tier-badge">⭐ Popular</span>
+                            </button>
+                            <button class="tier-btn" data-tier="whiteGlove">
+                                <span class="tier-name">White Glove</span>
+                                <span class="tier-premium">Premium</span>
+                            </button>
+                        </div>
+
+                        <!-- Tier Features -->
+                        <div class="tier-features" id="tierFeatures">
+                            <!-- Dynamic features list -->
+                        </div>
+
+                        <!-- Price Display -->
+                        <div class="price-display">
+                            <div class="price-range">
+                                <span class="price-label">Estimated Total</span>
+                                <div class="price-amount">
+                                    <span class="price-value" id="priceValue">$0</span>
+                                    <span class="price-range-text" id="priceRange"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Move Summary -->
+                        <div class="move-summary" id="moveSummary">
+                            <h4>Move Summary</h4>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span class="summary-label">Weight:</span>
+                                    <span class="summary-value" id="summaryWeight">—</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Distance:</span>
+                                    <span class="summary-value" id="summaryDistance">—</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Crew Size:</span>
+                                    <span class="summary-value" id="summaryCrew">—</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Est. Hours:</span>
+                                    <span class="summary-value" id="summaryHours">—</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Risk Score -->
+                        <div class="risk-score" id="riskScore">
+                            <div class="risk-header">
+                                <span class="risk-icon" id="riskIcon">✅</span>
+                                <span class="risk-label" id="riskLabel">Low Risk</span>
+                            </div>
+                            <p class="risk-description" id="riskDescription"></p>
+                        </div>
+
+                        <!-- Applied Pricing Conditions -->
+                        <div class="pricing-conditions" id="pricingConditions" style="display: none;">
+                            <h4>Applied Pricing Adjustments</h4>
+                            <ul id="conditionsList"></ul>
+                        </div>
+
+                        <!-- Competitor Comparison -->
+                        <div class="competitor-comparison">
+                            <div class="comparison-row">
+                                <span class="comparison-label">Your Quote:</span>
+                                <span class="comparison-value" id="yourQuote">$0</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span class="comparison-label">Industry Average:</span>
+                                <span class="comparison-value muted" id="industryAvg">$0</span>
+                            </div>
+                            <div class="savings-highlight" id="savingsHighlight">
+                                ✅ You save <strong id="savingsAmount">$0</strong>
+                            </div>
+                        </div>
+
+                        <!-- Tip Calculator -->
+                        <div class="tip-calculator">
+                            <h4>Add Gratuity (Optional)</h4>
+                            <div class="tip-options">
+                                <button class="tip-btn" data-tip="15">15%</button>
+                                <button class="tip-btn" data-tip="18">18%</button>
+                                <button class="tip-btn" data-tip="20">20%</button>
+                                <input type="number" id="customTip" class="tip-input" placeholder="Custom $" min="0">
+                            </div>
+                            <div class="tip-amount" id="tipAmount"></div>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="cta-buttons">
+                            <button class="btn-primary pulse" id="bookNowBtn">
+                                <span id="bookBtnText">📅 Book Now</span>
+                            </button>
+                            <button class="btn-secondary" id="textQuoteBtn">
+                                💬 Text Me My Quote
+                            </button>
+                        </div>
+
+                        <!-- AI Summary -->
+                        <div class="ai-summary" id="aiSummary">
+                            <div class="ai-badge">🤖 AI Summary</div>
+                            <p id="aiSummaryText"></p>
+                        </div>
+                    </div>
+
+                    <!-- Smart Upsell Recommendations -->
+                    <div class="card upsell-card" id="upsellCard" style="display: none;">
+                        <h3>💡 Recommended Add-Ons</h3>
+                        <div id="upsellList" class="upsell-list"></div>
+                    </div>
+
+                    <!-- Crew Availability Calendar -->
+                    <div class="card calendar-card">
+                        <h3>📆 Crew Availability (Next 14 Days)</h3>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                        <div class="calendar-legend">
+                            <span class="legend-item"><span class="dot green"></span> Available</span>
+                            <span class="legend-item"><span class="dot yellow"></span> Limited</span>
+                            <span class="legend-item"><span class="dot red"></span> Full</span>
+                        </div>
+                    </div>
+
+                    <!-- Referral Program -->
+                    <div class="card referral-card">
+                        <h3>🎁 Refer & Save</h3>
+                        <p>Share your referral code and you both get <strong>$100 off</strong></p>
+                        <div class="referral-code">
+                            <input type="text" id="referralCode" class="referral-input" readonly value="">
+                            <button class="btn-copy" id="copyCodeBtn">Copy</button>
+                        </div>
+                        <div class="share-buttons">
+                            <button class="btn-share" id="shareTextBtn">📱 Text</button>
+                            <button class="btn-share" id="shareEmailBtn">📧 Email</button>
+                            <button class="btn-share" id="shareSocialBtn">🔗 Share</button>
+                        </div>
+                    </div>
+
+                    <!-- Moving Checklist -->
+                    <div class="card checklist-card">
+                        <h3>🧾 Free Moving Checklist</h3>
+                        <p>Download your personalized moving checklist (4 weeks to moving day)</p>
+                        <button class="btn-secondary" id="downloadChecklistBtn">
+                            📥 Download PDF Checklist
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Super Moving Calculator. All rights reserved.</p>
+            <p class="footer-disclaimer">Prices are estimates and may vary based on actual conditions. Final quote provided after in-home assessment.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+
+    <!-- SMS Modal -->
+    <div class="modal" id="smsModal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="smsModal">&times;</span>
+            <h3>📱 Text Me My Quote</h3>
+            <p>We'll send your detailed quote via SMS</p>
+            <form id="smsForm">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="smsName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="smsPhone" class="form-control" placeholder="+1-234-567-8900" required>
+                </div>
+                <button type="submit" class="btn-primary">Send My Quote</button>
+            </form>
+            <div id="smsSuccess" class="success-message" style="display: none;">
+                ✅ Quote sent successfully! Check your phone.
+            </div>
+        </div>
+    </div>
+
+    <!-- Tier Comparison Modal -->
+    <div class="modal" id="tierModal">
+        <div class="modal-content modal-large">
+            <span class="modal-close" data-modal="tierModal">&times;</span>
+            <h3>Compare Service Tiers</h3>
+            <div class="tier-comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Saver</th>
+                            <th>Standard</th>
+                            <th>White Glove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tierComparisonBody">
+                        <!-- Dynamic comparison rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
