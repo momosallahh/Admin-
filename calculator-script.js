@@ -44,9 +44,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadInventory() {
     try {
-        const response = await fetch('inventory.json');
-        inventory = await response.json();
-        console.log('✅ Inventory loaded:', Object.keys(inventory.categories).length, 'categories');
+        // Use embedded data if available (avoids CDN/CORS issues)
+        if (window.EMBEDDED_INVENTORY) {
+            inventory = window.EMBEDDED_INVENTORY;
+            console.log('✅ Inventory loaded from embedded data:', Object.keys(inventory.categories).length, 'categories');
+        } else {
+            // Fallback to fetch if embedded data not available
+            const response = await fetch('inventory.json');
+            inventory = await response.json();
+            console.log('✅ Inventory loaded from file:', Object.keys(inventory.categories).length, 'categories');
+        }
     } catch (error) {
         console.error('❌ Error loading inventory:', error);
         alert('Error loading inventory data. Please refresh the page.');
@@ -55,9 +62,16 @@ async function loadInventory() {
 
 async function loadConfig() {
     try {
-        const response = await fetch('config.json');
-        config = await response.json();
-        console.log('✅ Config loaded');
+        // Use embedded data if available (avoids CDN/CORS issues)
+        if (window.EMBEDDED_CONFIG) {
+            config = window.EMBEDDED_CONFIG;
+            console.log('✅ Config loaded from embedded data');
+        } else {
+            // Fallback to fetch if embedded data not available
+            const response = await fetch('config.json');
+            config = await response.json();
+            console.log('✅ Config loaded from file');
+        }
 
         // Apply config to UI
         applyConfigToUI();
