@@ -1045,9 +1045,58 @@
         <div class="app-body">
 
             <!-- ═══════════════════════════════════════════════════════════
+                 SCREEN 0: WELCOME & CUSTOMER INFO
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="screen active" id="welcomeScreen">
+                <div class="screen-header">
+                    <h2 class="screen-title">Welcome to Your Coverage Calculator</h2>
+                    <p class="screen-description">Let's start by getting your information to provide you with a personalized quote</p>
+                </div>
+
+                <div class="item-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name *</label>
+                            <input type="text" class="form-input" id="customerFirstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name *</label>
+                            <input type="text" class="form-input" id="customerLastName" placeholder="Smith" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-input" id="customerEmail" placeholder="john.smith@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-input" id="customerPhone" placeholder="(555) 123-4567" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Move Date (Optional)</label>
+                            <input type="date" class="form-input" id="customerMoveDate">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Booking/Order ID (Optional)</label>
+                            <input type="text" class="form-input" id="customerBookingId" placeholder="RM-12345">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="next-button" onclick="saveCustomerInfoAndContinue()">
+                    Continue to Calculator →
+                </button>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
                  SCREEN 1: ROOM SELECTION
             ═══════════════════════════════════════════════════════════ -->
-            <div class="screen active" id="roomSelectionScreen">
+            <div class="screen" id="roomSelectionScreen">
                 <div class="screen-header">
                     <h2 class="screen-title">Select a Room to Add Items</h2>
                     <p class="screen-description">Click on a room to start adding your valuable items</p>
@@ -1294,6 +1343,48 @@
                     <ul class="top-items-list" id="topItemsList"></ul>
                 </div>
 
+                <div class="summary-section">
+                    <h3 class="summary-section-title">Your Contact Information</h3>
+                    <div class="item-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-input" id="summaryFirstName" placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-input" id="summaryLastName" placeholder="Smith">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" id="summaryEmail" placeholder="john.smith@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-input" id="summaryPhone" placeholder="(555) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Move Date</label>
+                                <input type="date" class="form-input" id="summaryMoveDate">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Booking/Order ID</label>
+                                <input type="text" class="form-input" id="summaryBookingId" placeholder="RM-12345">
+                            </div>
+                        </div>
+
+                        <button class="add-item-button" onclick="updateCustomerInfo()">
+                            Update Information
+                        </button>
+                    </div>
+                </div>
+
                 <div class="cta-section">
                     <h2 class="cta-title">Upgrade Your Coverage</h2>
                     <p class="cta-subtitle">Protect your move for just <span id="finalPrice">$0</span></p>
@@ -1319,6 +1410,14 @@
         // STATE MANAGEMENT
         // ═══════════════════════════════════════════════════════════
         let state = {
+            customer: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                moveDate: '',
+                bookingId: ''
+            },
             currentRoom: '',
             selectedCoverage: null,
             items: {
@@ -1343,10 +1442,121 @@
         // INITIALIZATION
         // ═══════════════════════════════════════════════════════════
         window.addEventListener('DOMContentLoaded', () => {
+            parseURLParameters();
             loadFromStorage();
             updateProgress();
             loadThemePreference();
+            populateCustomerFields();
         });
+
+        // ═══════════════════════════════════════════════════════════
+        // CUSTOMER INFO MANAGEMENT
+        // ═══════════════════════════════════════════════════════════
+        function parseURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // Pre-fill from URL parameters
+            const firstName = urlParams.get('firstName') || urlParams.get('firstname') || urlParams.get('name');
+            const lastName = urlParams.get('lastName') || urlParams.get('lastname');
+            const email = urlParams.get('email');
+            const phone = urlParams.get('phone');
+            const moveDate = urlParams.get('moveDate') || urlParams.get('movedate') || urlParams.get('date');
+            const bookingId = urlParams.get('bookingId') || urlParams.get('bookingid') || urlParams.get('booking') || urlParams.get('orderId') || urlParams.get('orderid');
+
+            if (firstName) state.customer.firstName = firstName;
+            if (lastName) state.customer.lastName = lastName;
+            if (email) state.customer.email = email;
+            if (phone) state.customer.phone = phone;
+            if (moveDate) state.customer.moveDate = moveDate;
+            if (bookingId) state.customer.bookingId = bookingId;
+        }
+
+        function populateCustomerFields() {
+            // Populate welcome screen
+            document.getElementById('customerFirstName').value = state.customer.firstName || '';
+            document.getElementById('customerLastName').value = state.customer.lastName || '';
+            document.getElementById('customerEmail').value = state.customer.email || '';
+            document.getElementById('customerPhone').value = state.customer.phone || '';
+            document.getElementById('customerMoveDate').value = state.customer.moveDate || '';
+            document.getElementById('customerBookingId').value = state.customer.bookingId || '';
+        }
+
+        function saveCustomerInfoAndContinue() {
+            // Get values from welcome screen
+            const firstName = document.getElementById('customerFirstName').value.trim();
+            const lastName = document.getElementById('customerLastName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+
+            // Validate required fields
+            if (!firstName || !lastName || !email || !phone) {
+                alert('Please fill in all required fields (First Name, Last Name, Email, Phone)');
+                return;
+            }
+
+            // Validate email format
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Save to state
+            state.customer.firstName = firstName;
+            state.customer.lastName = lastName;
+            state.customer.email = email;
+            state.customer.phone = phone;
+            state.customer.moveDate = document.getElementById('customerMoveDate').value;
+            state.customer.bookingId = document.getElementById('customerBookingId').value.trim();
+
+            // Save to storage
+            saveToStorage();
+
+            // Continue to room selection
+            showScreen('roomSelectionScreen');
+        }
+
+        function populateSummaryCustomerFields() {
+            // Populate summary screen
+            document.getElementById('summaryFirstName').value = state.customer.firstName || '';
+            document.getElementById('summaryLastName').value = state.customer.lastName || '';
+            document.getElementById('summaryEmail').value = state.customer.email || '';
+            document.getElementById('summaryPhone').value = state.customer.phone || '';
+            document.getElementById('summaryMoveDate').value = state.customer.moveDate || '';
+            document.getElementById('summaryBookingId').value = state.customer.bookingId || '';
+        }
+
+        function updateCustomerInfo() {
+            // Get values from summary screen
+            const firstName = document.getElementById('summaryFirstName').value.trim();
+            const lastName = document.getElementById('summaryLastName').value.trim();
+            const email = document.getElementById('summaryEmail').value.trim();
+            const phone = document.getElementById('summaryPhone').value.trim();
+
+            // Validate required fields
+            if (!firstName || !lastName || !email || !phone) {
+                alert('Please fill in all required fields (First Name, Last Name, Email, Phone)');
+                return;
+            }
+
+            // Validate email format
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Update state
+            state.customer.firstName = firstName;
+            state.customer.lastName = lastName;
+            state.customer.email = email;
+            state.customer.phone = phone;
+            state.customer.moveDate = document.getElementById('summaryMoveDate').value;
+            state.customer.bookingId = document.getElementById('summaryBookingId').value.trim();
+
+            // Save to storage
+            saveToStorage();
+
+            alert('✓ Your information has been updated successfully!');
+        }
 
         // ═══════════════════════════════════════════════════════════
         // THEME TOGGLE
@@ -1687,12 +1897,22 @@
                     <span class="top-item-value">$${item.totalValue.toLocaleString()}</span>
                 </li>
             `).join('');
+
+            // Populate customer info fields
+            populateSummaryCustomerFields();
         }
 
         function purchaseCoverage() {
+            // Validate customer info is complete
+            if (!state.customer.firstName || !state.customer.lastName || !state.customer.email || !state.customer.phone) {
+                alert('Please complete your contact information before purchasing');
+                return;
+            }
+
             // In production, this would redirect to payment page
-            alert(`Great choice! Your ${state.selectedCoverage} coverage has been selected. Redirecting to checkout...`);
+            alert(`Great choice, ${state.customer.firstName}! Your ${state.selectedCoverage} coverage has been selected. Redirecting to checkout...`);
             console.log('Purchase data:', {
+                customer: state.customer,
                 coverage: state.selectedCoverage,
                 totalValue: getTotalValue(),
                 items: getAllItems()
@@ -1726,7 +1946,7 @@
         // PROGRESS BAR
         // ═══════════════════════════════════════════════════════════
         function updateProgress() {
-            const screens = ['roomSelectionScreen', 'itemEntryScreen', 'coverageScreen', 'summaryScreen'];
+            const screens = ['welcomeScreen', 'roomSelectionScreen', 'itemEntryScreen', 'coverageScreen', 'summaryScreen'];
             const activeScreen = document.querySelector('.screen.active');
             const activeIndex = screens.indexOf(activeScreen.id);
             const progress = ((activeIndex + 1) / screens.length) * 100;
@@ -1748,6 +1968,7 @@
                     const data = JSON.parse(saved);
                     state.items = data.items || state.items;
                     state.selectedCoverage = data.selectedCoverage || null;
+                    state.customer = data.customer || state.customer;
                     updateRoomCounts();
                 } catch (e) {
                     console.error('Error loading saved data:', e);
