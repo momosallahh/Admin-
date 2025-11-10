@@ -1,10 +1,1589 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=valuation-calculator.html">
-    <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valuation Coverage Calculator - Protect Your Move</title>
+    <meta name="description" content="Calculate your moving insurance needs with our interactive valuation coverage calculator. Get personalized recommendations.">
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           RESET & BASE STYLES
+        ═══════════════════════════════════════════════════════════ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           CONTAINER & LAYOUT
+        ═══════════════════════════════════════════════════════════ */
+        .app-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           HEADER
+        ═══════════════════════════════════════════════════════════ */
+        .app-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 40px 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .app-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-subtitle {
+            font-size: 16px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            margin-top: 30px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 0%;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           MAIN CONTENT AREA
+        ═══════════════════════════════════════════════════════════ */
+        .app-body {
+            padding: 40px;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ROOM SELECTION SCREEN
+        ═══════════════════════════════════════════════════════════ */
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .room-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .room-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .room-card.completed {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+            border-color: #667eea;
+        }
+
+        .room-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .room-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .room-count {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .completed-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ITEM ENTRY SCREEN
+        ═══════════════════════════════════════════════════════════ */
+        .screen-header {
+            margin-bottom: 30px;
+        }
+
+        .screen-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .screen-description {
+            font-size: 15px;
+            color: #6c757d;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 0;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s;
+        }
+
+        .back-button:hover {
+            gap: 10px;
+        }
+
+        /* Item Input Form */
+        .item-form {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input,
+        .form-select {
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 28px;
+            background: #e9ecef;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #667eea;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(20px);
+        }
+
+        .add-item-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .add-item-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Items List */
+        .items-list {
+            margin-top: 24px;
+        }
+
+        .item-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+            animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .item-card:hover {
+            border-color: #667eea;
+        }
+
+        .item-card.high-value {
+            border-color: #ffc107;
+            background: linear-gradient(135deg, #fffef9 0%, #fff9e6 100%);
+        }
+
+        .item-info {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fragile-badge {
+            background: #ff6b6b;
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .high-value-badge {
+            background: #ffc107;
+            color: #000;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-detail {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .item-value {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 16px;
+        }
+
+        .remove-button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 16px;
+        }
+
+        .remove-button:hover {
+            background: #ee5a6f;
+            transform: scale(1.05);
+        }
+
+        /* Room Summary */
+        .room-summary {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .summary-stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #6c757d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .next-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+            margin-top: 24px;
+        }
+
+        .next-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.3);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           COVERAGE OPTIONS SCREEN
+        ═══════════════════════════════════════════════════════════ */
+        .total-value-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .banner-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .banner-value {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .banner-items {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        /* Coverage Tiers */
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .coverage-card {
+            background: white;
+            border: 3px solid #e9ecef;
+            border-radius: 20px;
+            padding: 28px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .coverage-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .coverage-card.selected {
+            border-color: #667eea;
+            box-shadow: 0 16px 40px rgba(102, 126, 234, 0.25);
+        }
+
+        .coverage-card.recommended {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .coverage-tier-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .coverage-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .coverage-rate {
+            font-size: 13px;
+            color: #6c757d;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .coverage-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .coverage-feature {
+            padding: 10px 0;
+            font-size: 14px;
+            color: #495057;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+
+        .coverage-feature::before {
+            content: "✓";
+            color: #667eea;
+            font-weight: 900;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .select-coverage-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .select-coverage-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .coverage-card.selected .select-coverage-button {
+            background: #28a745;
+        }
+
+        /* AI Recommendation */
+        .ai-recommendation {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
+            border-left: 6px solid #ffc107;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .ai-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-text {
+            font-size: 15px;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .ai-text strong {
+            color: #667eea;
+        }
+
+        /* Educational Tooltips */
+        .tooltip-trigger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: help;
+            margin-left: 6px;
+            position: relative;
+        }
+
+        .tooltip-content {
+            display: none;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tooltip-trigger:hover .tooltip-content {
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           SUMMARY SCREEN
+        ═══════════════════════════════════════════════════════════ */
+        .summary-section {
+            margin-bottom: 32px;
+        }
+
+        .summary-section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .summary-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .summary-card-label {
+            font-size: 13px;
+            color: #6c757d;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-card-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .top-items-list {
+            list-style: none;
+        }
+
+        .top-item {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-item-name {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .top-item-value {
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* CTA Buttons */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cta-subtitle {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 32px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+        }
+
+        .cta-button.primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           MOBILE RESPONSIVE
+        ═══════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .app-body {
+                padding: 24px;
+            }
+
+            .app-header {
+                padding: 30px 24px 40px;
+            }
+
+            .app-title {
+                font-size: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .item-info {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .room-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .coverage-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           UTILITY CLASSES
+        ═══════════════════════════════════════════════════════════ */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #adb5bd;
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-size: 15px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to calculator...</p>
+    <div class="app-container">
+        <!-- HEADER -->
+        <div class="app-header">
+            <h1 class="app-title">Valuation Coverage Calculator</h1>
+            <p class="app-subtitle">Protect your valuables with the right insurance coverage</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- MAIN BODY -->
+        <div class="app-body">
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 SCREEN 1: ROOM SELECTION
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="screen active" id="roomSelectionScreen">
+                <div class="screen-header">
+                    <h2 class="screen-title">Select a Room to Add Items</h2>
+                    <p class="screen-description">Click on a room to start adding your valuable items</p>
+                </div>
+
+                <div class="room-grid">
+                    <div class="room-card" onclick="enterRoom('living-room')">
+                        <span class="room-icon">🛋️</span>
+                        <div class="room-name">Living Room</div>
+                        <div class="room-count" id="living-room-count">0 items</div>
+                    </div>
+
+                    <div class="room-card" onclick="enterRoom('bedroom')">
+                        <span class="room-icon">🛏️</span>
+                        <div class="room-name">Bedroom</div>
+                        <div class="room-count" id="bedroom-count">0 items</div>
+                    </div>
+
+                    <div class="room-card" onclick="enterRoom('kitchen')">
+                        <span class="room-icon">🍳</span>
+                        <div class="room-name">Kitchen</div>
+                        <div class="room-count" id="kitchen-count">0 items</div>
+                    </div>
+
+                    <div class="room-card" onclick="enterRoom('office')">
+                        <span class="room-icon">💼</span>
+                        <div class="room-name">Office</div>
+                        <div class="room-count" id="office-count">0 items</div>
+                    </div>
+
+                    <div class="room-card" onclick="enterRoom('garage')">
+                        <span class="room-icon">🚗</span>
+                        <div class="room-name">Garage</div>
+                        <div class="room-count" id="garage-count">0 items</div>
+                    </div>
+                </div>
+
+                <button class="next-button" onclick="goToCoverageScreen()" style="margin-top: 40px;">
+                    Continue to Coverage Options →
+                </button>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 SCREEN 2: ITEM ENTRY (per room)
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="screen" id="itemEntryScreen">
+                <button class="back-button" onclick="backToRoomSelection()">
+                    ← Back to Rooms
+                </button>
+
+                <div class="screen-header">
+                    <h2 class="screen-title" id="roomTitle">Add Items</h2>
+                    <p class="screen-description">List all valuable items in this room</p>
+                </div>
+
+                <div class="item-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Item Name</label>
+                            <input type="text" class="form-input" id="itemName" placeholder="e.g., Samsung 65&quot; TV">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Value ($)</label>
+                            <input type="number" class="form-input" id="itemValue" placeholder="2,500" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Weight (lbs) - Optional</label>
+                            <input type="number" class="form-input" id="itemWeight" placeholder="Auto-estimated" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" class="form-input" id="itemQuantity" value="1" min="1">
+                        </div>
+                    </div>
+
+                    <div class="toggle-group">
+                        <div class="toggle-switch" id="fragileToggle" onclick="toggleFragile()">
+                            <div class="toggle-slider"></div>
+                        </div>
+                        <label class="form-label" style="margin: 0;">Fragile Item</label>
+                    </div>
+
+                    <button class="add-item-button" onclick="addItem()">+ Add Item</button>
+                </div>
+
+                <div class="items-list" id="itemsList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📦</div>
+                        <div class="empty-state-text">No items added yet</div>
+                    </div>
+                </div>
+
+                <div class="room-summary">
+                    <div class="summary-stat">
+                        <div class="stat-value" id="roomItemCount">0</div>
+                        <div class="stat-label">Items</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-value" id="roomFragileCount">0</div>
+                        <div class="stat-label">Fragile</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-value" id="roomTotalValue">$0</div>
+                        <div class="stat-label">Total Value</div>
+                    </div>
+                </div>
+
+                <button class="next-button" onclick="backToRoomSelection()">
+                    Done with this Room
+                </button>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 SCREEN 3: COVERAGE OPTIONS
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="screen" id="coverageScreen">
+                <button class="back-button" onclick="backToRoomSelection()">
+                    ← Back to Rooms
+                </button>
+
+                <div class="screen-header">
+                    <h2 class="screen-title">Choose Your Coverage</h2>
+                    <p class="screen-description">Protect your valuables with the right insurance level</p>
+                </div>
+
+                <div class="total-value-banner">
+                    <div class="banner-label">Total Declared Value</div>
+                    <div class="banner-value" id="totalDeclaredValue">$0</div>
+                    <div class="banner-items" id="totalItemsCount">0 items across all rooms</div>
+                </div>
+
+                <div class="ai-recommendation">
+                    <div class="ai-title">
+                        <span>🤖</span>
+                        AI Recommendation
+                    </div>
+                    <div class="ai-text" id="aiRecommendation">
+                        Add some items to get a personalized coverage recommendation.
+                    </div>
+                </div>
+
+                <div class="coverage-grid">
+                    <!-- Basic Coverage -->
+                    <div class="coverage-card" onclick="selectCoverage('basic')">
+                        <div class="coverage-tier-name">
+                            Basic
+                            <span class="tooltip-trigger">?
+                                <span class="tooltip-content">Minimal protection by weight</span>
+                            </span>
+                        </div>
+                        <div class="coverage-price" id="basicPrice">$0</div>
+                        <div class="coverage-rate">$0.60 per lb</div>
+                        <ul class="coverage-features">
+                            <li class="coverage-feature">Industry default coverage</li>
+                            <li class="coverage-feature">Covers by weight, not value</li>
+                            <li class="coverage-feature">Limited protection</li>
+                            <li class="coverage-feature">No additional cost</li>
+                        </ul>
+                        <button class="select-coverage-button">Select Basic</button>
+                    </div>
+
+                    <!-- Standard Coverage -->
+                    <div class="coverage-card" onclick="selectCoverage('standard')">
+                        <div class="coverage-tier-name">
+                            Standard
+                            <span class="tooltip-trigger">?
+                                <span class="tooltip-content">Balanced protection for most items</span>
+                            </span>
+                        </div>
+                        <div class="coverage-price" id="standardPrice">$0</div>
+                        <div class="coverage-rate">1.5% of declared value</div>
+                        <ul class="coverage-features">
+                            <li class="coverage-feature">Covers actual item value</li>
+                            <li class="coverage-feature">Repair or replacement</li>
+                            <li class="coverage-feature">Good for most moves</li>
+                            <li class="coverage-feature">$250 deductible</li>
+                        </ul>
+                        <button class="select-coverage-button">Select Standard</button>
+                    </div>
+
+                    <!-- Full Replacement Coverage -->
+                    <div class="coverage-card recommended" onclick="selectCoverage('full')">
+                        <div class="popular-badge">⭐ Recommended</div>
+                        <div class="coverage-tier-name">
+                            Full Replacement
+                            <span class="tooltip-trigger">?
+                                <span class="tooltip-content">Complete protection regardless of weight</span>
+                            </span>
+                        </div>
+                        <div class="coverage-price" id="fullPrice">$0</div>
+                        <div class="coverage-rate">2.5% of declared value</div>
+                        <ul class="coverage-features">
+                            <li class="coverage-feature">100% item value coverage</li>
+                            <li class="coverage-feature">Full replacement guarantee</li>
+                            <li class="coverage-feature">Best protection available</li>
+                            <li class="coverage-feature">$250 deductible</li>
+                        </ul>
+                        <button class="select-coverage-button">Select Full Replacement</button>
+                    </div>
+                </div>
+
+                <button class="next-button" onclick="goToSummaryScreen()">
+                    Continue to Summary →
+                </button>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 SCREEN 4: SUMMARY & CHECKOUT
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="screen" id="summaryScreen">
+                <button class="back-button" onclick="backToCoverageScreen()">
+                    ← Back to Coverage Options
+                </button>
+
+                <div class="screen-header">
+                    <h2 class="screen-title">Your Valuation Summary</h2>
+                    <p class="screen-description">Review your selections and complete your coverage</p>
+                </div>
+
+                <div class="summary-section">
+                    <h3 class="summary-section-title">Coverage Details</h3>
+                    <div class="summary-grid">
+                        <div class="summary-card">
+                            <div class="summary-card-label">Total Declared Value</div>
+                            <div class="summary-card-value" id="summaryDeclaredValue">$0</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-card-label">Total Items</div>
+                            <div class="summary-card-value" id="summaryItemCount">0</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-card-label">Selected Coverage</div>
+                            <div class="summary-card-value" id="summaryCoverage">None</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-card-label">Coverage Cost</div>
+                            <div class="summary-card-value" id="summaryCost">$0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3 class="summary-section-title">Top 10 Most Valuable Items</h3>
+                    <ul class="top-items-list" id="topItemsList"></ul>
+                </div>
+
+                <div class="cta-section">
+                    <h2 class="cta-title">Upgrade Your Coverage</h2>
+                    <p class="cta-subtitle">Protect your move for just <span id="finalPrice">$0</span></p>
+                    <div class="cta-buttons">
+                        <button class="cta-button primary" onclick="purchaseCoverage()">
+                            Purchase Coverage →
+                        </button>
+                        <button class="cta-button secondary" onclick="emailSummary()">
+                            📧 Email Me Summary
+                        </button>
+                        <button class="cta-button secondary" onclick="downloadPDF()">
+                            📄 Download PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════
+        // STATE MANAGEMENT
+        // ═══════════════════════════════════════════════════════════
+        let state = {
+            currentRoom: '',
+            selectedCoverage: null,
+            items: {
+                'living-room': [],
+                'bedroom': [],
+                'kitchen': [],
+                'office': [],
+                'garage': []
+            },
+            isFragile: false
+        };
+
+        const roomNames = {
+            'living-room': 'Living Room',
+            'bedroom': 'Bedroom',
+            'kitchen': 'Kitchen',
+            'office': 'Office',
+            'garage': 'Garage'
+        };
+
+        // ═══════════════════════════════════════════════════════════
+        // INITIALIZATION
+        // ═══════════════════════════════════════════════════════════
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFromStorage();
+            updateProgress();
+        });
+
+        // ═══════════════════════════════════════════════════════════
+        // NAVIGATION FUNCTIONS
+        // ═══════════════════════════════════════════════════════════
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+            updateProgress();
+        }
+
+        function enterRoom(roomId) {
+            state.currentRoom = roomId;
+            document.getElementById('roomTitle').textContent = `Add Items - ${roomNames[roomId]}`;
+            showScreen('itemEntryScreen');
+            displayRoomItems();
+            updateRoomSummary();
+        }
+
+        function backToRoomSelection() {
+            showScreen('roomSelectionScreen');
+            updateRoomCounts();
+        }
+
+        function goToCoverageScreen() {
+            showScreen('coverageScreen');
+            updateTotalValues();
+            calculatePrices();
+            generateAIRecommendation();
+        }
+
+        function backToCoverageScreen() {
+            showScreen('coverageScreen');
+        }
+
+        function goToSummaryScreen() {
+            if (!state.selectedCoverage) {
+                alert('Please select a coverage option first');
+                return;
+            }
+            showScreen('summaryScreen');
+            updateSummary();
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // ITEM MANAGEMENT
+        // ═══════════════════════════════════════════════════════════
+        function toggleFragile() {
+            state.isFragile = !state.isFragile;
+            const toggle = document.getElementById('fragileToggle');
+            if (state.isFragile) {
+                toggle.classList.add('active');
+            } else {
+                toggle.classList.remove('active');
+            }
+        }
+
+        function addItem() {
+            const name = document.getElementById('itemName').value.trim();
+            const value = parseFloat(document.getElementById('itemValue').value);
+            let weight = parseFloat(document.getElementById('itemWeight').value);
+            const quantity = parseInt(document.getElementById('itemQuantity').value);
+
+            if (!name || !value || value <= 0 || !quantity || quantity <= 0) {
+                alert('Please fill in all fields with valid values');
+                return;
+            }
+
+            // Estimate weight if not provided: value / $5 per lb
+            if (!weight || weight <= 0) {
+                weight = value / 5;
+            }
+
+            // High-value item alert ($5,000+)
+            if (value >= 5000) {
+                alert(`⚠️ HIGH VALUE ITEM: "${name}" requires Full Replacement Coverage for complete protection.`);
+            }
+
+            const item = {
+                id: Date.now(),
+                name: name,
+                value: value,
+                weight: weight,
+                quantity: quantity,
+                totalValue: value * quantity,
+                totalWeight: weight * quantity,
+                fragile: state.isFragile,
+                room: state.currentRoom
+            };
+
+            state.items[state.currentRoom].push(item);
+
+            // Clear form
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemValue').value = '';
+            document.getElementById('itemWeight').value = '';
+            document.getElementById('itemQuantity').value = '1';
+            state.isFragile = false;
+            document.getElementById('fragileToggle').classList.remove('active');
+
+            displayRoomItems();
+            updateRoomSummary();
+            saveToStorage();
+        }
+
+        function removeItem(itemId) {
+            const room = state.currentRoom;
+            state.items[room] = state.items[room].filter(item => item.id !== itemId);
+            displayRoomItems();
+            updateRoomSummary();
+            saveToStorage();
+        }
+
+        function displayRoomItems() {
+            const itemsList = document.getElementById('itemsList');
+            const items = state.items[state.currentRoom];
+
+            if (items.length === 0) {
+                itemsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📦</div>
+                        <div class="empty-state-text">No items added yet</div>
+                    </div>
+                `;
+                return;
+            }
+
+            itemsList.innerHTML = items.map(item => {
+                const isHighValue = item.value >= 500;
+                return `
+                    <div class="item-card ${isHighValue ? 'high-value' : ''}">
+                        <div class="item-info">
+                            <div class="item-name">
+                                ${item.name}
+                                ${item.fragile ? '<span class="fragile-badge">Fragile</span>' : ''}
+                                ${isHighValue ? '<span class="high-value-badge">High Value</span>' : ''}
+                            </div>
+                            <div class="item-detail">Qty: ${item.quantity}</div>
+                            <div class="item-detail">$${item.value.toLocaleString()} ea</div>
+                            <div class="item-value">$${item.totalValue.toLocaleString()}</div>
+                        </div>
+                        <button class="remove-button" onclick="removeItem(${item.id})">Remove</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateRoomSummary() {
+            const items = state.items[state.currentRoom];
+            const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+            const fragileCount = items.filter(item => item.fragile).reduce((sum, item) => sum + item.quantity, 0);
+            const totalValue = items.reduce((sum, item) => sum + item.totalValue, 0);
+
+            document.getElementById('roomItemCount').textContent = itemCount;
+            document.getElementById('roomFragileCount').textContent = fragileCount;
+            document.getElementById('roomTotalValue').textContent = '$' + totalValue.toLocaleString();
+        }
+
+        function updateRoomCounts() {
+            Object.keys(state.items).forEach(roomId => {
+                const count = state.items[roomId].reduce((sum, item) => sum + item.quantity, 0);
+                const countEl = document.getElementById(`${roomId}-count`);
+                countEl.textContent = count > 0 ? `${count} items` : '0 items';
+
+                const roomCard = countEl.closest('.room-card');
+                if (count > 0) {
+                    roomCard.classList.add('completed');
+                    if (!roomCard.querySelector('.completed-badge')) {
+                        const badge = document.createElement('div');
+                        badge.className = 'completed-badge';
+                        badge.textContent = '✓';
+                        roomCard.appendChild(badge);
+                    }
+                } else {
+                    roomCard.classList.remove('completed');
+                    const badge = roomCard.querySelector('.completed-badge');
+                    if (badge) badge.remove();
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // COVERAGE CALCULATIONS
+        // ═══════════════════════════════════════════════════════════
+        function getAllItems() {
+            return Object.values(state.items).flat();
+        }
+
+        function getTotalValue() {
+            return getAllItems().reduce((sum, item) => sum + item.totalValue, 0);
+        }
+
+        function getTotalItemCount() {
+            return getAllItems().reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        function getFragileCount() {
+            return getAllItems().filter(item => item.fragile).reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        function updateTotalValues() {
+            const totalValue = getTotalValue();
+            const itemCount = getTotalItemCount();
+
+            document.getElementById('totalDeclaredValue').textContent = '$' + totalValue.toLocaleString();
+            document.getElementById('totalItemsCount').textContent = `${itemCount} items across all rooms`;
+        }
+
+        function getTotalWeight() {
+            return getAllItems().reduce((sum, item) => sum + (item.totalWeight || 0), 0);
+        }
+
+        function calculatePrices() {
+            const totalValue = getTotalValue();
+            const totalWeight = getTotalWeight();
+
+            // Basic: $0.60 per lb (included, but shows coverage amount)
+            const basicCoverage = Math.round(totalWeight * 0.60);
+            document.getElementById('basicPrice').textContent = '$0 (≈$' + basicCoverage.toLocaleString() + ' coverage)';
+
+            // Standard: 1.5% of declared value
+            const standardPrice = Math.round(totalValue * 0.015);
+            document.getElementById('standardPrice').textContent = '$' + standardPrice.toLocaleString();
+
+            // Full Replacement: 2.5% of declared value
+            const fullPrice = Math.round(totalValue * 0.025);
+            document.getElementById('fullPrice').textContent = '$' + fullPrice.toLocaleString();
+        }
+
+        function selectCoverage(tier) {
+            state.selectedCoverage = tier;
+
+            document.querySelectorAll('.coverage-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            event.currentTarget.classList.add('selected');
+            saveToStorage();
+        }
+
+        function generateAIRecommendation() {
+            const totalValue = getTotalValue();
+            const itemCount = getTotalItemCount();
+            const fragileCount = getFragileCount();
+            const highValueCount = getAllItems().filter(item => item.value >= 500).length;
+
+            let recommendation = '';
+
+            if (totalValue === 0) {
+                recommendation = 'Add some items to get a personalized coverage recommendation.';
+            }
+            // AI Upsell Trigger: If > 10 fragile items → Suggest Full
+            else if (fragileCount > 10) {
+                recommendation = `With <strong>${fragileCount} fragile items</strong> in your move, we <strong>strongly recommend Full Replacement Coverage</strong> to protect against potential damage. Your declared value of <strong>$${totalValue.toLocaleString()}</strong> deserves complete protection.`;
+            }
+            // AI Upsell Trigger: If declared value > $10,000 → Suggest Standard or Full
+            else if (totalValue > 10000) {
+                recommendation = `With a declared value of <strong>$${totalValue.toLocaleString()}</strong>, we <strong>strongly recommend Full Replacement Coverage</strong> for complete protection. This ensures you're fully covered for any damage or loss during your move.`;
+            }
+            else if (totalValue >= 5000 && totalValue <= 10000) {
+                recommendation = `Based on your declared value of <strong>$${totalValue.toLocaleString()}</strong> and ${fragileCount} fragile items, we recommend <strong>Full Replacement Coverage</strong> for comprehensive protection of your valuables.`;
+            }
+            else if (totalValue < 5000 && fragileCount < 3) {
+                recommendation = `Based on your declared value of <strong>$${totalValue.toLocaleString()}</strong> and ${fragileCount} fragile items, <strong>Standard Coverage</strong> offers balanced protection at a reasonable cost.`;
+            }
+            else {
+                recommendation = `Based on your items, we recommend <strong>Full Replacement Coverage</strong> for the best protection.`;
+            }
+
+            document.getElementById('aiRecommendation').innerHTML = recommendation;
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // SUMMARY & CHECKOUT
+        // ═══════════════════════════════════════════════════════════
+        function updateSummary() {
+            const totalValue = getTotalValue();
+            const itemCount = getTotalItemCount();
+
+            const coverageNames = {
+                'basic': 'Basic',
+                'standard': 'Standard',
+                'full': 'Full Replacement'
+            };
+
+            const coverageCosts = {
+                'basic': 0,
+                'standard': Math.round(totalValue * 0.015),
+                'full': Math.round(totalValue * 0.025)
+            };
+
+            document.getElementById('summaryDeclaredValue').textContent = '$' + totalValue.toLocaleString();
+            document.getElementById('summaryItemCount').textContent = itemCount;
+            document.getElementById('summaryCoverage').textContent = coverageNames[state.selectedCoverage] || 'None';
+            document.getElementById('summaryCost').textContent = '$' + (coverageCosts[state.selectedCoverage] || 0).toLocaleString();
+            document.getElementById('finalPrice').textContent = '$' + (coverageCosts[state.selectedCoverage] || 0).toLocaleString();
+
+            // Display top 10 items
+            const allItems = getAllItems().sort((a, b) => b.totalValue - a.totalValue).slice(0, 10);
+            const topItemsList = document.getElementById('topItemsList');
+
+            topItemsList.innerHTML = allItems.map(item => `
+                <li class="top-item">
+                    <span class="top-item-name">${item.name} ${item.fragile ? '⚠️' : ''}</span>
+                    <span class="top-item-value">$${item.totalValue.toLocaleString()}</span>
+                </li>
+            `).join('');
+        }
+
+        function purchaseCoverage() {
+            // In production, this would redirect to payment page
+            alert(`Great choice! Your ${state.selectedCoverage} coverage has been selected. Redirecting to checkout...`);
+            console.log('Purchase data:', {
+                coverage: state.selectedCoverage,
+                totalValue: getTotalValue(),
+                items: getAllItems()
+            });
+        }
+
+        function emailSummary() {
+            const email = prompt('Enter your email address:');
+            if (email && validateEmail(email)) {
+                alert(`Summary will be sent to ${email} shortly!`);
+                console.log('Email summary to:', email);
+            } else if (email) {
+                alert('Please enter a valid email address');
+            }
+        }
+
+        function downloadPDF() {
+            alert('PDF download functionality will be implemented with a backend service (e.g., jsPDF or server-side generation)');
+            console.log('Generate PDF with data:', {
+                items: getAllItems(),
+                coverage: state.selectedCoverage,
+                totalValue: getTotalValue()
+            });
+        }
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // PROGRESS BAR
+        // ═══════════════════════════════════════════════════════════
+        function updateProgress() {
+            const screens = ['roomSelectionScreen', 'itemEntryScreen', 'coverageScreen', 'summaryScreen'];
+            const activeScreen = document.querySelector('.screen.active');
+            const activeIndex = screens.indexOf(activeScreen.id);
+            const progress = ((activeIndex + 1) / screens.length) * 100;
+
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // STORAGE
+        // ═══════════════════════════════════════════════════════════
+        function saveToStorage() {
+            localStorage.setItem('valuationCalculator', JSON.stringify(state));
+        }
+
+        function loadFromStorage() {
+            const saved = localStorage.getItem('valuationCalculator');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    state.items = data.items || state.items;
+                    state.selectedCoverage = data.selectedCoverage || null;
+                    updateRoomCounts();
+                } catch (e) {
+                    console.error('Error loading saved data:', e);
+                }
+            }
+        }
+    </script>
 </body>
 </html>
