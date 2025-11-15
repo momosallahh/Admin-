@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initParallax();
     initMapInteractions();
+    initCalculator();
 });
 
 // ============================================
@@ -508,6 +509,160 @@ window.addEventListener('error', (e) => {
     console.error('JavaScript error:', e.message);
     // You can send errors to your logging service here
 });
+
+// ============================================
+// ROOFING CALCULATOR
+// ============================================
+
+function initCalculator() {
+    // Pricing constants
+    const PRICING = {
+        basePrice: 3.50, // per sq ft
+        roofTypeMultipliers: {
+            shingle: 1.0,
+            metal: 1.4,
+            tile: 1.6,
+            flat: 0.9
+        },
+        damageMultipliers: {
+            minor: 1.0,
+            moderate: 1.15,
+            heavy: 1.3
+        },
+        addons: {
+            gutters: 950,
+            insulation: 600,
+            pdf: 85,
+            fascia: 450
+        }
+    };
+
+    // Get all calculator inputs
+    const roofTypeInputs = document.querySelectorAll('input[name="roofType"]');
+    const roofSizeSlider = document.getElementById('roofSize');
+    const roofSizeValue = document.getElementById('roofSizeValue');
+    const damageLevelInputs = document.querySelectorAll('input[name="damageLevel"]');
+    const addonCheckboxes = document.querySelectorAll('input[name="addons"]');
+
+    // Get output elements
+    const priceValue = document.getElementById('priceValue');
+    const urgencyBadge = document.getElementById('urgencyBadge');
+    const breakdownItems = document.getElementById('breakdownItems');
+
+    if (!roofSizeSlider || !priceValue) return;
+
+    // Calculate and update price
+    function calculatePrice() {
+        // Get current values
+        const roofType = document.querySelector('input[name="roofType"]:checked').value;
+        const roofSize = parseInt(roofSizeSlider.value);
+        const damageLevel = document.querySelector('input[name="damageLevel"]:checked').value;
+
+        // Calculate base price
+        let baseTotal = roofSize * PRICING.basePrice;
+
+        // Apply roof type multiplier
+        const roofMultiplier = PRICING.roofTypeMultipliers[roofType];
+        baseTotal *= roofMultiplier;
+
+        // Apply damage multiplier
+        const damageMultiplier = PRICING.damageMultipliers[damageLevel];
+        baseTotal *= damageMultiplier;
+
+        // Calculate addons
+        let addonsTotal = 0;
+        const selectedAddons = [];
+
+        addonCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const addonType = checkbox.value;
+                const addonPrice = PRICING.addons[addonType];
+                addonsTotal += addonPrice;
+
+                // Get addon name from label
+                const label = checkbox.parentElement.querySelector('.checkbox-label').textContent;
+                selectedAddons.push({ name: label, price: addonPrice });
+            }
+        });
+
+        // Calculate final total
+        const total = baseTotal + addonsTotal;
+
+        // Calculate price range (±20%)
+        const minPrice = total * 0.8;
+        const maxPrice = total * 1.2;
+
+        // Update price display
+        priceValue.textContent = `$${Math.round(minPrice).toLocaleString()} - $${Math.round(maxPrice).toLocaleString()}`;
+
+        // Update urgency badge
+        urgencyBadge.className = 'urgency-badge';
+        if (damageLevel === 'minor') {
+            urgencyBadge.textContent = '✓ Standard Timeline';
+        } else if (damageLevel === 'moderate') {
+            urgencyBadge.textContent = '⚡ Priority Service Recommended';
+            urgencyBadge.classList.add('moderate');
+        } else {
+            urgencyBadge.textContent = '🚨 Emergency Service Required';
+            urgencyBadge.classList.add('heavy');
+        }
+
+        // Update breakdown
+        let breakdownHTML = '';
+
+        // Roof type and size
+        breakdownHTML += `
+            <div class="breakdown-item">
+                <span class="breakdown-label">${roofSize} sq ft ${roofType.charAt(0).toUpperCase() + roofType.slice(1)} Roof</span>
+                <span class="breakdown-value">$${Math.round(baseTotal).toLocaleString()}</span>
+            </div>
+        `;
+
+        // Damage level
+        if (damageLevel !== 'minor') {
+            breakdownHTML += `
+                <div class="breakdown-item">
+                    <span class="breakdown-label">${damageLevel.charAt(0).toUpperCase() + damageLevel.slice(1)} Damage (+${Math.round((damageMultiplier - 1) * 100)}%)</span>
+                    <span class="breakdown-value">Included</span>
+                </div>
+            `;
+        }
+
+        // Addons
+        selectedAddons.forEach(addon => {
+            breakdownHTML += `
+                <div class="breakdown-item">
+                    <span class="breakdown-label">${addon.name}</span>
+                    <span class="breakdown-value">+$${addon.price.toLocaleString()}</span>
+                </div>
+            `;
+        });
+
+        breakdownItems.innerHTML = breakdownHTML;
+    }
+
+    // Update roof size display
+    roofSizeSlider.addEventListener('input', (e) => {
+        roofSizeValue.textContent = e.target.value;
+        calculatePrice();
+    });
+
+    // Add event listeners to all inputs
+    roofTypeInputs.forEach(input => {
+        input.addEventListener('change', calculatePrice);
+    });
+
+    damageLevelInputs.forEach(input => {
+        input.addEventListener('change', calculatePrice);
+    });
+
+    addonCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', calculatePrice);
+    });
+
+    // Initial calculation
+    calculatePrice();
+}
 
 // ============================================
 // EXPORTS

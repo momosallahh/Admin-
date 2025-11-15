@@ -167,6 +167,165 @@
         </div>
     </section>
 
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get Your Instant Quote</h2>
+                <p class="section-subtitle">Calculate your roofing investment in seconds</p>
+            </div>
+
+            <div class="calculator-wrapper">
+                <div class="calculator-inputs glass-card">
+                    <h3 class="calc-heading">Project Details</h3>
+
+                    <!-- Roof Type -->
+                    <div class="calc-group">
+                        <label class="calc-label">Roof Type</label>
+                        <div class="calc-options">
+                            <label class="calc-option">
+                                <input type="radio" name="roofType" value="shingle" checked>
+                                <span class="option-card">
+                                    <span class="option-icon">🏠</span>
+                                    <span class="option-name">Shingle</span>
+                                </span>
+                            </label>
+                            <label class="calc-option">
+                                <input type="radio" name="roofType" value="metal">
+                                <span class="option-card">
+                                    <span class="option-icon">⚡</span>
+                                    <span class="option-name">Metal</span>
+                                </span>
+                            </label>
+                            <label class="calc-option">
+                                <input type="radio" name="roofType" value="tile">
+                                <span class="option-card">
+                                    <span class="option-icon">🏛️</span>
+                                    <span class="option-name">Tile</span>
+                                </span>
+                            </label>
+                            <label class="calc-option">
+                                <input type="radio" name="roofType" value="flat">
+                                <span class="option-card">
+                                    <span class="option-icon">📐</span>
+                                    <span class="option-name">Flat</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Roof Size -->
+                    <div class="calc-group">
+                        <label class="calc-label">
+                            Roof Size: <span id="roofSizeValue" class="value-highlight">1500</span> sq ft
+                        </label>
+                        <input type="range" id="roofSize" min="500" max="5000" value="1500" step="50" class="calc-slider">
+                        <div class="slider-labels">
+                            <span>500 sq ft</span>
+                            <span>5,000 sq ft</span>
+                        </div>
+                    </div>
+
+                    <!-- Damage Level -->
+                    <div class="calc-group">
+                        <label class="calc-label">Damage Level</label>
+                        <div class="calc-radios">
+                            <label class="calc-radio">
+                                <input type="radio" name="damageLevel" value="minor" checked>
+                                <span class="radio-label">Minor</span>
+                            </label>
+                            <label class="calc-radio">
+                                <input type="radio" name="damageLevel" value="moderate">
+                                <span class="radio-label">Moderate</span>
+                            </label>
+                            <label class="calc-radio">
+                                <input type="radio" name="damageLevel" value="heavy">
+                                <span class="radio-label">Heavy</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Add-ons -->
+                    <div class="calc-group">
+                        <label class="calc-label">Add-Ons (Optional)</label>
+                        <div class="calc-checkboxes">
+                            <label class="calc-checkbox">
+                                <input type="checkbox" name="addons" value="gutters">
+                                <span class="checkbox-label">
+                                    <span class="checkbox-icon">💧</span>
+                                    <span>Gutter Replacement</span>
+                                    <span class="addon-price">+$950</span>
+                                </span>
+                            </label>
+                            <label class="calc-checkbox">
+                                <input type="checkbox" name="addons" value="insulation">
+                                <span class="checkbox-label">
+                                    <span class="checkbox-icon">🏠</span>
+                                    <span>Attic Insulation</span>
+                                    <span class="addon-price">+$600</span>
+                                </span>
+                            </label>
+                            <label class="calc-checkbox">
+                                <input type="checkbox" name="addons" value="pdf">
+                                <span class="checkbox-label">
+                                    <span class="checkbox-icon">📄</span>
+                                    <span>Inspection Report PDF</span>
+                                    <span class="addon-price">+$85</span>
+                                </span>
+                            </label>
+                            <label class="calc-checkbox">
+                                <input type="checkbox" name="addons" value="fascia">
+                                <span class="checkbox-label">
+                                    <span class="checkbox-icon">🔨</span>
+                                    <span>Fascia/Soffit Repairs</span>
+                                    <span class="addon-price">+$450</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="calculator-results glass-card" id="calcResults">
+                    <h3 class="calc-heading">Your Estimate</h3>
+
+                    <div class="price-display">
+                        <div class="price-label">Estimated Investment</div>
+                        <div class="price-value" id="priceValue">$5,250 - $6,300</div>
+                    </div>
+
+                    <div class="urgency-badge" id="urgencyBadge">
+                        <span class="urgency-icon">⚡</span>
+                        <span>Standard Priority</span>
+                    </div>
+
+                    <div class="price-breakdown" id="priceBreakdown">
+                        <div class="breakdown-item">
+                            <span>Base Cost (1,500 sq ft @ $3.50)</span>
+                            <span class="breakdown-value">$5,250</span>
+                        </div>
+                    </div>
+
+                    <div class="calc-summary" id="calcSummary">
+                        <p><strong>Project Summary:</strong></p>
+                        <p>1,500 sq ft Shingle roof with minor damage</p>
+                    </div>
+
+                    <a href="#contact" class="btn btn-primary btn-block glow calc-cta">
+                        <span>Schedule Free Inspection</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+
+                    <div class="calc-note">
+                        * Final price may vary based on site inspection
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery Section -->
     <section class="gallery-section" id="gallery">
         <div class="container">
