@@ -3,574 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Roofing - Most Trusted Roofing Team in Your City</title>
+    <meta name="description" content="Michigan's Most Trusted Roofing Experts - Premium materials, certified installers, 2,000+ homeowners served">
+    <title>Elite Roofing Michigan | Trusted Roofing Experts</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <!-- Floating Particles Background -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Sticky Header -->
-    <header class="header" id="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <span class="logo-icon">🏠</span>
-                    <span class="logo-text">ELITE<span class="highlight">ROOFING</span></span>
-                </div>
-                <nav class="nav">
-                    <a href="#hero" class="nav-link">Home</a>
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#calculator" class="nav-link">Quote</a>
-                    <a href="#gallery" class="nav-link">Gallery</a>
-                    <a href="#reviews" class="nav-link">Reviews</a>
-                    <a href="#booking" class="nav-link btn-primary-small">Book Now</a>
-                </nav>
-                <div class="mobile-menu-toggle" id="mobileMenuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">Elite<span class="highlight">Roofing</span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link nav-cta">Free Inspection</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-video-placeholder">
-            <div class="rooftop-silhouette"></div>
+    <section class="hero" id="home">
+        <div class="hero-video">
+            <div class="video-overlay"></div>
+            <!-- Video placeholder - replace with actual video -->
+            <div class="video-placeholder"></div>
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title animate-fade-up">
-                    The Most Trusted Roofing Team in <span class="highlight">Your City</span>
+
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title fade-in-up">
+                    Michigan's Most Trusted<br>
+                    <span class="gradient-text">Roofing Experts</span>
                 </h1>
-                <p class="hero-subtitle animate-fade-up delay-1">
-                    Roof Replacement • Storm Repair • Insurance Help
+                <p class="hero-subtitle fade-in-up delay-1">
+                    Protecting your home with premium materials and certified installers.
                 </p>
-                <div class="hero-buttons animate-fade-up delay-2">
-                    <a href="#calculator" class="btn btn-primary glow">
-                        <span>Get Instant Quote</span>
-                        <span class="btn-arrow">→</span>
+                <div class="hero-buttons fade-in-up delay-2">
+                    <a href="#contact" class="btn btn-primary glow">
+                        <span>Free Roof Inspection</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                     </a>
-                    <a href="#booking" class="btn btn-secondary">
-                        <span>Book Free Roof Inspection</span>
-                        <span class="btn-arrow">→</span>
+                    <a href="tel:+15551234567" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Call Now</span>
                     </a>
-                </div>
-                <div class="hero-badges animate-fade-up delay-3">
-                    <div class="badge">
-                        <span class="badge-icon">⭐</span>
-                        <span>5.0 Rating</span>
-                    </div>
-                    <div class="badge">
-                        <span class="badge-icon">🛡️</span>
-                        <span>Licensed & Insured</span>
-                    </div>
-                    <div class="badge">
-                        <span class="badge-icon">👥</span>
-                        <span>1,200+ Happy Clients</span>
-                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-icon"></div>
         </div>
     </section>
 
-    <!-- Social Proof Section -->
-    <section class="social-proof" id="reviews">
+    <!-- Trust Badges -->
+    <section class="trust-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Trusted by Homeowners Everywhere</h2>
-                <div class="google-rating">
-                    <span class="stars">★★★★★</span>
-                    <span class="rating-text">4.9/5.0 on Google</span>
-                </div>
-            </div>
-
-            <div class="badges-row">
+            <div class="trust-badges">
                 <div class="trust-badge">
-                    <div class="trust-badge-icon">✓</div>
-                    <div class="trust-badge-text">Licensed & Insured</div>
+                    <div class="badge-icon">⭐</div>
+                    <div class="badge-content">
+                        <div class="badge-title">4.9 Rating</div>
+                        <div class="badge-subtitle">Google Reviews</div>
+                    </div>
                 </div>
                 <div class="trust-badge">
-                    <div class="trust-badge-icon">👥</div>
-                    <div class="trust-badge-text">1,200+ Happy Homeowners</div>
+                    <div class="badge-icon">👥</div>
+                    <div class="badge-content">
+                        <div class="badge-title">2,000+</div>
+                        <div class="badge-subtitle">Homeowners Served</div>
+                    </div>
                 </div>
                 <div class="trust-badge">
-                    <div class="trust-badge-icon">🏆</div>
-                    <div class="trust-badge-text">25 Years Expertise</div>
-                </div>
-            </div>
-
-            <div class="reviews-carousel" id="reviewsCarousel">
-                <button class="carousel-btn prev" id="prevReview">‹</button>
-                <div class="reviews-container">
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"Elite Roofing replaced our entire roof after storm damage. Professional, fast, and the quality is outstanding. Highly recommend!"</p>
-                        <div class="review-author">
-                            <div class="author-avatar">JM</div>
-                            <div>
-                                <div class="author-name">Jennifer Martinez</div>
-                                <div class="author-location">Homeowner, Dallas TX</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"They helped us navigate the insurance claim process seamlessly. Got a brand new metal roof at no out-of-pocket cost!"</p>
-                        <div class="review-author">
-                            <div class="author-avatar">RB</div>
-                            <div>
-                                <div class="author-name">Robert Blake</div>
-                                <div class="author-location">Business Owner, Austin TX</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"Best roofing company we've worked with. Transparent pricing, excellent communication, and beautiful results."</p>
-                        <div class="review-author">
-                            <div class="author-avatar">SM</div>
-                            <div>
-                                <div class="author-name">Sarah Mitchell</div>
-                                <div class="author-location">Homeowner, Houston TX</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"Fixed our leaking roof in one day! The crew was respectful, clean, and did an amazing job. Worth every penny."</p>
-                        <div class="review-author">
-                            <div class="author-avatar">DW</div>
-                            <div>
-                                <div class="author-name">David Wilson</div>
-                                <div class="author-location">Homeowner, San Antonio TX</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"Commercial roof replacement done on time and on budget. Elite Roofing is our go-to for all properties now."</p>
-                        <div class="review-author">
-                            <div class="author-avatar">LT</div>
-                            <div>
-                                <div class="author-name">Linda Thompson</div>
-                                <div class="author-location">Property Manager, Fort Worth TX</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"After hail damage, they came out same day for inspection. New roof installed in 3 days. Incredible service!"</p>
-                        <div class="review-author">
-                            <div class="author-avatar">MC</div>
-                            <div>
-                                <div class="author-name">Michael Chen</div>
-                                <div class="author-location">Homeowner, Plano TX</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"Top-notch craftsmanship and customer service. Our tile roof looks absolutely stunning. Thank you Elite Roofing!"</p>
-                        <div class="review-author">
-                            <div class="author-avatar">AP</div>
-                            <div>
-                                <div class="author-name">Angela Patel</div>
-                                <div class="author-location">Homeowner, Arlington TX</div>
-                            </div>
-                        </div>
+                    <div class="badge-icon">✓</div>
+                    <div class="badge-content">
+                        <div class="badge-title">Licensed</div>
+                        <div class="badge-subtitle">& Insured</div>
                     </div>
                 </div>
-                <button class="carousel-btn next" id="nextReview">›</button>
+                <div class="trust-badge">
+                    <div class="badge-icon">🏆</div>
+                    <div class="badge-content">
+                        <div class="badge-title">GAF</div>
+                        <div class="badge-subtitle">Certified</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
+    <section class="services-section" id="services">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Our Expert Roofing Services</h2>
-                <p class="section-subtitle">Comprehensive roofing solutions for residential and commercial properties</p>
+                <h2 class="section-title">Our Expert Services</h2>
+                <p class="section-subtitle">Comprehensive roofing solutions for every need</p>
             </div>
+
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card glass-card">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Roof Replacement</h3>
+                    <p class="service-description">Complete roof replacement with premium materials and lifetime warranties.</p>
+                    <a href="#contact" class="service-link">Learn More →</a>
+                </div>
+
+                <div class="service-card glass-card">
                     <div class="service-icon">🔧</div>
                     <h3 class="service-title">Roof Repair</h3>
-                    <p class="service-description">Fast, reliable repairs for leaks, missing shingles, and storm damage. Same-day service available.</p>
+                    <p class="service-description">Fast, reliable repairs for leaks and damage with same-day service available.</p>
+                    <a href="#contact" class="service-link">Learn More →</a>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🏗️</div>
-                    <h3 class="service-title">Roof Replacement</h3>
-                    <p class="service-description">Complete roof replacement with premium materials and lifetime warranties on workmanship.</p>
+
+                <div class="service-card glass-card">
+                    <div class="service-icon">⛈️</div>
+                    <h3 class="service-title">Storm Damage</h3>
+                    <p class="service-description">24/7 emergency response for storm damage assessment and restoration.</p>
+                    <a href="#contact" class="service-link">Learn More →</a>
                 </div>
-                <div class="service-card">
+
+                <div class="service-card glass-card">
                     <div class="service-icon">⚡</div>
                     <h3 class="service-title">Metal Roofing</h3>
                     <p class="service-description">Durable, energy-efficient metal roofing systems built to last 50+ years.</p>
+                    <a href="#contact" class="service-link">Learn More →</a>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">⛈️</div>
-                    <h3 class="service-title">Storm Damage Repair</h3>
-                    <p class="service-description">Emergency storm damage response and full restoration services available 24/7.</p>
-                </div>
-                <div class="service-card">
+
+                <div class="service-card glass-card">
                     <div class="service-icon">📋</div>
-                    <h3 class="service-title">Insurance Claims Support</h3>
-                    <p class="service-description">We handle your insurance claim from start to finish at no extra cost.</p>
+                    <h3 class="service-title">Insurance Claims</h3>
+                    <p class="service-description">Full insurance claim assistance from documentation to approval.</p>
+                    <a href="#contact" class="service-link">Learn More →</a>
                 </div>
-                <div class="service-card">
+
+                <div class="service-card glass-card">
                     <div class="service-icon">🏢</div>
                     <h3 class="service-title">Commercial Roofing</h3>
-                    <p class="service-description">Specialized commercial roofing for businesses, warehouses, and multi-family properties.</p>
+                    <p class="service-description">Specialized commercial solutions for businesses and multi-family properties.</p>
+                    <a href="#contact" class="service-link">Learn More →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Calculator Section -->
-    <section class="calculator-section" id="calculator">
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Get Your Instant Roofing Quote</h2>
-                <p class="section-subtitle">Calculate your estimated roof investment in seconds</p>
-            </div>
-
-            <div class="calculator-container">
-                <div class="calculator-inputs">
-
-                    <!-- Roof Type -->
-                    <div class="input-group">
-                        <label class="input-label">Roof Type</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="roofType" value="shingle" checked>
-                                <span class="radio-custom">
-                                    <span class="radio-icon">🏠</span>
-                                    <span class="radio-text">Shingle</span>
-                                </span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="roofType" value="metal">
-                                <span class="radio-custom">
-                                    <span class="radio-icon">⚡</span>
-                                    <span class="radio-text">Metal</span>
-                                </span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="roofType" value="tile">
-                                <span class="radio-custom">
-                                    <span class="radio-icon">🏛️</span>
-                                    <span class="radio-text">Tile</span>
-                                </span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="roofType" value="flat">
-                                <span class="radio-custom">
-                                    <span class="radio-icon">📐</span>
-                                    <span class="radio-text">Flat</span>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Roof Size Slider -->
-                    <div class="input-group">
-                        <label class="input-label">
-                            Roof Size: <span id="roofSizeValue">1500</span> sq ft
-                        </label>
-                        <input type="range" id="roofSize" min="500" max="5000" value="1500" step="50" class="slider">
-                        <div class="slider-labels">
-                            <span>500 sq ft</span>
-                            <span>5,000 sq ft</span>
-                        </div>
-                    </div>
-
-                    <!-- Damage Level -->
-                    <div class="input-group">
-                        <label class="input-label">Damage Level</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="damageLevel" value="minor" checked>
-                                <span class="radio-custom">
-                                    <span class="radio-text">Minor</span>
-                                </span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="damageLevel" value="moderate">
-                                <span class="radio-custom">
-                                    <span class="radio-text">Moderate</span>
-                                </span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="damageLevel" value="heavy">
-                                <span class="radio-custom">
-                                    <span class="radio-text">Heavy</span>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Add-ons -->
-                    <div class="input-group">
-                        <label class="input-label">Add-ons (Optional)</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="addons" value="gutters">
-                                <span class="checkbox-custom">
-                                    <span class="checkbox-icon">💧</span>
-                                    <span class="checkbox-text">Gutter Replacement <span class="addon-price">+$950</span></span>
-                                </span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="addons" value="insulation">
-                                <span class="checkbox-custom">
-                                    <span class="checkbox-icon">🏠</span>
-                                    <span class="checkbox-text">Attic Insulation <span class="addon-price">+$600</span></span>
-                                </span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="addons" value="pdf">
-                                <span class="checkbox-custom">
-                                    <span class="checkbox-icon">📄</span>
-                                    <span class="checkbox-text">Roof Inspection Report PDF <span class="addon-price">+$85</span></span>
-                                </span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="addons" value="fascia">
-                                <span class="checkbox-custom">
-                                    <span class="checkbox-icon">🔨</span>
-                                    <span class="checkbox-text">Fascia / Soffit Repairs <span class="addon-price">+$450</span></span>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Calculator Results -->
-                <div class="calculator-results" id="calculatorResults">
-                    <div class="results-card glow-card">
-                        <div class="results-header">
-                            <h3>Your Estimated Investment</h3>
-                            <div class="urgency-tag" id="urgencyTag">Standard Priority</div>
-                        </div>
-                        <div class="price-display">
-                            <div class="price-range">
-                                <span class="price-label">Estimated Range</span>
-                                <span class="price-value" id="priceValue">$5,250 - $6,300</span>
-                            </div>
-                        </div>
-                        <div class="results-summary" id="resultsSummary">
-                            <p><strong>Project Summary:</strong></p>
-                            <p>1,500 sq ft Shingle roof replacement with minor repairs</p>
-                        </div>
-                        <div class="results-breakdown" id="resultsBreakdown">
-                            <div class="breakdown-item">
-                                <span>Base Cost (1,500 sq ft @ $3.50)</span>
-                                <span>$5,250</span>
-                            </div>
-                        </div>
-                        <a href="#booking" class="btn btn-primary btn-full glow">
-                            <span>Book Free Inspection</span>
-                            <span class="btn-arrow">→</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Before & After Gallery -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">See the Transformation</h2>
-                <p class="section-subtitle">Real projects, real results</p>
+                <h2 class="section-title">Our Work</h2>
+                <p class="section-subtitle">See the transformation</p>
             </div>
 
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <div class="before-after-slider">
-                        <div class="slider-images">
-                            <div class="image-before" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                <span class="image-label">BEFORE</span>
+                    <div class="before-after">
+                        <div class="ba-images">
+                            <div class="ba-before" style="background: linear-gradient(135deg, #555 0%, #333 100%)">
+                                <span class="ba-label">Before</span>
                             </div>
-                            <div class="image-after" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                                <span class="image-label">AFTER</span>
+                            <div class="ba-after" style="background: linear-gradient(135deg, #1D4ED8 0%, #38BDF8 100%)">
+                                <span class="ba-label">After</span>
                             </div>
                         </div>
-                        <input type="range" min="0" max="100" value="50" class="comparison-slider">
-                        <div class="slider-handle"></div>
+                        <input type="range" min="0" max="100" value="50" class="ba-slider" />
+                        <div class="ba-handle"></div>
                     </div>
-                    <p class="gallery-caption">Storm Damage Repair - Dallas, TX</p>
+                    <p class="gallery-caption">Complete Roof Replacement - Ann Arbor, MI</p>
                 </div>
 
                 <div class="gallery-item">
-                    <div class="before-after-slider">
-                        <div class="slider-images">
-                            <div class="image-before" style="background: linear-gradient(135deg, #868f96 0%, #596164 100%);">
-                                <span class="image-label">BEFORE</span>
+                    <div class="before-after">
+                        <div class="ba-images">
+                            <div class="ba-before" style="background: linear-gradient(135deg, #666 0%, #444 100%)">
+                                <span class="ba-label">Before</span>
                             </div>
-                            <div class="image-after" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                                <span class="image-label">AFTER</span>
+                            <div class="ba-after" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%)">
+                                <span class="ba-label">After</span>
                             </div>
                         </div>
-                        <input type="range" min="0" max="100" value="50" class="comparison-slider">
-                        <div class="slider-handle"></div>
+                        <input type="range" min="0" max="100" value="50" class="ba-slider" />
+                        <div class="ba-handle"></div>
                     </div>
-                    <p class="gallery-caption">Complete Roof Replacement - Austin, TX</p>
+                    <p class="gallery-caption">Storm Damage Repair - Detroit, MI</p>
                 </div>
 
                 <div class="gallery-item">
-                    <div class="before-after-slider">
-                        <div class="slider-images">
-                            <div class="image-before" style="background: linear-gradient(135deg, #a8a8a8 0%, #6b6b6b 100%);">
-                                <span class="image-label">BEFORE</span>
+                    <div class="before-after">
+                        <div class="ba-images">
+                            <div class="ba-before" style="background: linear-gradient(135deg, #777 0%, #555 100%)">
+                                <span class="ba-label">Before</span>
                             </div>
-                            <div class="image-after" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                                <span class="image-label">AFTER</span>
+                            <div class="ba-after" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)">
+                                <span class="ba-label">After</span>
                             </div>
                         </div>
-                        <input type="range" min="0" max="100" value="50" class="comparison-slider">
-                        <div class="slider-handle"></div>
+                        <input type="range" min="0" max="100" value="50" class="ba-slider" />
+                        <div class="ba-handle"></div>
                     </div>
-                    <p class="gallery-caption">Metal Roofing Installation - Houston, TX</p>
+                    <p class="gallery-caption">Metal Roof Installation - Grand Rapids, MI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Us</h2>
+                <p class="section-subtitle">Premium service, guaranteed results</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🚨</div>
+                    <h3 class="feature-title">Emergency Response</h3>
+                    <p class="feature-description">24/7 emergency service for urgent repairs. We respond within 2 hours for storm damage and critical issues.</p>
                 </div>
 
-                <div class="gallery-item">
-                    <div class="before-after-slider">
-                        <div class="slider-images">
-                            <div class="image-before" style="background: linear-gradient(135deg, #7f7f7f 0%, #4a4a4a 100%);">
-                                <span class="image-label">BEFORE</span>
-                            </div>
-                            <div class="image-after" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                                <span class="image-label">AFTER</span>
-                            </div>
-                        </div>
-                        <input type="range" min="0" max="100" value="50" class="comparison-slider">
-                        <div class="slider-handle"></div>
-                    </div>
-                    <p class="gallery-caption">Tile Roof Restoration - San Antonio, TX</p>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Transparent Pricing</h3>
+                    <p class="feature-description">No hidden fees, no surprises. Get detailed written estimates with full material and labor breakdowns.</p>
                 </div>
 
-                <div class="gallery-item">
-                    <div class="before-after-slider">
-                        <div class="slider-images">
-                            <div class="image-before" style="background: linear-gradient(135deg, #939393 0%, #5a5a5a 100%);">
-                                <span class="image-label">BEFORE</span>
-                            </div>
-                            <div class="image-after" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
-                                <span class="image-label">AFTER</span>
-                            </div>
-                        </div>
-                        <input type="range" min="0" max="100" value="50" class="comparison-slider">
-                        <div class="slider-handle"></div>
-                    </div>
-                    <p class="gallery-caption">Commercial Flat Roof - Fort Worth, TX</p>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3 class="feature-title">Premium Materials</h3>
+                    <p class="feature-description">We use only top-tier materials from GAF, Owens Corning, and CertainTeed with industry-leading warranties.</p>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="gallery-item">
-                    <div class="before-after-slider">
-                        <div class="slider-images">
-                            <div class="image-before" style="background: linear-gradient(135deg, #858585 0%, #525252 100%);">
-                                <span class="image-label">BEFORE</span>
-                            </div>
-                            <div class="image-after" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                                <span class="image-label">AFTER</span>
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Real reviews from real homeowners</p>
+            </div>
+
+            <div class="reviews-carousel" id="reviewsCarousel">
+                <div class="reviews-track">
+                    <div class="review-card glass-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Best roofing company in Michigan! They replaced our entire roof in 2 days. Professional crew, fair pricing, and the quality is outstanding."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">JM</div>
+                            <div class="author-info">
+                                <div class="author-name">Jennifer Martinez</div>
+                                <div class="author-location">Ann Arbor, MI</div>
                             </div>
                         </div>
-                        <input type="range" min="0" max="100" value="50" class="comparison-slider">
-                        <div class="slider-handle"></div>
                     </div>
-                    <p class="gallery-caption">Hail Damage Restoration - Plano, TX</p>
+
+                    <div class="review-card glass-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"After storm damage, they helped us with the insurance claim and completed the repairs quickly. Highly recommend for storm work!"</p>
+                        <div class="review-author">
+                            <div class="author-avatar">RB</div>
+                            <div class="author-info">
+                                <div class="author-name">Robert Blake</div>
+                                <div class="author-location">Detroit, MI</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card glass-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Transparent pricing, excellent communication, and beautiful results. Our new metal roof looks amazing and should last forever."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">SM</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Mitchell</div>
+                                <div class="author-location">Grand Rapids, MI</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Service Area Map -->
-    <section class="service-area" id="service-area">
+    <section class="map-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Storm Damage Service Areas</h2>
-                <p class="section-subtitle">Free inspections available in highlighted areas</p>
+                <h2 class="section-title">Service Areas</h2>
+                <p class="section-subtitle">Proudly serving Michigan</p>
             </div>
 
-            <div class="map-container">
-                <svg viewBox="0 0 800 600" class="service-map">
-                    <!-- Map background -->
-                    <rect width="800" height="600" fill="#0f1419"/>
+            <div class="map-container glass-card">
+                <svg viewBox="0 0 800 600" class="michigan-map">
+                    <rect width="800" height="600" fill="transparent"/>
 
-                    <!-- Service regions (simplified Texas map representation) -->
-                    <g class="service-regions">
-                        <!-- Dallas Area -->
-                        <circle cx="400" cy="200" r="80" class="service-region" data-city="Dallas">
-                            <title>Dallas - Free Inspection Available</title>
+                    <!-- Michigan regions (simplified) -->
+                    <g class="map-regions">
+                        <circle cx="400" cy="250" r="60" class="map-region" data-city="Detroit">
+                            <title>Detroit Metro</title>
                         </circle>
-
-                        <!-- Fort Worth Area -->
-                        <circle cx="350" cy="220" r="60" class="service-region" data-city="Fort Worth">
-                            <title>Fort Worth - Free Inspection Available</title>
+                        <circle cx="300" cy="300" r="50" class="map-region" data-city="Ann Arbor">
+                            <title>Ann Arbor</title>
                         </circle>
-
-                        <!-- Austin Area -->
-                        <circle cx="380" cy="380" r="70" class="service-region" data-city="Austin">
-                            <title>Austin - Free Inspection Available</title>
+                        <circle cx="250" cy="220" r="55" class="map-region" data-city="Grand Rapids">
+                            <title>Grand Rapids</title>
                         </circle>
-
-                        <!-- Houston Area -->
-                        <circle cx="550" cy="420" r="75" class="service-region" data-city="Houston">
-                            <title>Houston - Free Inspection Available</title>
+                        <circle cx="350" cy="180" r="45" class="map-region" data-city="Lansing">
+                            <title>Lansing</title>
                         </circle>
-
-                        <!-- San Antonio Area -->
-                        <circle cx="340" cy="460" r="65" class="service-region" data-city="San Antonio">
-                            <title>San Antonio - Free Inspection Available</title>
-                        </circle>
-
-                        <!-- Plano Area -->
-                        <circle cx="420" cy="180" r="50" class="service-region" data-city="Plano">
-                            <title>Plano - Free Inspection Available</title>
+                        <circle cx="500" cy="200" r="40" class="map-region" data-city="Flint">
+                            <title>Flint</title>
                         </circle>
                     </g>
 
                     <!-- City labels -->
-                    <text x="400" y="200" class="city-label">Dallas</text>
-                    <text x="350" y="220" class="city-label">Fort Worth</text>
-                    <text x="380" y="380" class="city-label">Austin</text>
-                    <text x="550" y="420" class="city-label">Houston</text>
-                    <text x="340" y="460" class="city-label">San Antonio</text>
-                    <text x="420" y="180" class="city-label">Plano</text>
+                    <text x="400" y="260" class="map-label">Detroit</text>
+                    <text x="300" y="310" class="map-label">Ann Arbor</text>
+                    <text x="250" y="230" class="map-label">Grand Rapids</text>
+                    <text x="350" y="190" class="map-label">Lansing</text>
+                    <text x="500" y="210" class="map-label">Flint</text>
                 </svg>
+            </div>
+        </div>
+    </section>
 
-                <div class="map-tooltip" id="mapTooltip">
-                    <div class="tooltip-content">
-                        <strong class="tooltip-city"></strong>
-                        <p>Free Inspection Available</p>
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image glass-card">
+                    <div class="founder-image" style="background: linear-gradient(135deg, #1D4ED8 0%, #38BDF8 100%)">
+                        <span style="font-size: 120px;">👨‍💼</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">About Elite Roofing</h2>
+                    <p class="about-description">
+                        For over 25 years, Elite Roofing has been Michigan's trusted partner for residential and commercial roofing solutions. Founded by John Anderson, a third-generation roofer, we've built our reputation on quality craftsmanship, honest pricing, and exceptional customer service.
+                    </p>
+                    <p class="about-description">
+                        As a GAF Master Elite Contractor, we're in the top 3% of roofing contractors nationwide. Our team of certified installers uses only premium materials backed by industry-leading warranties, ensuring your investment is protected for decades to come.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2,000+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Satisfaction Rate</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Booking Form Section -->
-    <section class="booking-section" id="booking">
+    <!-- Contact Form -->
+    <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Book Your Free Roof Inspection</h2>
-                <p class="section-subtitle">Get a professional assessment within 24 hours</p>
+                <h2 class="section-title">Get Your Free Inspection</h2>
+                <p class="section-subtitle">Fill out the form and we'll contact you within 2 hours</p>
             </div>
 
-            <div class="booking-container">
-                <form class="booking-form" id="bookingForm">
+            <div class="contact-container">
+                <form class="contact-form glass-card" id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Full Name</label>
@@ -588,32 +412,34 @@
                             <input type="email" id="email" name="email" required placeholder="john@example.com">
                         </div>
                         <div class="form-group">
-                            <label for="preferredDate">Preferred Date</label>
-                            <input type="date" id="preferredDate" name="preferredDate" required>
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" name="date" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="address">Property Address</label>
-                        <input type="text" id="address" name="address" required placeholder="123 Main Street, City, State, ZIP">
+                        <input type="text" id="address" name="address" required placeholder="123 Main St, City, MI 48000">
                     </div>
 
                     <div class="form-group">
-                        <label for="damageDescription">Describe Your Roofing Issue</label>
-                        <textarea id="damageDescription" name="damageDescription" rows="4" placeholder="Tell us about leaks, missing shingles, storm damage, or any concerns..."></textarea>
+                        <label for="issue">Describe Your Roofing Issue</label>
+                        <textarea id="issue" name="issue" rows="4" placeholder="Tell us about leaks, damage, age of roof, or any concerns..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-full glow">
+                    <button type="submit" class="btn btn-primary btn-block glow">
                         <span>Schedule Free Inspection</span>
-                        <span class="btn-arrow">→</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                     </button>
                 </form>
 
-                <div class="booking-confirmation" id="bookingConfirmation">
-                    <div class="confirmation-icon">✓</div>
-                    <h3>Inspection Scheduled!</h3>
-                    <p>Thank you for choosing Elite Roofing. We'll contact you within 2 hours to confirm your appointment.</p>
-                    <button class="btn btn-secondary" onclick="resetBookingForm()">Schedule Another</button>
+                <div class="contact-success" id="contactSuccess">
+                    <div class="success-icon">✓</div>
+                    <h3>Thank You!</h3>
+                    <p>We've received your request and will contact you within 2 hours to schedule your free inspection.</p>
+                    <button class="btn btn-secondary" onclick="resetForm()">Submit Another Request</button>
                 </div>
             </div>
         </div>
@@ -623,77 +449,83 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                <div class="footer-col">
                     <div class="footer-logo">
                         <span class="logo-icon">🏠</span>
-                        <span class="logo-text">ELITE<span class="highlight">ROOFING</span></span>
+                        <span class="logo-text">Elite<span class="highlight">Roofing</span></span>
                     </div>
-                    <p class="footer-tagline">Your trusted roofing partner for over 25 years</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
-                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
-                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-title">Contact Info</h4>
-                    <div class="footer-contact">
-                        <p>📞 (555) 123-4567</p>
-                        <p>✉️ info@eliteroofing.com</p>
-                        <p>📍 123 Roofing Way, Your City, TX 75001</p>
+                    <p class="footer-description">Michigan's most trusted roofing experts. Premium materials, certified installers, exceptional results.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
                     </div>
                 </div>
 
-                <div class="footer-section">
-                    <h4 class="footer-title">Business Hours</h4>
-                    <div class="footer-hours">
-                        <p><strong>Monday - Friday:</strong> 7:00 AM - 7:00 PM</p>
-                        <p><strong>Saturday:</strong> 8:00 AM - 5:00 PM</p>
-                        <p><strong>Sunday:</strong> Emergency Service Only</p>
-                        <p class="emergency-text">24/7 Emergency Storm Response</p>
-                    </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-list">
+                        <li>📞 (555) 123-4567</li>
+                        <li>✉️ info@eliteroofing.com</li>
+                        <li>📍 123 Roofing Way<br>Detroit, MI 48201</li>
+                    </ul>
                 </div>
 
-                <div class="footer-section">
-                    <h4 class="footer-title">Licensed & Certified</h4>
-                    <div class="footer-licenses">
-                        <p>TX License #RC-12345</p>
-                        <p>Fully Insured & Bonded</p>
-                        <p>BBB A+ Rating</p>
-                        <p>GAF Master Elite Contractor</p>
-                    </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Hours</h4>
+                    <ul class="footer-list">
+                        <li>Mon-Fri: 7AM - 7PM</li>
+                        <li>Saturday: 8AM - 5PM</li>
+                        <li>Sunday: Emergency Only</li>
+                        <li class="emergency">24/7 Emergency Service</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Certifications</h4>
+                    <ul class="footer-list">
+                        <li>✓ GAF Master Elite</li>
+                        <li>✓ Licensed & Insured</li>
+                        <li>✓ BBB A+ Rating</li>
+                        <li>✓ MI License #12345</li>
+                    </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Elite Roofing. All rights reserved.</p>
+                <p>&copy; 2024 Elite Roofing Michigan. All rights reserved.</p>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
-                    <a href="#">Sitemap</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Contact Bar -->
-    <div class="floating-contact-bar" id="floatingBar">
-        <a href="tel:5551234567" class="contact-bar-item">
-            <span class="contact-icon">📞</span>
-            <span class="contact-text">Call Now</span>
+    <!-- Mobile Action Bar -->
+    <div class="mobile-bar" id="mobileBar">
+        <a href="tel:+15551234567" class="mobile-btn">
+            <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>Call</span>
         </a>
-        <a href="#booking" class="contact-bar-item">
-            <span class="contact-icon">📅</span>
-            <span class="contact-text">Book Inspection</span>
+        <a href="sms:+15551234567" class="mobile-btn">
+            <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
+                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.5 1a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>Text</span>
         </a>
-        <a href="sms:5551234567" class="contact-bar-item">
-            <span class="contact-icon">💬</span>
-            <span class="contact-text">Text Us</span>
+        <a href="#contact" class="mobile-btn mobile-btn-primary">
+            <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" fill="currentColor"/>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>Book</span>
         </a>
     </div>
 
+    <!-- JavaScript -->
     <script src="js/script.js"></script>
 </body>
 </html>
