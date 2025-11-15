@@ -3,255 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Areas | Elite Roofing Michigan</title>
+    <title>Service Areas - Elite Roofing Michigan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0B0F1A;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        /* Navigation */
+        .nav {
+            background: rgba(11, 15, 26, 0.95);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #38BDF8;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #38BDF8;
+        }
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="../css/styles.css">
+        /* Hero */
+        .hero {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .hero .gradient {
+            background: linear-gradient(135deg, #38BDF8, #1D4ED8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: #94A3B8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Cities Grid */
+        .cities-section {
+            padding: 60px 0;
+        }
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .city-card {
+            background: rgba(20, 24, 38, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+            display: block;
+        }
+        .city-card:hover {
+            transform: translateY(-10px);
+            border-color: #38BDF8;
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.4);
+        }
+        .city-emoji {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .city-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #38BDF8, #1D4ED8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .city-info {
+            color: #94A3B8;
+            margin-bottom: 1rem;
+        }
+        .city-phone {
+            color: #38BDF8;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .city-cta {
+            color: #38BDF8;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Stats */
+        .stats {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .stats-card {
+            background: rgba(20, 24, 38, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            padding: 4rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #38BDF8;
+        }
+        .stat-label {
+            color: #94A3B8;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(20, 24, 38, 0.6);
+            border-top: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 3rem 0;
+            text-align: center;
+            color: #94A3B8;
+        }
+        .footer a {
+            color: #38BDF8;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .cities-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
     <!-- Navigation -->
-    <nav class="nav" id="navbar">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">
-                <span class="logo-icon">🏠</span>
-                <span class="logo-text">Elite<span class="highlight">Roofing</span></span>
-            </a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="../index.html" class="nav-link">Home</a></li>
-                <li><a href="../index.html#services" class="nav-link">Services</a></li>
-                <li><a href="../index.html#calculator" class="nav-link">Calculator</a></li>
-                <li><a href="../index.html#gallery" class="nav-link">Gallery</a></li>
-                <li><a href="index.html" class="nav-link" style="color: var(--secondary-blue);">Service Areas</li>
-                <li><a href="../index.html#about" class="nav-link">About</a></li>
-                <li><a href="../index.html#contact" class="nav-link nav-cta">Get Quote</a></li>
-            </ul>
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">🏠 Elite Roofing</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#services">Services</a></li>
+                    <li><a href="../index.html#calculator">Calculator</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section style="position: relative; min-height: 50vh; display: flex; align-items: center; justify-content: center; padding: 120px 0 80px; background: linear-gradient(180deg, #0B0F1A 0%, #1a2332 50%, #0B0F1A 100%);">
-        <div class="container" style="position: relative; z-index: 2;">
-            <div style="text-align: center;">
-                <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(56, 189, 248, 0.1); padding: 0.75rem 1.5rem; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.3); margin-bottom: 2rem;">
-                    <span style="font-size: 1.5rem;">📍</span>
-                    <span style="color: var(--secondary-blue); font-weight: 600;">Serving 10 Major Michigan Cities</span>
-                </div>
-
-                <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2;">
-                    Our <span style="background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Service Areas</span>
-                </h1>
-
-                <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto;">
-                    Elite Roofing proudly serves Michigan's largest cities with premium roofing services. Select your city below for local information, pricing, and expert service.
-                </p>
-            </div>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Our <span class="gradient">Service Areas</span></h1>
+            <p>Elite Roofing serves 10 major Michigan cities with premium roofing services. Click your city below for local information and pricing.</p>
         </div>
     </section>
 
     <!-- Cities Grid -->
-    <section style="padding: 100px 0; background: rgba(29, 78, 216, 0.02);">
+    <section class="cities-section">
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;">
+            <div class="cities-grid">
 
-                <!-- Detroit -->
-                <a href="detroit.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block; position: relative;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🏙️</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Detroit</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Wayne County | ZIP: 48201</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (313) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Detroit Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        The Motor City | Motown Museum | Belle Isle
-                    </p>
+                <a href="detroit.html" class="city-card">
+                    <span class="city-emoji">🏙️</span>
+                    <h2 class="city-name">Detroit</h2>
+                    <p class="city-info">Wayne County | ZIP: 48201</p>
+                    <span class="city-phone">📞 (313) 123-4567</span>
+                    <div class="city-cta">View Detroit Services →</div>
                 </a>
 
-                <!-- Grand Rapids -->
-                <a href="grand-rapids.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🌳</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Grand Rapids</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Kent County | ZIP: 49503</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (616) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Grand Rapids Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        Beer City USA | Frederik Meijer Gardens
-                    </p>
+                <a href="grand-rapids.html" class="city-card">
+                    <span class="city-emoji">🌳</span>
+                    <h2 class="city-name">Grand Rapids</h2>
+                    <p class="city-info">Kent County | ZIP: 49503</p>
+                    <span class="city-phone">📞 (616) 123-4567</span>
+                    <div class="city-cta">View Grand Rapids Services →</div>
                 </a>
 
-                <!-- Ann Arbor -->
-                <a href="ann-arbor.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🎓</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ann Arbor</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Washtenaw County | ZIP: 48104</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (734) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Ann Arbor Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        University of Michigan | The Big House
-                    </p>
+                <a href="ann-arbor.html" class="city-card">
+                    <span class="city-emoji">🎓</span>
+                    <h2 class="city-name">Ann Arbor</h2>
+                    <p class="city-info">Washtenaw County | ZIP: 48104</p>
+                    <span class="city-phone">📞 (734) 123-4567</span>
+                    <div class="city-cta">View Ann Arbor Services →</div>
                 </a>
 
-                <!-- Lansing -->
-                <a href="lansing.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🏛️</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Lansing</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Ingham County | ZIP: 48933</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (517) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Lansing Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        State Capital | MSU Campus
-                    </p>
+                <a href="lansing.html" class="city-card">
+                    <span class="city-emoji">🏛️</span>
+                    <h2 class="city-name">Lansing</h2>
+                    <p class="city-info">Ingham County | ZIP: 48933</p>
+                    <span class="city-phone">📞 (517) 123-4567</span>
+                    <div class="city-cta">View Lansing Services →</div>
                 </a>
 
-                <!-- Flint -->
-                <a href="flint.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🚗</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Flint</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Genesee County | ZIP: 48503</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (810) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Flint Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        Vehicle City | Crossroads Village
-                    </p>
+                <a href="flint.html" class="city-card">
+                    <span class="city-emoji">🚗</span>
+                    <h2 class="city-name">Flint</h2>
+                    <p class="city-info">Genesee County | ZIP: 48503</p>
+                    <span class="city-phone">📞 (810) 123-4567</span>
+                    <div class="city-cta">View Flint Services →</div>
                 </a>
 
-                <!-- Kalamazoo -->
-                <a href="kalamazoo.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">✈️</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Kalamazoo</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Kalamazoo County | ZIP: 49007</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (269) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Kalamazoo Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        Air Zoo | Bell's Brewery
-                    </p>
+                <a href="kalamazoo.html" class="city-card">
+                    <span class="city-emoji">✈️</span>
+                    <h2 class="city-name">Kalamazoo</h2>
+                    <p class="city-info">Kalamazoo County | ZIP: 49007</p>
+                    <span class="city-phone">📞 (269) 123-4567</span>
+                    <div class="city-cta">View Kalamazoo Services →</div>
                 </a>
 
-                <!-- Troy -->
-                <a href="troy.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🛍️</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Troy</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Oakland County | ZIP: 48083</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (248) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Troy Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        Somerset Collection | Big Beaver
-                    </p>
+                <a href="troy.html" class="city-card">
+                    <span class="city-emoji">🛍️</span>
+                    <h2 class="city-name">Troy</h2>
+                    <p class="city-info">Oakland County | ZIP: 48083</p>
+                    <span class="city-phone">📞 (248) 123-4567</span>
+                    <div class="city-cta">View Troy Services →</div>
                 </a>
 
-                <!-- Livonia -->
-                <a href="livonia.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🌲</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Livonia</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Wayne County | ZIP: 48150</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (734) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Livonia Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        Greenmead Park | Rosedale Gardens
-                    </p>
+                <a href="livonia.html" class="city-card">
+                    <span class="city-emoji">🌲</span>
+                    <h2 class="city-name">Livonia</h2>
+                    <p class="city-info">Wayne County | ZIP: 48150</p>
+                    <span class="city-phone">📞 (734) 123-4567</span>
+                    <div class="city-cta">View Livonia Services →</div>
                 </a>
 
-                <!-- Sterling Heights -->
-                <a href="sterling-heights.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🏡</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Sterling Heights</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Macomb County | ZIP: 48313</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (586) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Sterling Heights Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        Dodge Park | Freedom Hill
-                    </p>
+                <a href="sterling-heights.html" class="city-card">
+                    <span class="city-emoji">🏡</span>
+                    <h2 class="city-name">Sterling Heights</h2>
+                    <p class="city-info">Macomb County | ZIP: 48313</p>
+                    <span class="city-phone">📞 (586) 123-4567</span>
+                    <div class="city-cta">View Sterling Heights Services →</div>
                 </a>
 
-                <!-- Warren -->
-                <a href="warren.html" class="glass-card" style="padding: 3rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: block;">
-                    <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">🏭</span>
-                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; background: linear-gradient(135deg, #38BDF8, #1D4ED8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Warren</h2>
-                    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">Macomb County | ZIP: 48089</p>
-                    <p style="color: var(--secondary-blue); font-weight: 600; margin-bottom: 1.5rem;">📞 (586) 123-4567</p>
-                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary-blue); font-weight: 600; font-size: 1rem;">
-                        <span>View Warren Services</span>
-                        <span>→</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
-                        GM Tech Center | Warren Woods
-                    </p>
+                <a href="warren.html" class="city-card">
+                    <span class="city-emoji">🏭</span>
+                    <h2 class="city-name">Warren</h2>
+                    <p class="city-info">Macomb County | ZIP: 48089</p>
+                    <span class="city-phone">📞 (586) 123-4567</span>
+                    <div class="city-cta">View Warren Services →</div>
                 </a>
 
-            </div>
-
-            <!-- View All Button -->
-            <div style="text-align: center; margin-top: 4rem;">
-                <a href="../index.html#contact" class="btn btn-primary btn-lg glow" style="display: inline-flex; align-items: center; gap: 0.75rem;">
-                    <span>Get Free Quote for Your City</span>
-                    <span>→</span>
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section style="padding: 80px 0;">
+    <!-- Stats -->
+    <section class="stats">
         <div class="container">
-            <div class="glass-card" style="padding: 4rem; text-align: center;">
-                <div style="font-size: 4rem; margin-bottom: 1.5rem;">🗺️</div>
-                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Serving 10 Major Michigan Markets</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto 3rem;">
-                    From Detroit to Grand Rapids, Flint to Kalamazoo - Elite Roofing brings premium service to Michigan's largest cities. Each location features local teams who understand your area's unique roofing challenges.
+            <div class="stats-card">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">🗺️ Statewide Coverage</h2>
+                <p style="color: #94A3B8; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                    From Detroit to Grand Rapids, we bring premium roofing to Michigan's largest cities.
                 </p>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <div class="stats-grid">
                     <div>
-                        <div style="font-size: 3rem; color: var(--secondary-blue); font-weight: 800; margin-bottom: 0.5rem;">10</div>
-                        <div style="color: var(--text-muted);">Cities Served</div>
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Cities Served</div>
                     </div>
                     <div>
-                        <div style="font-size: 3rem; color: var(--secondary-blue); font-weight: 800; margin-bottom: 0.5rem;">5,000+</div>
-                        <div style="color: var(--text-muted);">Homes Completed</div>
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">Homes Completed</div>
                     </div>
                     <div>
-                        <div style="font-size: 3rem; color: var(--secondary-blue); font-weight: 800; margin-bottom: 0.5rem;">25+</div>
-                        <div style="color: var(--text-muted);">Years Experience</div>
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Years Experience</div>
                     </div>
                     <div>
-                        <div style="font-size: 3rem; color: var(--secondary-blue); font-weight: 800; margin-bottom: 0.5rem;">4.9</div>
-                        <div style="color: var(--text-muted);">Average Rating</div>
+                        <div class="stat-number">4.9</div>
+                        <div class="stat-label">Average Rating</div>
                     </div>
                 </div>
             </div>
@@ -259,26 +329,17 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer" style="padding: 60px 0 30px; background: rgba(20, 24, 38, 0.6); border-top: 1px solid rgba(56, 189, 248, 0.2);">
+    <footer class="footer">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏠</div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Elite Roofing Michigan</h3>
-                <p style="color: var(--text-muted);">Michigan's Most Trusted Roofing Company</p>
-            </div>
-
-            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(56, 189, 248, 0.2); color: var(--text-muted);">
-                <p>&copy; 2024 Elite Roofing. All rights reserved. | Licensed & Insured</p>
-                <p style="margin-top: 0.5rem;">
-                    <a href="../index.html" style="color: var(--secondary-blue); margin: 0 1rem;">Home</a>
-                    <a href="../index.html#services" style="color: var(--secondary-blue); margin: 0 1rem;">Services</a>
-                    <a href="../index.html#contact" style="color: var(--secondary-blue); margin: 0 1rem;">Contact</a>
-                </p>
-            </div>
+            <p style="margin-bottom: 1rem;">🏠 Elite Roofing Michigan</p>
+            <p>&copy; 2024 Elite Roofing. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#services">Services</a>
+                <a href="../index.html#contact">Contact</a>
+            </p>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="../js/script.js"></script>
 </body>
 </html>
