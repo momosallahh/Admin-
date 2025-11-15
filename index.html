@@ -467,44 +467,227 @@
         </div>
     </section>
 
-    <!-- Service Area Map -->
+    <!-- Service Area - Interactive Cities -->
     <section class="map-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Service Areas</h2>
-                <p class="section-subtitle">Proudly serving Michigan</p>
+                <h2 class="section-title">Cities We Serve Across Michigan</h2>
+                <p class="section-subtitle">Click your city for local pricing, attractions, and expert roofing services</p>
             </div>
 
-            <div class="map-container glass-card">
-                <svg viewBox="0 0 800 600" class="michigan-map">
-                    <rect width="800" height="600" fill="transparent"/>
+            <div class="cities-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 4rem;">
 
-                    <!-- Michigan regions (simplified) -->
-                    <g class="map-regions">
-                        <circle cx="400" cy="250" r="60" class="map-region" data-city="Detroit">
-                            <title>Detroit Metro</title>
-                        </circle>
-                        <circle cx="300" cy="300" r="50" class="map-region" data-city="Ann Arbor">
-                            <title>Ann Arbor</title>
-                        </circle>
-                        <circle cx="250" cy="220" r="55" class="map-region" data-city="Grand Rapids">
-                            <title>Grand Rapids</title>
-                        </circle>
-                        <circle cx="350" cy="180" r="45" class="map-region" data-city="Lansing">
-                            <title>Lansing</title>
-                        </circle>
-                        <circle cx="500" cy="200" r="40" class="map-region" data-city="Flint">
-                            <title>Flint</title>
-                        </circle>
-                    </g>
+                <!-- Detroit -->
+                <a href="cities/detroit.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🏙️</span>
+                        <span class="city-badge">Most Popular</span>
+                    </div>
+                    <h3 class="city-name-home">Detroit</h3>
+                    <p class="city-tagline">The Motor City</p>
+                    <ul class="city-highlights">
+                        <li>✓ Historic home specialists</li>
+                        <li>✓ Winter storm experts</li>
+                        <li>✓ 2,500+ homes served</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Detroit Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
 
-                    <!-- City labels -->
-                    <text x="400" y="260" class="map-label">Detroit</text>
-                    <text x="300" y="310" class="map-label">Ann Arbor</text>
-                    <text x="250" y="230" class="map-label">Grand Rapids</text>
-                    <text x="350" y="190" class="map-label">Lansing</text>
-                    <text x="500" y="210" class="map-label">Flint</text>
-                </svg>
+                <!-- Grand Rapids -->
+                <a href="cities/grand-rapids.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🌳</span>
+                    </div>
+                    <h3 class="city-name-home">Grand Rapids</h3>
+                    <p class="city-tagline">Beer City USA</p>
+                    <ul class="city-highlights">
+                        <li>✓ Commercial roofing</li>
+                        <li>✓ Energy-efficient solutions</li>
+                        <li>✓ 1,800+ projects</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Grand Rapids Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Ann Arbor -->
+                <a href="cities/ann-arbor.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🎓</span>
+                    </div>
+                    <h3 class="city-name-home">Ann Arbor</h3>
+                    <p class="city-tagline">University Town</p>
+                    <ul class="city-highlights">
+                        <li>✓ Premium materials</li>
+                        <li>✓ Student-friendly pricing</li>
+                        <li>✓ 1,200+ satisfied clients</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Ann Arbor Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Lansing -->
+                <a href="cities/lansing.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🏛️</span>
+                    </div>
+                    <h3 class="city-name-home">Lansing</h3>
+                    <p class="city-tagline">State Capital</p>
+                    <ul class="city-highlights">
+                        <li>✓ Government contracts</li>
+                        <li>✓ Fast response times</li>
+                        <li>✓ 900+ roofs completed</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Lansing Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Flint -->
+                <a href="cities/flint.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🚗</span>
+                    </div>
+                    <h3 class="city-name-home">Flint</h3>
+                    <p class="city-tagline">Vehicle City</p>
+                    <ul class="city-highlights">
+                        <li>✓ Affordable solutions</li>
+                        <li>✓ Community-focused</li>
+                        <li>✓ 750+ homes protected</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Flint Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Kalamazoo -->
+                <a href="cities/kalamazoo.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">✈️</span>
+                    </div>
+                    <h3 class="city-name-home">Kalamazoo</h3>
+                    <p class="city-tagline">Aviation Capital</p>
+                    <ul class="city-highlights">
+                        <li>✓ Metal roofing experts</li>
+                        <li>✓ Eco-friendly options</li>
+                        <li>✓ 650+ installations</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Kalamazoo Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Troy -->
+                <a href="cities/troy.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🛍️</span>
+                    </div>
+                    <h3 class="city-name-home">Troy</h3>
+                    <p class="city-tagline">Shopping Hub</p>
+                    <ul class="city-highlights">
+                        <li>✓ Luxury home roofing</li>
+                        <li>✓ Premium warranties</li>
+                        <li>✓ 800+ upscale homes</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Troy Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Livonia -->
+                <a href="cities/livonia.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🌲</span>
+                    </div>
+                    <h3 class="city-name-home">Livonia</h3>
+                    <p class="city-tagline">Family Friendly</p>
+                    <ul class="city-highlights">
+                        <li>✓ Residential specialists</li>
+                        <li>✓ Family-owned business</li>
+                        <li>✓ 1,100+ happy families</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Livonia Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Sterling Heights -->
+                <a href="cities/sterling-heights.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🏡</span>
+                    </div>
+                    <h3 class="city-name-home">Sterling Heights</h3>
+                    <p class="city-tagline">Growing Community</p>
+                    <ul class="city-highlights">
+                        <li>✓ New construction</li>
+                        <li>✓ Modern materials</li>
+                        <li>✓ 950+ new roofs</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Sterling Heights Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Warren -->
+                <a href="cities/warren.html" class="city-card-home glass-card scroll-reveal">
+                    <div class="city-card-header">
+                        <span class="city-emoji">🏭</span>
+                    </div>
+                    <h3 class="city-name-home">Warren</h3>
+                    <p class="city-tagline">Industrial Center</p>
+                    <ul class="city-highlights">
+                        <li>✓ Commercial & residential</li>
+                        <li>✓ Emergency repairs 24/7</li>
+                        <li>✓ 700+ projects done</li>
+                    </ul>
+                    <div class="city-cta">
+                        <span>View Warren Services</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- View All CTA -->
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="cities/index.html" class="btn btn-primary btn-lg glow">
+                    <span>View All Service Areas</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>
@@ -683,6 +866,22 @@
             </svg>
             <span>Book</span>
         </a>
+    </div>
+
+    <!-- Animated Helper Character -->
+    <div class="roofing-helper" id="roofingHelper">
+        <div class="helper-close" id="helperClose">×</div>
+        <div class="helper-character">
+            <div class="helper-emoji">👷</div>
+            <div class="helper-shine"></div>
+        </div>
+        <div class="helper-bubble">
+            <p class="helper-text" id="helperText">Hey! Need help with your roof?</p>
+            <div class="helper-actions">
+                <a href="#calculator" class="helper-btn helper-btn-primary">Get Quote</a>
+                <a href="tel:5551234567" class="helper-btn helper-btn-secondary">Call Us</a>
+            </div>
+        </div>
     </div>
 
     <!-- JavaScript -->

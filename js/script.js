@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initParallax();
     initMapInteractions();
     initCalculator();
+    initRoofingHelper();
 });
 
 // ============================================
@@ -509,6 +510,79 @@ window.addEventListener('error', (e) => {
     console.error('JavaScript error:', e.message);
     // You can send errors to your logging service here
 });
+
+// ============================================
+// ANIMATED ROOFING HELPER
+// ============================================
+
+function initRoofingHelper() {
+    const helper = document.getElementById('roofingHelper');
+    const helperClose = document.getElementById('helperClose');
+    const helperCharacter = helper.querySelector('.helper-character');
+    const helperText = document.getElementById('helperText');
+
+    if (!helper) return;
+
+    // Messages that rotate
+    const messages = [
+        "Hey! Need help with your roof?",
+        "Get an instant quote in 60 seconds!",
+        "Free roof inspections - No obligation!",
+        "We're Michigan's #1 roofing experts!",
+        "24/7 emergency roof repairs available!"
+    ];
+
+    let messageIndex = 0;
+    let messageInterval;
+
+    // Show helper after 3 seconds
+    setTimeout(() => {
+        helper.classList.add('show');
+
+        // Rotate messages every 5 seconds
+        messageInterval = setInterval(() => {
+            messageIndex = (messageIndex + 1) % messages.length;
+            helperText.textContent = messages[messageIndex];
+        }, 5000);
+    }, 3000);
+
+    // Close helper (minimize to just character)
+    helperClose.addEventListener('click', () => {
+        helper.classList.add('minimized');
+        clearInterval(messageInterval);
+    });
+
+    // Click character to expand again
+    helperCharacter.addEventListener('click', () => {
+        if (helper.classList.contains('minimized')) {
+            helper.classList.remove('minimized');
+
+            // Resume rotating messages
+            messageInterval = setInterval(() => {
+                messageIndex = (messageIndex + 1) % messages.length;
+                helperText.textContent = messages[messageIndex];
+            }, 5000);
+        }
+    });
+
+    // Hide helper on mobile if scrolled far
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth <= 768) {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                // Scrolling down - hide helper
+                helper.style.opacity = '0.3';
+            } else {
+                // Scrolling up - show helper
+                helper.style.opacity = '1';
+            }
+
+            lastScroll = currentScroll;
+        }
+    });
+}
 
 // ============================================
 // ROOFING CALCULATOR
