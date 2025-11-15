@@ -1,0 +1,17 @@
+QUICK DEPLOY TO GET PUBLIC LINK:
+
+Option 1: Netlify Drop (30 seconds)
+1. Go to: https://app.netlify.com/drop
+2. Drag these files into the browser:
+   - index.html
+   - css/ folder
+   - js/ folder
+   - img/ folder
+3. Get instant link like: https://your-site.netlify.app
+
+Option 2: GitHub Pages (Already setup!)
+1. Visit: https://github.com/momosallahh/Admin-/settings/pages
+2. Enable Pages on branch: claude/roofing-website-generator-01SVQ72P5TiRd34eVVHVTX9o
+3. Get link: https://momosallahh.github.io/Admin-/
+
+Your files are ready at: /home/user/Admin-/
