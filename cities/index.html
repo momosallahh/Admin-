@@ -3,353 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Areas - Elite Roofing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    <title>Service Areas | Elite Roofing Michigan | 10 Cities We Serve</title>
+    <meta name="description" content="Elite Roofing serves 10 major Michigan cities: Detroit, Grand Rapids, Ann Arbor, Lansing, Flint, Kalamazoo, Troy, Livonia, Sterling Heights, Warren.">
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0B0F1A;
-            color: #FFFFFF;
-            line-height: 1.6;
-        }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Nav */
-        .nav {
-            background: rgba(11, 15, 26, 0.95);
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #38BDF8;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #94A3B8;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: #38BDF8;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 100px 0 60px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: #FFFFFF;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #38BDF8, #1D4ED8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #94A3B8;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Cities */
-        .cities {
-            padding: 60px 0;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card {
-            background: rgba(20, 24, 38, 0.8);
-            border: 2px solid rgba(56, 189, 248, 0.3);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            text-align: center;
-            text-decoration: none;
-            color: #FFFFFF;
-            display: block;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: #38BDF8;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.5);
-        }
-
-        .emoji {
-            font-size: 4rem;
-            display: block;
-            margin-bottom: 1.5rem;
-        }
-
-        .city-name {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, #38BDF8, #1D4ED8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .info {
-            color: #94A3B8;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .phone {
-            color: #38BDF8;
-            font-weight: 600;
-            display: block;
-            margin: 1rem 0;
-        }
-
-        .cta {
-            color: #38BDF8;
-            font-weight: 600;
-            margin-top: 1.5rem;
-        }
-
-        /* Stats */
-        .stats {
-            padding: 80px 0;
-        }
-
-        .stats-box {
-            background: rgba(20, 24, 38, 0.8);
-            border: 2px solid rgba(56, 189, 248, 0.3);
-            border-radius: 20px;
-            padding: 4rem;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .stat-num {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #38BDF8;
-        }
-
-        .stat-label {
-            color: #94A3B8;
-            margin-top: 0.5rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(20, 24, 38, 0.8);
-            border-top: 2px solid rgba(56, 189, 248, 0.3);
-            padding: 3rem 0;
-            text-align: center;
-            color: #94A3B8;
-        }
-
-        .footer a {
-            color: #38BDF8;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-        }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
-    <nav class="nav">
-        <div class="container">
-            <div class="nav-content">
-                <a href="../index.html" class="logo">🏠 Elite Roofing</a>
-                <ul class="nav-links">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../index.html#services">Services</a></li>
-                    <li><a href="../index.html#calculator">Calculator</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
-                </ul>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">Elite<span class="highlight">Roofing</span></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="../index.html#calculator" class="nav-link">Calculator</a></li>
+                <li><a href="../index.html#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="index.html" class="nav-link" style="color: var(--secondary-blue);">Service Areas</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#contact" class="nav-link nav-cta">Get Quote</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Our <span class="gradient-text">Service Areas</span></h1>
-            <p>Elite Roofing serves 10 major Michigan cities. Click your city for local services.</p>
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-video">
+            <div class="video-overlay"></div>
+            <div class="video-placeholder"></div>
         </div>
-    </section>
 
-    <section class="cities">
-        <div class="container">
-            <div class="grid">
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-badge" style="justify-content: center; margin-bottom: 2rem;">
+                    <span class="badge-icon">📍</span>
+                    <span>Serving 10 Major Michigan Cities</span>
+                </div>
 
-                <a href="detroit.html" class="card">
-                    <span class="emoji">🏙️</span>
-                    <h2 class="city-name">Detroit</h2>
-                    <p class="info">Wayne County</p>
-                    <span class="phone">📞 (313) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
+                <h1 class="hero-title" style="text-align: center;">
+                    Our <span class="gradient-text">Service Areas</span>
+                </h1>
 
-                <a href="grand-rapids.html" class="card">
-                    <span class="emoji">🌳</span>
-                    <h2 class="city-name">Grand Rapids</h2>
-                    <p class="info">Kent County</p>
-                    <span class="phone">📞 (616) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
-                <a href="ann-arbor.html" class="card">
-                    <span class="emoji">🎓</span>
-                    <h2 class="city-name">Ann Arbor</h2>
-                    <p class="info">Washtenaw County</p>
-                    <span class="phone">📞 (734) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
-                <a href="lansing.html" class="card">
-                    <span class="emoji">🏛️</span>
-                    <h2 class="city-name">Lansing</h2>
-                    <p class="info">Ingham County</p>
-                    <span class="phone">📞 (517) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
-                <a href="flint.html" class="card">
-                    <span class="emoji">🚗</span>
-                    <h2 class="city-name">Flint</h2>
-                    <p class="info">Genesee County</p>
-                    <span class="phone">📞 (810) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
-                <a href="kalamazoo.html" class="card">
-                    <span class="emoji">✈️</span>
-                    <h2 class="city-name">Kalamazoo</h2>
-                    <p class="info">Kalamazoo County</p>
-                    <span class="phone">📞 (269) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
-                <a href="troy.html" class="card">
-                    <span class="emoji">🛍️</span>
-                    <h2 class="city-name">Troy</h2>
-                    <p class="info">Oakland County</p>
-                    <span class="phone">📞 (248) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
-                <a href="livonia.html" class="card">
-                    <span class="emoji">🌲</span>
-                    <h2 class="city-name">Livonia</h2>
-                    <p class="info">Wayne County</p>
-                    <span class="phone">📞 (734) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
-                <a href="sterling-heights.html" class="card">
-                    <span class="emoji">🏡</span>
-                    <h2 class="city-name">Sterling Heights</h2>
-                    <p class="info">Macomb County</p>
-                    <span class="phone">📞 (586) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
-                <a href="warren.html" class="card">
-                    <span class="emoji">🏭</span>
-                    <h2 class="city-name">Warren</h2>
-                    <p class="info">Macomb County</p>
-                    <span class="phone">📞 (586) 123-4567</span>
-                    <div class="cta">View Services →</div>
-                </a>
-
+                <p class="hero-subtitle" style="text-align: center; max-width: 700px; margin: 0 auto;">
+                    Elite Roofing proudly serves Michigan's largest cities with premium roofing services. Select your city below for local information, pricing, and expert service.
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="stats">
+    <!-- Cities Grid -->
+    <section class="services-section" style="padding: 100px 0;">
         <div class="container">
-            <div class="stats-box">
-                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #FFFFFF;">🗺️ Michigan Coverage</h2>
-                <p style="color: #94A3B8; font-size: 1.1rem;">Premium roofing across Michigan's largest cities</p>
-                <div class="stats-grid">
-                    <div>
-                        <div class="stat-num">10</div>
-                        <div class="stat-label">Cities</div>
+            <div class="services-grid">
+
+                <a href="detroit.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🏙️</div>
+                    <h3 class="service-title">Detroit</h3>
+                    <p class="service-description">Wayne County | ZIP: 48201<br>📞 (313) 123-4567</p>
+                    <span class="service-link">View Detroit Services →</span>
+                </a>
+
+                <a href="grand-rapids.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🌳</div>
+                    <h3 class="service-title">Grand Rapids</h3>
+                    <p class="service-description">Kent County | ZIP: 49503<br>📞 (616) 123-4567</p>
+                    <span class="service-link">View Grand Rapids Services →</span>
+                </a>
+
+                <a href="ann-arbor.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🎓</div>
+                    <h3 class="service-title">Ann Arbor</h3>
+                    <p class="service-description">Washtenaw County | ZIP: 48104<br>📞 (734) 123-4567</p>
+                    <span class="service-link">View Ann Arbor Services →</span>
+                </a>
+
+                <a href="lansing.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🏛️</div>
+                    <h3 class="service-title">Lansing</h3>
+                    <p class="service-description">Ingham County | ZIP: 48933<br>📞 (517) 123-4567</p>
+                    <span class="service-link">View Lansing Services →</span>
+                </a>
+
+                <a href="flint.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🚗</div>
+                    <h3 class="service-title">Flint</h3>
+                    <p class="service-description">Genesee County | ZIP: 48503<br>📞 (810) 123-4567</p>
+                    <span class="service-link">View Flint Services →</span>
+                </a>
+
+                <a href="kalamazoo.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">✈️</div>
+                    <h3 class="service-title">Kalamazoo</h3>
+                    <p class="service-description">Kalamazoo County | ZIP: 49007<br>📞 (269) 123-4567</p>
+                    <span class="service-link">View Kalamazoo Services →</span>
+                </a>
+
+                <a href="troy.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🛍️</div>
+                    <h3 class="service-title">Troy</h3>
+                    <p class="service-description">Oakland County | ZIP: 48083<br>📞 (248) 123-4567</p>
+                    <span class="service-link">View Troy Services →</span>
+                </a>
+
+                <a href="livonia.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🌲</div>
+                    <h3 class="service-title">Livonia</h3>
+                    <p class="service-description">Wayne County | ZIP: 48150<br>📞 (734) 123-4567</p>
+                    <span class="service-link">View Livonia Services →</span>
+                </a>
+
+                <a href="sterling-heights.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🏡</div>
+                    <h3 class="service-title">Sterling Heights</h3>
+                    <p class="service-description">Macomb County | ZIP: 48313<br>📞 (586) 123-4567</p>
+                    <span class="service-link">View Sterling Heights Services →</span>
+                </a>
+
+                <a href="warren.html" class="service-card glass-card" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="font-size: 3rem;">🏭</div>
+                    <h3 class="service-title">Warren</h3>
+                    <p class="service-description">Macomb County | ZIP: 48089<br>📞 (586) 123-4567</p>
+                    <span class="service-link">View Warren Services →</span>
+                </a>
+
+            </div>
+
+            <!-- CTA Button -->
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="../index.html#contact" class="btn btn-primary btn-lg glow">
+                    <span>Get Free Quote for Your City</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="about-section" style="padding: 80px 0; background: rgba(29, 78, 216, 0.03);">
+        <div class="container">
+            <div class="glass-card" style="padding: 4rem; text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem;">🗺️</div>
+                <h2 class="section-title">Serving 10 Major Michigan Markets</h2>
+                <p class="section-subtitle" style="max-width: 700px; margin: 0 auto 3rem;">
+                    From Detroit to Grand Rapids, Flint to Kalamazoo - Elite Roofing brings premium service to Michigan's largest cities.
+                </p>
+
+                <div class="about-stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                    <div class="stat">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Cities Served</div>
                     </div>
-                    <div>
-                        <div class="stat-num">5,000+</div>
-                        <div class="stat-label">Homes</div>
+                    <div class="stat">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">Homes Completed</div>
                     </div>
-                    <div>
-                        <div class="stat-num">25+</div>
-                        <div class="stat-label">Years</div>
+                    <div class="stat">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Years Experience</div>
                     </div>
-                    <div>
-                        <div class="stat-num">4.9</div>
-                        <div class="stat-label">Rating</div>
+                    <div class="stat">
+                        <div class="stat-number">4.9</div>
+                        <div class="stat-label">Average Rating</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p style="margin-bottom: 1rem; font-size: 1.25rem;">🏠 Elite Roofing</p>
-            <p>&copy; 2024 Elite Roofing. All rights reserved.</p>
-            <p style="margin-top: 1rem;">
-                <a href="../index.html">Home</a>
-                <a href="../index.html#services">Services</a>
-                <a href="../index.html#contact">Contact</a>
-            </p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3 class="footer-title">Elite Roofing</h3>
+                <p class="footer-text">Michigan's most trusted roofing company serving 10 major cities.</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-subtitle">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#services">Services</a></li>
+                    <li><a href="../index.html#calculator">Calculator</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-subtitle">Contact</h4>
+                <p class="footer-text">📞 (555) 123-4567<br>📧 info@eliteroofing.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elite Roofing Michigan. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- JavaScript -->
+    <script src="../js/script.js"></script>
 </body>
 </html>
