@@ -3,53 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Areas - Elite Roofing Michigan</title>
+    <title>Service Areas - Elite Roofing</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Inter', sans-serif;
             background: #0B0F1A;
             color: #FFFFFF;
             line-height: 1.6;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* Navigation */
+        /* Nav */
         .nav {
             background: rgba(11, 15, 26, 0.95);
             padding: 1.5rem 0;
             border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
+
         .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
             color: #38BDF8;
             text-decoration: none;
         }
+
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
         }
+
         .nav-links a {
             color: #94A3B8;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
         }
+
         .nav-links a:hover {
             color: #38BDF8;
         }
@@ -59,16 +62,21 @@
             padding: 100px 0 60px;
             text-align: center;
         }
+
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
+            color: #FFFFFF;
         }
-        .hero .gradient {
+
+        .gradient-text {
             background: linear-gradient(135deg, #38BDF8, #1D4ED8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .hero p {
             font-size: 1.25rem;
             color: #94A3B8;
@@ -76,87 +84,97 @@
             margin: 0 auto;
         }
 
-        /* Cities Grid */
-        .cities-section {
+        /* Cities */
+        .cities {
             padding: 60px 0;
         }
-        .cities-grid {
+
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-        .city-card {
-            background: rgba(20, 24, 38, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
+
+        .card {
+            background: rgba(20, 24, 38, 0.8);
+            border: 2px solid rgba(56, 189, 248, 0.3);
             border-radius: 20px;
-            padding: 3rem;
+            padding: 3rem 2rem;
             text-align: center;
             text-decoration: none;
-            color: inherit;
-            transition: all 0.3s;
+            color: #FFFFFF;
             display: block;
+            transition: all 0.3s ease;
         }
-        .city-card:hover {
+
+        .card:hover {
             transform: translateY(-10px);
             border-color: #38BDF8;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.5);
         }
-        .city-emoji {
-            font-size: 3.5rem;
+
+        .emoji {
+            font-size: 4rem;
             display: block;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
+
         .city-name {
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             background: linear-gradient(135deg, #38BDF8, #1D4ED8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .city-info {
+
+        .info {
             color: #94A3B8;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
         }
-        .city-phone {
+
+        .phone {
             color: #38BDF8;
             font-weight: 600;
-            margin-bottom: 1.5rem;
             display: block;
+            margin: 1rem 0;
         }
-        .city-cta {
+
+        .cta {
             color: #38BDF8;
             font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            margin-top: 1.5rem;
         }
 
         /* Stats */
         .stats {
             padding: 80px 0;
-            text-align: center;
         }
-        .stats-card {
-            background: rgba(20, 24, 38, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
+
+        .stats-box {
+            background: rgba(20, 24, 38, 0.8);
+            border: 2px solid rgba(56, 189, 248, 0.3);
             border-radius: 20px;
             padding: 4rem;
+            text-align: center;
         }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
             margin-top: 3rem;
         }
-        .stat-number {
-            font-size: 3rem;
+
+        .stat-num {
+            font-size: 3.5rem;
             font-weight: 800;
             color: #38BDF8;
         }
+
         .stat-label {
             color: #94A3B8;
             margin-top: 0.5rem;
@@ -164,29 +182,27 @@
 
         /* Footer */
         .footer {
-            background: rgba(20, 24, 38, 0.6);
-            border-top: 1px solid rgba(56, 189, 248, 0.2);
+            background: rgba(20, 24, 38, 0.8);
+            border-top: 2px solid rgba(56, 189, 248, 0.3);
             padding: 3rem 0;
             text-align: center;
             color: #94A3B8;
         }
+
         .footer a {
             color: #38BDF8;
             text-decoration: none;
             margin: 0 1rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .cities-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
@@ -201,137 +217,131 @@
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h1>Our <span class="gradient">Service Areas</span></h1>
-            <p>Elite Roofing serves 10 major Michigan cities with premium roofing services. Click your city below for local information and pricing.</p>
+            <h1>Our <span class="gradient-text">Service Areas</span></h1>
+            <p>Elite Roofing serves 10 major Michigan cities. Click your city for local services.</p>
         </div>
     </section>
 
-    <!-- Cities Grid -->
-    <section class="cities-section">
+    <section class="cities">
         <div class="container">
-            <div class="cities-grid">
+            <div class="grid">
 
-                <a href="detroit.html" class="city-card">
-                    <span class="city-emoji">🏙️</span>
+                <a href="detroit.html" class="card">
+                    <span class="emoji">🏙️</span>
                     <h2 class="city-name">Detroit</h2>
-                    <p class="city-info">Wayne County | ZIP: 48201</p>
-                    <span class="city-phone">📞 (313) 123-4567</span>
-                    <div class="city-cta">View Detroit Services →</div>
+                    <p class="info">Wayne County</p>
+                    <span class="phone">📞 (313) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="grand-rapids.html" class="city-card">
-                    <span class="city-emoji">🌳</span>
+                <a href="grand-rapids.html" class="card">
+                    <span class="emoji">🌳</span>
                     <h2 class="city-name">Grand Rapids</h2>
-                    <p class="city-info">Kent County | ZIP: 49503</p>
-                    <span class="city-phone">📞 (616) 123-4567</span>
-                    <div class="city-cta">View Grand Rapids Services →</div>
+                    <p class="info">Kent County</p>
+                    <span class="phone">📞 (616) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="ann-arbor.html" class="city-card">
-                    <span class="city-emoji">🎓</span>
+                <a href="ann-arbor.html" class="card">
+                    <span class="emoji">🎓</span>
                     <h2 class="city-name">Ann Arbor</h2>
-                    <p class="city-info">Washtenaw County | ZIP: 48104</p>
-                    <span class="city-phone">📞 (734) 123-4567</span>
-                    <div class="city-cta">View Ann Arbor Services →</div>
+                    <p class="info">Washtenaw County</p>
+                    <span class="phone">📞 (734) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="lansing.html" class="city-card">
-                    <span class="city-emoji">🏛️</span>
+                <a href="lansing.html" class="card">
+                    <span class="emoji">🏛️</span>
                     <h2 class="city-name">Lansing</h2>
-                    <p class="city-info">Ingham County | ZIP: 48933</p>
-                    <span class="city-phone">📞 (517) 123-4567</span>
-                    <div class="city-cta">View Lansing Services →</div>
+                    <p class="info">Ingham County</p>
+                    <span class="phone">📞 (517) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="flint.html" class="city-card">
-                    <span class="city-emoji">🚗</span>
+                <a href="flint.html" class="card">
+                    <span class="emoji">🚗</span>
                     <h2 class="city-name">Flint</h2>
-                    <p class="city-info">Genesee County | ZIP: 48503</p>
-                    <span class="city-phone">📞 (810) 123-4567</span>
-                    <div class="city-cta">View Flint Services →</div>
+                    <p class="info">Genesee County</p>
+                    <span class="phone">📞 (810) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="kalamazoo.html" class="city-card">
-                    <span class="city-emoji">✈️</span>
+                <a href="kalamazoo.html" class="card">
+                    <span class="emoji">✈️</span>
                     <h2 class="city-name">Kalamazoo</h2>
-                    <p class="city-info">Kalamazoo County | ZIP: 49007</p>
-                    <span class="city-phone">📞 (269) 123-4567</span>
-                    <div class="city-cta">View Kalamazoo Services →</div>
+                    <p class="info">Kalamazoo County</p>
+                    <span class="phone">📞 (269) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="troy.html" class="city-card">
-                    <span class="city-emoji">🛍️</span>
+                <a href="troy.html" class="card">
+                    <span class="emoji">🛍️</span>
                     <h2 class="city-name">Troy</h2>
-                    <p class="city-info">Oakland County | ZIP: 48083</p>
-                    <span class="city-phone">📞 (248) 123-4567</span>
-                    <div class="city-cta">View Troy Services →</div>
+                    <p class="info">Oakland County</p>
+                    <span class="phone">📞 (248) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="livonia.html" class="city-card">
-                    <span class="city-emoji">🌲</span>
+                <a href="livonia.html" class="card">
+                    <span class="emoji">🌲</span>
                     <h2 class="city-name">Livonia</h2>
-                    <p class="city-info">Wayne County | ZIP: 48150</p>
-                    <span class="city-phone">📞 (734) 123-4567</span>
-                    <div class="city-cta">View Livonia Services →</div>
+                    <p class="info">Wayne County</p>
+                    <span class="phone">📞 (734) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="sterling-heights.html" class="city-card">
-                    <span class="city-emoji">🏡</span>
+                <a href="sterling-heights.html" class="card">
+                    <span class="emoji">🏡</span>
                     <h2 class="city-name">Sterling Heights</h2>
-                    <p class="city-info">Macomb County | ZIP: 48313</p>
-                    <span class="city-phone">📞 (586) 123-4567</span>
-                    <div class="city-cta">View Sterling Heights Services →</div>
+                    <p class="info">Macomb County</p>
+                    <span class="phone">📞 (586) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
-                <a href="warren.html" class="city-card">
-                    <span class="city-emoji">🏭</span>
+                <a href="warren.html" class="card">
+                    <span class="emoji">🏭</span>
                     <h2 class="city-name">Warren</h2>
-                    <p class="city-info">Macomb County | ZIP: 48089</p>
-                    <span class="city-phone">📞 (586) 123-4567</span>
-                    <div class="city-cta">View Warren Services →</div>
+                    <p class="info">Macomb County</p>
+                    <span class="phone">📞 (586) 123-4567</span>
+                    <div class="cta">View Services →</div>
                 </a>
 
             </div>
         </div>
     </section>
 
-    <!-- Stats -->
     <section class="stats">
         <div class="container">
-            <div class="stats-card">
-                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">🗺️ Statewide Coverage</h2>
-                <p style="color: #94A3B8; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
-                    From Detroit to Grand Rapids, we bring premium roofing to Michigan's largest cities.
-                </p>
+            <div class="stats-box">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #FFFFFF;">🗺️ Michigan Coverage</h2>
+                <p style="color: #94A3B8; font-size: 1.1rem;">Premium roofing across Michigan's largest cities</p>
                 <div class="stats-grid">
                     <div>
-                        <div class="stat-number">10</div>
-                        <div class="stat-label">Cities Served</div>
+                        <div class="stat-num">10</div>
+                        <div class="stat-label">Cities</div>
                     </div>
                     <div>
-                        <div class="stat-number">5,000+</div>
-                        <div class="stat-label">Homes Completed</div>
+                        <div class="stat-num">5,000+</div>
+                        <div class="stat-label">Homes</div>
                     </div>
                     <div>
-                        <div class="stat-number">25+</div>
-                        <div class="stat-label">Years Experience</div>
+                        <div class="stat-num">25+</div>
+                        <div class="stat-label">Years</div>
                     </div>
                     <div>
-                        <div class="stat-number">4.9</div>
-                        <div class="stat-label">Average Rating</div>
+                        <div class="stat-num">4.9</div>
+                        <div class="stat-label">Rating</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p style="margin-bottom: 1rem;">🏠 Elite Roofing Michigan</p>
+            <p style="margin-bottom: 1rem; font-size: 1.25rem;">🏠 Elite Roofing</p>
             <p>&copy; 2024 Elite Roofing. All rights reserved.</p>
             <p style="margin-top: 1rem;">
                 <a href="../index.html">Home</a>
