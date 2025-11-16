@@ -114,38 +114,73 @@
         </div>
     </section>
 
-    <!-- Weather Storm Tracker -->
-    <section class="weather-section" id="weather">
+    <!-- Owner Welcome Video Section -->
+    <section class="video-welcome-section" id="welcome-video">
         <div class="container">
-            <!-- Emergency Alert Banner (shown during storms) -->
-            <div class="emergency-alert" id="emergencyAlert" style="display: none;">
-                <div class="alert-content">
-                    <div class="alert-icon">🚨</div>
-                    <div class="alert-text">
-                        <strong>SEVERE WEATHER ALERT</strong>
-                        <p>Storm detected in your area. Emergency roofing service available 24/7!</p>
-                    </div>
-                    <a href="tel:5551234567" class="alert-btn">Call Emergency Line</a>
-                </div>
-            </div>
-
             <div class="section-header">
-                <h2 class="section-title">Michigan Weather Tracker</h2>
-                <p class="section-subtitle">Live weather updates • Storm alerts • Emergency service ready</p>
+                <h2 class="section-title">Meet Your Michigan Roofing Expert</h2>
+                <p class="section-subtitle">A personal message from our founder</p>
             </div>
 
-            <div class="weather-grid" id="weatherGrid">
-                <!-- Weather cards will be dynamically loaded -->
-                <div class="weather-card glass-card">
-                    <div class="weather-loading">
-                        <div class="loading-spinner"></div>
-                        <p>Loading weather data...</p>
+            <div class="video-welcome-container">
+                <div class="video-player-wrapper glass-card">
+                    <div class="video-player">
+                        <!-- Placeholder for owner video -->
+                        <div class="video-placeholder">
+                            <div class="video-play-button" id="videoPlayButton">
+                                <div class="play-icon">▶</div>
+                            </div>
+                            <div class="video-owner-info">
+                                <div class="owner-avatar">👨‍💼</div>
+                                <div class="owner-details">
+                                    <h3>John Mitchell</h3>
+                                    <p>Founder & Master Roofer</p>
+                                    <p class="owner-experience">15+ Years Serving Michigan</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Replace src with actual video URL when ready -->
+                        <video id="ownerVideo" controls style="display: none;">
+                            <source src="video/owner-welcome.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">Why Choose Elite Roofing?</h3>
+                        <ul class="video-highlights">
+                            <li>✓ Family-owned and operated since 2009</li>
+                            <li>✓ 2,500+ Michigan roofs completed</li>
+                            <li>✓ Lifetime craftsmanship warranty</li>
+                            <li>✓ GAF Master Elite Certified</li>
+                            <li>✓ A+ BBB Rating</li>
+                            <li>✓ 24/7 Emergency service available</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
 
-            <div class="weather-disclaimer">
-                <p>⚡ Emergency roof repair available 24/7 during severe weather • Call (555) 123-4567</p>
+                <div class="video-stats">
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-number">2,500+</div>
+                        <div class="stat-label">Roofs Completed</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-number">4.9/5</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">🛡️</div>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Satisfaction Rate</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

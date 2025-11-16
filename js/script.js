@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMapInteractions();
     initCalculator();
     initRoofingHelper();
-    initWeatherTracker();
+    initVideoPlayer();
 });
 
 // ============================================
@@ -742,211 +742,41 @@ function initCalculator() {
 }
 
 // ============================================
-// WEATHER TRACKER
+// VIDEO PLAYER
 // ============================================
 
-function initWeatherTracker() {
-    const weatherGrid = document.getElementById('weatherGrid');
-    const emergencyAlert = document.getElementById('emergencyAlert');
+function initVideoPlayer() {
+    const videoPlayButton = document.getElementById('videoPlayButton');
+    const videoPlaceholder = document.querySelector('.video-placeholder');
+    const ownerVideo = document.getElementById('ownerVideo');
 
-    if (!weatherGrid) return;
+    if (!videoPlayButton || !ownerVideo) return;
 
-    // Michigan cities with coordinates
-    const cities = [
-        { name: 'Detroit', lat: 42.3314, lon: -83.0458 },
-        { name: 'Grand Rapids', lat: 42.9634, lon: -85.6681 },
-        { name: 'Ann Arbor', lat: 42.2808, lon: -83.7430 },
-        { name: 'Lansing', lat: 42.7325, lon: -84.5555 },
-        { name: 'Flint', lat: 43.0125, lon: -83.6875 },
-        { name: 'Kalamazoo', lat: 42.2917, lon: -85.5872 },
-        { name: 'Troy', lat: 42.6064, lon: -83.1498 },
-        { name: 'Livonia', lat: 42.3684, lon: -83.3527 },
-        { name: 'Sterling Heights', lat: 42.5803, lon: -83.0302 },
-        { name: 'Warren', lat: 42.5145, lon: -83.0147 }
-    ];
+    // Play video when clicking play button or placeholder
+    const playVideo = () => {
+        // Hide placeholder
+        if (videoPlaceholder) {
+            videoPlaceholder.style.display = 'none';
+        }
 
-    // Weather icon mapping
-    const weatherIcons = {
-        0: '☀️',    // Clear sky
-        1: '🌤️',    // Mainly clear
-        2: '⛅',    // Partly cloudy
-        3: '☁️',    // Overcast
-        45: '🌫️',   // Fog
-        48: '🌫️',   // Depositing rime fog
-        51: '🌦️',   // Light drizzle
-        53: '🌦️',   // Moderate drizzle
-        55: '🌧️',   // Dense drizzle
-        61: '🌧️',   // Slight rain
-        63: '🌧️',   // Moderate rain
-        65: '⛈️',   // Heavy rain
-        71: '🌨️',   // Slight snow
-        73: '🌨️',   // Moderate snow
-        75: '❄️',    // Heavy snow
-        77: '🌨️',   // Snow grains
-        80: '🌦️',   // Slight rain showers
-        81: '⛈️',   // Moderate rain showers
-        82: '⛈️',   // Violent rain showers
-        85: '🌨️',   // Slight snow showers
-        86: '❄️',    // Heavy snow showers
-        95: '⛈️',   // Thunderstorm
-        96: '⛈️',   // Thunderstorm with hail
-        99: '⛈️'    // Thunderstorm with heavy hail
+        // Show and play video
+        ownerVideo.style.display = 'block';
+        ownerVideo.play();
     };
 
-    // Severe weather codes that trigger emergency alert
-    const severeWeatherCodes = [65, 82, 95, 96, 99];
+    // Event listeners
+    videoPlayButton.addEventListener('click', playVideo);
+    if (videoPlaceholder) {
+        videoPlaceholder.addEventListener('click', playVideo);
+    }
 
-    // Generate realistic simulated weather data for Michigan
-    function fetchWeatherData() {
-        try {
-            // Simulate realistic Michigan weather data
-            const weatherData = cities.map((city, index) => {
-                // Base temperature with variation (typical Michigan range)
-                const baseTemp = 45 + (Math.random() * 20); // 45-65°F
-                const temp = Math.round(baseTemp + (index * 0.5));
-
-                // Weather conditions (weighted toward common Michigan weather)
-                const weatherOptions = [
-                    { code: 2, weight: 30 },  // Partly cloudy (common)
-                    { code: 3, weight: 25 },  // Overcast (common)
-                    { code: 1, weight: 20 },  // Mainly clear
-                    { code: 61, weight: 10 }, // Slight rain
-                    { code: 0, weight: 8 },   // Clear
-                    { code: 63, weight: 5 },  // Moderate rain
-                    { code: 71, weight: 2 }   // Slight snow
-                ];
-
-                const rand = Math.random() * 100;
-                let cumulativeWeight = 0;
-                let weatherCode = 2;
-
-                for (const option of weatherOptions) {
-                    cumulativeWeight += option.weight;
-                    if (rand <= cumulativeWeight) {
-                        weatherCode = option.code;
-                        break;
-                    }
-                }
-
-                return {
-                    city: city.name,
-                    temperature_2m: temp,
-                    relative_humidity_2m: Math.round(50 + (Math.random() * 30)), // 50-80%
-                    weather_code: weatherCode,
-                    wind_speed_10m: Math.round(5 + (Math.random() * 15)) // 5-20 mph
-                };
-            });
-
-            displayWeatherData(weatherData);
-            checkForSevereWeather(weatherData);
-        } catch (error) {
-            console.error('Error generating weather:', error);
-            showWeatherError();
+    // When video ends, show placeholder again
+    ownerVideo.addEventListener('ended', () => {
+        ownerVideo.style.display = 'none';
+        if (videoPlaceholder) {
+            videoPlaceholder.style.display = 'flex';
         }
-    }
-
-    // Display weather data in cards
-    function displayWeatherData(weatherData) {
-        weatherGrid.innerHTML = weatherData.map(weather => {
-            const isSevere = severeWeatherCodes.includes(weather.weather_code);
-            const icon = weatherIcons[weather.weather_code] || '🌡️';
-            const condition = getWeatherCondition(weather.weather_code);
-
-            return `
-                <div class="weather-card glass-card ${isSevere ? 'storm-warning' : ''}">
-                    <div class="weather-header">
-                        <h3 class="weather-city">${weather.city}</h3>
-                        <div class="weather-icon">${icon}</div>
-                    </div>
-
-                    <div class="weather-temp">${Math.round(weather.temperature_2m)}°F</div>
-                    <div class="weather-condition">${condition}</div>
-
-                    <div class="weather-details">
-                        <div class="weather-detail">
-                            <div class="weather-detail-icon">💨</div>
-                            <div class="weather-detail-info">
-                                <div class="weather-detail-label">Wind Speed</div>
-                                <div class="weather-detail-value">${Math.round(weather.wind_speed_10m)} mph</div>
-                            </div>
-                        </div>
-
-                        <div class="weather-detail">
-                            <div class="weather-detail-icon">💧</div>
-                            <div class="weather-detail-info">
-                                <div class="weather-detail-label">Humidity</div>
-                                <div class="weather-detail-value">${weather.relative_humidity_2m}%</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    ${isSevere ? '<div class="storm-badge"><span class="storm-badge-icon">⚠️</span> Severe Weather Alert</div>' : ''}
-                </div>
-            `;
-        }).join('');
-    }
-
-    // Check for severe weather and show emergency alert
-    function checkForSevereWeather(weatherData) {
-        const hasSevereWeather = weatherData.some(weather =>
-            severeWeatherCodes.includes(weather.weather_code)
-        );
-
-        if (hasSevereWeather) {
-            emergencyAlert.style.display = 'block';
-        } else {
-            emergencyAlert.style.display = 'none';
-        }
-    }
-
-    // Get weather condition text
-    function getWeatherCondition(code) {
-        const conditions = {
-            0: 'Clear Sky',
-            1: 'Mainly Clear',
-            2: 'Partly Cloudy',
-            3: 'Overcast',
-            45: 'Foggy',
-            48: 'Foggy',
-            51: 'Light Drizzle',
-            53: 'Moderate Drizzle',
-            55: 'Dense Drizzle',
-            61: 'Slight Rain',
-            63: 'Moderate Rain',
-            65: 'Heavy Rain',
-            71: 'Slight Snow',
-            73: 'Moderate Snow',
-            75: 'Heavy Snow',
-            77: 'Snow Grains',
-            80: 'Slight Rain Showers',
-            81: 'Moderate Rain Showers',
-            82: 'Violent Rain Showers',
-            85: 'Slight Snow Showers',
-            86: 'Heavy Snow Showers',
-            95: 'Thunderstorm',
-            96: 'Thunderstorm with Hail',
-            99: 'Severe Thunderstorm'
-        };
-        return conditions[code] || 'Unknown';
-    }
-
-    // Show error message
-    function showWeatherError() {
-        weatherGrid.innerHTML = `
-            <div class="weather-card glass-card">
-                <div style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
-                    <p style="color: rgba(255, 255, 255, 0.8);">Unable to load weather data. Please try again later.</p>
-                </div>
-            </div>
-        `;
-    }
-
-    // Initial fetch
-    fetchWeatherData();
-
-    // Update weather every 10 minutes
-    setInterval(fetchWeatherData, 600000);
+    });
 }
 
 // ============================================
