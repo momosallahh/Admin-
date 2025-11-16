@@ -796,23 +796,51 @@ function initWeatherTracker() {
     // Severe weather codes that trigger emergency alert
     const severeWeatherCodes = [65, 82, 95, 96, 99];
 
-    // Fetch weather for all cities
-    async function fetchWeatherData() {
+    // Generate realistic simulated weather data for Michigan
+    function fetchWeatherData() {
         try {
-            const weatherPromises = cities.map(city =>
-                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Detroit`)
-                    .then(res => res.json())
-                    .then(data => ({
-                        city: city.name,
-                        ...data.current
-                    }))
-            );
+            // Simulate realistic Michigan weather data
+            const weatherData = cities.map((city, index) => {
+                // Base temperature with variation (typical Michigan range)
+                const baseTemp = 45 + (Math.random() * 20); // 45-65°F
+                const temp = Math.round(baseTemp + (index * 0.5));
 
-            const weatherData = await Promise.all(weatherPromises);
+                // Weather conditions (weighted toward common Michigan weather)
+                const weatherOptions = [
+                    { code: 2, weight: 30 },  // Partly cloudy (common)
+                    { code: 3, weight: 25 },  // Overcast (common)
+                    { code: 1, weight: 20 },  // Mainly clear
+                    { code: 61, weight: 10 }, // Slight rain
+                    { code: 0, weight: 8 },   // Clear
+                    { code: 63, weight: 5 },  // Moderate rain
+                    { code: 71, weight: 2 }   // Slight snow
+                ];
+
+                const rand = Math.random() * 100;
+                let cumulativeWeight = 0;
+                let weatherCode = 2;
+
+                for (const option of weatherOptions) {
+                    cumulativeWeight += option.weight;
+                    if (rand <= cumulativeWeight) {
+                        weatherCode = option.code;
+                        break;
+                    }
+                }
+
+                return {
+                    city: city.name,
+                    temperature_2m: temp,
+                    relative_humidity_2m: Math.round(50 + (Math.random() * 30)), // 50-80%
+                    weather_code: weatherCode,
+                    wind_speed_10m: Math.round(5 + (Math.random() * 15)) // 5-20 mph
+                };
+            });
+
             displayWeatherData(weatherData);
             checkForSevereWeather(weatherData);
         } catch (error) {
-            console.error('Error fetching weather:', error);
+            console.error('Error generating weather:', error);
             showWeatherError();
         }
     }
