@@ -7,7 +7,7 @@
 class RoofingChatbot {
     constructor() {
         // Configuration
-        this.apiKey = 'YOUR_OPENAI_API_KEY_HERE'; // Replace with your OpenAI API key
+        this.apiKey = window.ROOFING_CONFIG?.OPENAI_API_KEY || 'YOUR_OPENAI_API_KEY_HERE';
         this.apiUrl = 'https://api.openai.com/v1/chat/completions';
 
         // Elements

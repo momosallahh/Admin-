@@ -1,0 +1,15 @@
+# Configuration files with API keys
+js/config.js
+
+# Node modules (if using npm)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
