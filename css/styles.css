@@ -2898,6 +2898,10 @@ section {
    AI CHATBOT STYLES
    ================================================ */
 
+.hidden {
+    display: none !important;
+}
+
 .ai-chatbot {
     position: fixed;
     bottom: 30px;

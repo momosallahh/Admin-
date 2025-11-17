@@ -91,7 +91,7 @@ Keep responses concise (2-3 sentences max) and ask follow-up questions to engage
 
     toggleChatbot() {
         this.isOpen = !this.isOpen;
-        this.chatbotWindow.classList.toggle('active');
+        this.chatbot.classList.toggle('active');
 
         if (this.isOpen) {
             this.hideNotification();
@@ -101,7 +101,7 @@ Keep responses concise (2-3 sentences max) and ask follow-up questions to engage
 
     closeChatbot() {
         this.isOpen = false;
-        this.chatbotWindow.classList.remove('active');
+        this.chatbot.classList.remove('active');
     }
 
     showNotification() {
