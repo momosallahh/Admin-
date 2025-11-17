@@ -81,12 +81,12 @@ Keep responses concise (2-3 sentences max) and ask follow-up questions to engage
             });
         });
 
-        // Auto-open chatbot after 3 seconds
+        // Show notification after 8 seconds (no auto-open)
         setTimeout(() => {
             if (!this.isOpen) {
-                this.toggleChatbot();
+                this.showNotification();
             }
-        }, 3000);
+        }, 8000);
     }
 
     toggleChatbot() {
