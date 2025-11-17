@@ -994,23 +994,72 @@
         </a>
     </div>
 
-    <!-- Animated Helper Character -->
-    <div class="roofing-helper" id="roofingHelper">
-        <div class="helper-close" id="helperClose">×</div>
-        <div class="helper-character">
-            <div class="helper-emoji">👷</div>
-            <div class="helper-shine"></div>
+    <!-- AI Chatbot -->
+    <div class="ai-chatbot" id="aiChatbot">
+        <div class="chatbot-toggle" id="chatbotToggle">
+            <div class="chat-icon">💬</div>
+            <div class="chat-notification" id="chatNotification">1</div>
         </div>
-        <div class="helper-bubble">
-            <p class="helper-text" id="helperText">Hey! Need help with your roof?</p>
-            <div class="helper-actions">
-                <a href="#calculator" class="helper-btn helper-btn-primary">Get Quote</a>
-                <a href="tel:5551234567" class="helper-btn helper-btn-secondary">Call Us</a>
+
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-header-info">
+                    <div class="chatbot-avatar">🤖</div>
+                    <div class="chatbot-title">
+                        <h3>Elite Roofing AI Assistant</h3>
+                        <p class="chatbot-status">
+                            <span class="status-dot"></span> Online 24/7
+                        </p>
+                    </div>
+                </div>
+                <button class="chatbot-close" id="chatbotClose">×</button>
+            </div>
+
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p>Hi! I'm your AI roofing assistant powered by ChatGPT. I can help you with:</p>
+                        <ul>
+                            <li>🏠 Roof damage assessment</li>
+                            <li>💰 Instant price estimates</li>
+                            <li>📅 Schedule inspections</li>
+                            <li>❓ Answer roofing questions</li>
+                        </ul>
+                        <p>What can I help you with today?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chatbot-quick-actions" id="quickActions">
+                <button class="quick-action" data-message="I need a roof inspection">🔍 Book Inspection</button>
+                <button class="quick-action" data-message="How much does a new roof cost?">💰 Get Pricing</button>
+                <button class="quick-action" data-message="I have a roof leak emergency">🚨 Emergency Help</button>
+            </div>
+
+            <div class="chatbot-input-area">
+                <input
+                    type="text"
+                    id="chatbotInput"
+                    class="chatbot-input"
+                    placeholder="Ask me anything about roofing..."
+                    autocomplete="off"
+                />
+                <button class="chatbot-send" id="chatbotSend">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 10l16-8-8 16-2-8-6-0z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="chatbot-footer">
+                <small>Powered by ChatGPT | Your data is secure</small>
             </div>
         </div>
     </div>
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script src="js/chatbot.js"></script>
 </body>
 </html>
