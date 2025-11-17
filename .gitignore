@@ -3,6 +3,10 @@ js/config.js
 js/config.local.js
 js/config*.js
 
+# Environment files
+.env
+.env.local
+
 # Node modules (if using npm)
 node_modules/
 
