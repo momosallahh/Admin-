@@ -3297,9 +3297,28 @@ section {
    ================================================ */
 
 .city-guide-hero {
-    background: linear-gradient(135deg, rgba(29, 78, 216, 0.1), rgba(56, 189, 248, 0.1));
-    padding: 120px 0 80px;
+    background: linear-gradient(135deg, rgba(29, 78, 216, 0.15), rgba(56, 189, 248, 0.1));
+    padding: 140px 0 100px;
     position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.city-guide-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.city-guide-hero .container {
+    position: relative;
+    z-index: 1;
 }
 
 .breadcrumb {
@@ -3318,6 +3337,24 @@ section {
     color: var(--primary-blue);
 }
 
+.city-guide-hero .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #FFFFFF, var(--secondary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.city-guide-hero .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    line-height: 1.6;
+}
+
 .content-section {
     padding: 80px 0;
     background: var(--bg-dark);
@@ -3332,11 +3369,18 @@ section {
 }
 
 .main-article {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 20px;
     padding: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.main-article:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 12px 40px rgba(29, 78, 216, 0.2);
 }
 
 .article-meta {
@@ -3394,10 +3438,20 @@ section {
 
 .school-item, .contractor-item,
 .neighborhood-card, .tip-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(56, 189, 248, 0.25);
     border-radius: 16px;
     padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.school-item:hover, .contractor-item:hover,
+.neighborhood-card:hover, .tip-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(29, 78, 216, 0.2);
 }
 
 .school-rating, .rating {
@@ -3462,7 +3516,12 @@ section {
 }
 
 .sidebar-widget {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 20px;
     padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-widget h3 {
@@ -3569,5 +3628,37 @@ table td:first-child {
 
     .main-article {
         padding: 2rem;
+    }
+
+    .city-guide-hero .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .city-guide-hero .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .city-guide-hero {
+        padding: 120px 0 80px;
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 640px) {
+    .city-guide-hero .hero-title {
+        font-size: 2rem;
+    }
+
+    .city-guide-hero .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .main-article, .sidebar-widget {
+        padding: 1.5rem;
+    }
+
+    .school-item, .contractor-item,
+    .neighborhood-card, .tip-card {
+        padding: 1.5rem;
     }
 }
