@@ -66,110 +66,259 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://eliteroofing.com/neighborhoods/detroit-corktown">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="../index.html" class="logo">
-                    <span class="logo-icon">🏠</span>
-                    <span class="logo-text">Elite Roofing</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="../index.html#home">Home</a></li>
-                    <li><a href="../cities/detroit.html">Detroit</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
-                </ul>
-            </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">Elite Roofing</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="../index.html#calculator" class="nav-link">Calculator</a></li>
+                <li><a href="../cities/detroit.html" class="nav-link">Detroit</a></li>
+                <li><a href="../index.html#contact" class="nav-link btn btn-primary">Get Quote</a></li>
+            </ul>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <section style="background: linear-gradient(135deg, rgba(76, 29, 149, 0.9) 0%, rgba(109, 40, 217, 0.9) 100%); min-height: 60vh; display: flex; align-items: center; padding: 80px 0; color: white;">
-        <div class="container">
-            <div style="text-align: center;">
-                <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); display: inline-block; padding: 8px 20px; border-radius: 20px; margin-bottom: 20px;">
-                    <span style="font-size: 14px; font-weight: 700;">CORKTOWN, DETROIT MI</span>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg video-placeholder" style="background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%);"></div>
+
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">📍</span>
+                    <span>Corktown, Detroit MI</span>
                 </div>
-                <h1 style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem;">
-                    Corktown's Trusted<br>Roofing Specialists
+
+                <h1 class="hero-title">
+                    Expert Roofing Services in<br>
+                    <span class="gradient-text">Corktown, Detroit</span>
                 </h1>
-                <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">
-                    Historic homes & modern lofts - Preserving Detroit's oldest neighborhood since 2009
+
+                <p class="hero-subtitle">
+                    Historic homes & modern lofts - Preserving Detroit's oldest neighborhood since 2009. Licensed, insured, and locally owned roofing specialists.
                 </p>
-                <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <a href="../index.html#contact" style="background: white; color: #6D28D9; padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 700;">Free Inspection</a>
-                    <a href="tel:3135550100" style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 700;">📞 (313) 555-0100</a>
+
+                <div class="hero-buttons">
+                    <a href="tel:3135550100" class="btn btn-primary btn-lg glow">
+                        <span>📞 Call Now: (313) 555-0100</span>
+                    </a>
+                    <a href="../index.html#calculator" class="btn btn-secondary btn-lg">
+                        <span>Get Instant Quote</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges" style="margin-top: 3rem;">
+                    <div class="trust-badge glass-card">
+                        <div class="badge-icon">🏛️</div>
+                        <div class="badge-value">Historic</div>
+                        <div class="badge-label">Preservation Experts</div>
+                    </div>
+                    <div class="trust-badge glass-card">
+                        <div class="badge-icon">⭐</div>
+                        <div class="badge-value">4.9/5.0</div>
+                        <div class="badge-label">Corktown Rating</div>
+                    </div>
+                    <div class="trust-badge glass-card">
+                        <div class="badge-icon">🏠</div>
+                        <div class="badge-value">150+</div>
+                        <div class="badge-label">Corktown Projects</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 80px 0;">
+    <!-- Corktown Services -->
+    <section class="services-section" id="services" style="padding: 80px 0;">
         <div class="container">
-            <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem;">Why Corktown Chooses Us</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <div style="font-size: 2.5rem;">🏛️</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">Historic</div>
-                    <div>Preservation Experts</div>
+            <div class="section-header">
+                <h2 class="section-title">Corktown Roofing Services</h2>
+                <p class="section-subtitle">Specialized solutions for Detroit's oldest neighborhood</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card glass-card">
+                    <div class="service-icon">🏛️</div>
+                    <h3 class="service-title">Historic Brick Homes</h3>
+                    <p class="service-description">Specialized roofing for Corktown's 1850s-1920s brick homes and row houses with preservation compliance.</p>
+                    <ul style="list-style: none; padding: 0; margin: 1rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        <li>✓ Detroit Historic District approved</li>
+                        <li>✓ Period-accurate materials</li>
+                        <li>✓ Copper & slate specialists</li>
+                        <li>✓ City permit expertise</li>
+                    </ul>
+                    <div style="font-weight: 700; color: var(--secondary-blue); margin-top: 1rem;">$8,000 - $22,000</div>
+                    <a href="../index.html#contact" class="service-link">Schedule Inspection →</a>
                 </div>
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <div style="font-size: 2.5rem;">🏢</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">Loft</div>
-                    <div>Modern Systems Certified</div>
+
+                <div class="service-card glass-card">
+                    <div class="service-icon">🏢</div>
+                    <h3 class="service-title">Modern Lofts</h3>
+                    <p class="service-description">Contemporary roofing systems for converted warehouses and new construction loft buildings.</p>
+                    <ul style="list-style: none; padding: 0; margin: 1rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        <li>✓ Flat roof specialists</li>
+                        <li>✓ TPO & EPDM systems</li>
+                        <li>✓ Modern materials</li>
+                        <li>✓ Commercial grade</li>
+                    </ul>
+                    <div style="font-weight: 700; color: var(--secondary-blue); margin-top: 1rem;">$10,000 - $18,000</div>
+                    <a href="../index.html#contact" class="service-link">Learn More →</a>
                 </div>
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <div style="font-size: 2.5rem;">⭐</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">4.9★</div>
-                    <div>Corktown Rating</div>
-                </div>
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <div style="font-size: 2.5rem;">🏠</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">150+</div>
-                    <div>Corktown Projects</div>
+
+                <div class="service-card glass-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Emergency Repairs</h3>
+                    <p class="service-description">24/7 emergency service for storm damage, leaks, and urgent repairs throughout Corktown.</p>
+                    <ul style="list-style: none; padding: 0; margin: 1rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        <li>✓ 24/7 availability</li>
+                        <li>✓ Fast response time</li>
+                        <li>✓ Insurance claims help</li>
+                        <li>✓ Temporary repairs</li>
+                    </ul>
+                    <div style="font-weight: 700; color: var(--secondary-blue); margin-top: 1rem;">Call Now: (313) 555-0100</div>
+                    <a href="tel:3135550100" class="service-link">Call Emergency Line →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: #f9fafb;">
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact" style="padding: 100px 0;">
         <div class="container">
-            <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem;">Corktown Roofing Services</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #6D28D9;">Historic Brick Homes</h3>
-                    <p style="color: #6b7280; margin-bottom: 1rem;">Specialized roofing for Corktown's 1850s-1920s brick homes and row houses with preservation compliance.</p>
-                    <div style="font-weight: 700; color: #1f2937;">$8,000 - $22,000</div>
-                </div>
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #6D28D9;">Modern Lofts</h3>
-                    <p style="color: #6b7280; margin-bottom: 1rem;">Contemporary roofing systems for converted warehouses and new construction loft buildings.</p>
-                    <div style="font-weight: 700; color: #1f2937;">$10,000 - $18,000</div>
-                </div>
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #6D28D9;">Flat Roof Systems</h3>
-                    <p style="color: #6b7280; margin-bottom: 1rem;">TPO, EPDM, and modified bitumen systems for commercial and residential flat roofs.</p>
-                    <div style="font-weight: 700; color: #1f2937;">$7,000 - $16,000</div>
+            <div class="section-header">
+                <h2 class="section-title">Get Your Free Corktown Roof Inspection</h2>
+                <p class="section-subtitle">Schedule your no-obligation consultation today</p>
+            </div>
+
+            <div style="max-width: 600px; margin: 3rem auto;">
+                <form class="contact-form glass-card" id="contactForm" style="padding: 3rem;">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Smith">
+                    </div>
+
+                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(313) 555-1234">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Corktown Address</label>
+                        <input type="text" id="address" name="address" required placeholder="123 Trumbull St, Detroit, MI 48216">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issue">Tell us about your roofing needs</label>
+                        <textarea id="issue" name="issue" rows="4" required placeholder="I need a roof inspection for my Corktown home..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center;">
+                        <span>Schedule Free Inspection</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div id="contactSuccess" class="success-message glass-card" style="display: none; padding: 3rem; text-align: center; margin-top: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                    <h3 style="color: var(--secondary-blue); font-size: 1.5rem; margin-bottom: 1rem;">Thank You!</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">We've received your request. A Corktown roofing specialist will contact you within 24 hours.</p>
+                    <button onclick="resetForm()" class="btn btn-secondary">Submit Another Request</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 100%); color: white; text-align: center;">
+    <!-- Footer -->
+    <footer class="footer" style="padding: 60px 0 30px; background: rgba(20, 24, 38, 0.6); border-top: 1px solid rgba(56, 189, 248, 0.2);">
         <div class="container">
-            <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">Protect Your Corktown Property</h2>
-            <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">Expert roofing for Detroit's oldest neighborhood</p>
-            <a href="../index.html#contact" style="background: white; color: #6D28D9; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.125rem;">Get Free Corktown Assessment</a>
-        </div>
-    </section>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🏠</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Elite Roofing - Corktown</h3>
+                <p style="color: var(--text-muted);">Detroit's Most Trusted Roofing Company</p>
+            </div>
 
-    <footer style="background: #1a202c; color: white; padding: 60px 0 30px;">
-        <div class="container">
-            <div style="text-align: center; color: #a0aec0;">
-                <p>&copy; 2024 Elite Roofing. All rights reserved. | <a href="../cities/detroit.html" style="color: #8B5CF6;">View All Detroit Services</a></p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem; text-align: center;">
+                <div>
+                    <h4 style="color: var(--secondary-blue); margin-bottom: 1rem;">Contact</h4>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        📞 (313) 555-0100<br>
+                        📧 corktown@eliteroofing.com<br>
+                        📍 Serving Corktown, Detroit
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: var(--secondary-blue); margin-bottom: 1rem;">Hours</h4>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        Mon-Fri: 7am - 7pm<br>
+                        Sat: 8am - 5pm<br>
+                        Sun: Emergency Only
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: var(--secondary-blue); margin-bottom: 1rem;">Service Area</h4>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        Corktown<br>
+                        <a href="../cities/detroit.html" style="color: var(--secondary-blue); text-decoration: none;">All Detroit Areas</a><br>
+                        Wayne County
+                    </p>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(56, 189, 248, 0.2); color: var(--text-muted);">
+                <p>&copy; 2024 Elite Roofing. All rights reserved. | Licensed & Insured | MI License #12345</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="../index.html" style="color: var(--secondary-blue);">Home</a> |
+                    <a href="../cities/detroit.html" style="color: var(--secondary-blue);">Detroit</a> |
+                    <a href="../index.html#services" style="color: var(--secondary-blue);">Services</a> |
+                    <a href="../index.html#contact" style="color: var(--secondary-blue);">Contact</a>
+                </p>
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Action Bar -->
+    <div class="mobile-bar">
+        <a href="tel:3135550100" class="mobile-btn btn-primary">
+            <span class="mobile-icon">📞</span>
+            <span>Call Now</span>
+        </a>
+        <a href="#contact" class="mobile-btn btn-secondary">
+            <span class="mobile-icon">📋</span>
+            <span>Free Inspection</span>
+        </a>
+        <a href="sms:3135550100" class="mobile-btn btn-primary">
+            <span class="mobile-icon">💬</span>
+            <span>Text Us</span>
+        </a>
+    </div>
 
     <script src="../js/script.js"></script>
 </body>
