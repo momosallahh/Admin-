@@ -68,10 +68,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="../index.html" class="logo">
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-logo">
                     <span class="logo-icon">🏠</span>
                     <span class="logo-text">Elite Roofing</span>
                 </a>
@@ -82,9 +82,14 @@
                 </ul>
             </div>
         </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
     </nav>
 
-    <section style="background: linear-gradient(135deg, rgba(76, 29, 149, 0.9) 0%, rgba(109, 40, 217, 0.9) 100%); min-height: 60vh; display: flex; align-items: center; padding: 80px 0; color: white;">
+    <section style="background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%); min-height: 60vh; display: flex; align-items: center; padding: 80px 0; color: white;">
         <div class="container">
             <div style="text-align: center;">
                 <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); display: inline-block; padding: 8px 20px; border-radius: 20px; margin-bottom: 20px;">
@@ -97,7 +102,7 @@
                     Preserving Grand Rapids' finest historic homes with masterful craftsmanship
                 </p>
                 <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <a href="../index.html#contact" style="background: white; color: #6D28D9; padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 700;">Free Inspection</a>
+                    <a href="../index.html#contact" style="background: white; color: var(--secondary-blue); padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 700;">Free Inspection</a>
                     <a href="tel:6165550200" style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 700;">📞 (616) 555-0200</a>
                 </div>
             </div>
@@ -108,24 +113,24 @@
         <div class="container">
             <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem;">Why Heritage Hill Trusts Us</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
+                <div style="background: rgba(11, 15, 26, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
                     <div style="font-size: 2.5rem;">🎩</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">Victorian</div>
+                    <div style="font-size: 1.5rem; font-weight: 900; color: var(--secondary-blue); margin: 1rem 0;">Victorian</div>
                     <div>Restoration Masters</div>
                 </div>
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
+                <div style="background: rgba(11, 15, 26, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
                     <div style="font-size: 2.5rem;">🏛️</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">Slate</div>
+                    <div style="font-size: 1.5rem; font-weight: 900; color: var(--secondary-blue); margin: 1rem 0;">Slate</div>
                     <div>Certified Installers</div>
                 </div>
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
+                <div style="background: rgba(11, 15, 26, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
                     <div style="font-size: 2.5rem;">⭐</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">5.0★</div>
+                    <div style="font-size: 1.5rem; font-weight: 900; color: var(--secondary-blue); margin: 1rem 0;">5.0★</div>
                     <div>Heritage Hill Rating</div>
                 </div>
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
+                <div style="background: rgba(11, 15, 26, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
                     <div style="font-size: 2.5rem;">🏰</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">100+</div>
+                    <div style="font-size: 1.5rem; font-weight: 900; color: var(--secondary-blue); margin: 1rem 0;">100+</div>
                     <div>Historic Estates</div>
                 </div>
             </div>
@@ -137,17 +142,17 @@
             <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem;">Heritage Hill Specialties</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                 <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #6D28D9;">Slate Roofing</h3>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-blue);">Slate Roofing</h3>
                     <p style="color: #6b7280; margin-bottom: 1rem;">Authentic slate installation and restoration for Victorian mansions, matching historic materials and colors.</p>
                     <div style="font-weight: 700; color: #1f2937;">$18,000 - $35,000</div>
                 </div>
                 <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #6D28D9;">Historic Restoration</h3>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-blue);">Historic Restoration</h3>
                     <p style="color: #6b7280; margin-bottom: 1rem;">Queen Anne, Italianate, and Tudor Revival roofing with period-accurate details and commission approval.</p>
                     <div style="font-weight: 700; color: #1f2937;">$12,000 - $28,000</div>
                 </div>
                 <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #6D28D9;">Copper Work</h3>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-blue);">Copper Work</h3>
                     <p style="color: #6b7280; margin-bottom: 1rem;">Custom copper gutters, flashing, and decorative elements for authentic Victorian character.</p>
                     <div style="font-weight: 700; color: #1f2937;">$15,000 - $30,000</div>
                 </div>
@@ -155,21 +160,38 @@
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 100%); color: white; text-align: center;">
+    <section style="padding: 80px 0; background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%); color: white; text-align: center;">
         <div class="container">
             <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">Preserve Your Heritage Hill Estate</h2>
             <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">Expert craftsmanship for Grand Rapids' most prestigious historic homes</p>
-            <a href="../index.html#contact" style="background: white; color: #6D28D9; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.125rem;">Schedule Historic Home Consultation</a>
+            <a href="../index.html#contact" style="background: white; color: var(--secondary-blue); padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.125rem;">Schedule Historic Home Consultation</a>
         </div>
     </section>
 
-    <footer style="background: #1a202c; color: white; padding: 60px 0 30px;">
+    <footer style="background: rgba(20, 24, 38, 0.6); color: white; padding: 60px 0 30px;">
         <div class="container">
-            <div style="text-align: center; color: #a0aec0;">
-                <p>&copy; 2024 Elite Roofing. All rights reserved. | <a href="../cities/grand-rapids.html" style="color: #8B5CF6;">View All Grand Rapids Services</a></p>
+            <div style="text-align: center; color: var(--text-muted);">
+                <p>&copy; 2024 Elite Roofing. All rights reserved. | <a href="../cities/grand-rapids.html" style="color: var(--secondary-blue);">View All Grand Rapids Services</a></p>
             </div>
         </div>
     </footer>
+
+
+    <!-- Mobile Action Bar -->
+    <div class="mobile-bar">
+        <a href="tel:6165550200" class="mobile-btn btn-primary">
+            <span class="mobile-icon">📞</span>
+            <span>Call Now</span>
+        </a>
+        <a href="#contact" class="mobile-btn btn-secondary">
+            <span class="mobile-icon">📋</span>
+            <span>Free Inspection</span>
+        </a>
+        <a href="sms:6165550200" class="mobile-btn btn-primary">
+            <span class="mobile-icon">💬</span>
+            <span>Text Us</span>
+        </a>
+    </div>
 
     <script src="../js/script.js"></script>
 </body>

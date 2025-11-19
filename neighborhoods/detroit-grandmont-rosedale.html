@@ -89,25 +89,31 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="../index.html" class="logo">
-                    <span class="logo-icon">🏠</span>
-                    <span class="logo-text">Elite Roofing</span>
-                </a>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                    <li><a href="../index.html#services" class="nav-link">Services</a></li>
-                    <li><a href="../cities/detroit.html" class="nav-link">Detroit</a></li>
-                    <li><a href="../index.html#contact" class="nav-link nav-cta">Free Inspection</a></li>
-                </ul>
-            </div>
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">Elite Roofing</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="../index.html#calculator" class="nav-link">Calculator</a></li>
+                <li><a href="../cities/detroit.html" class="nav-link">Detroit</a></li>
+                <li><a href="../index.html#contact" class="nav-link btn btn-primary">Get Quote</a></li>
+            </ul>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" style="background: linear-gradient(135deg, rgba(220, 38, 38, 0.9) 0%, rgba(239, 68, 68, 0.9) 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1440 320%22><path fill=%22%23ffffff%22 fill-opacity=%220.1%22 d=%22M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z%22></path></svg>'); min-height: 60vh; display: flex; align-items: center; padding: 80px 0;">
+    <section class="hero" style="background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1440 320%22><path fill=%22%23ffffff%22 fill-opacity=%220.1%22 d=%22M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z%22></path></svg>'); min-height: 60vh; display: flex; align-items: center; padding: 80px 0;">
         <div class="container">
             <div style="text-align: center; color: white;">
                 <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); display: inline-block; padding: 8px 20px; border-radius: 20px; margin-bottom: 20px;">
@@ -120,7 +126,7 @@
                     Quality roofing for Detroit's most vibrant northwest neighborhood since 2009.
                 </p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="../index.html#contact" class="btn btn-primary glow" style="background: white; color: #DC2626; padding: 15px 35px;">
+                    <a href="../index.html#contact" class="btn btn-primary glow" style="background: white; color: var(--secondary-blue); padding: 15px 35px;">
                         <span>Free Inspection</span>
                     </a>
                     <a href="tel:3135550100" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 2px solid white; color: white; padding: 15px 35px;">
@@ -136,29 +142,29 @@
         <div class="container">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">Why Grandmont-Rosedale Trusts Elite Roofing</h2>
-                <p style="font-size: 1.125rem; color: #4a5568;">Detroit's strongest community deserves reliable roofing</p>
+                <p style="font-size: 1.125rem; color: var(--text-muted);">Detroit's strongest community deserves reliable roofing</p>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
                 <div class="glass-card" style="text-align: center; padding: 2rem;">
                     <div style="font-size: 3rem; margin-bottom: 1rem;">🏡</div>
-                    <div style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin-bottom: 0.5rem;">480+</div>
-                    <div style="color: #4a5568; font-weight: 600;">Neighborhood Projects</div>
+                    <div style="font-size: 2.5rem; font-weight: 900; color: var(--secondary-blue); margin-bottom: 0.5rem;">480+</div>
+                    <div style="color: var(--text-muted); font-weight: 600;">Neighborhood Projects</div>
                 </div>
                 <div class="glass-card" style="text-align: center; padding: 2rem;">
                     <div style="font-size: 3rem; margin-bottom: 1rem;">⭐</div>
-                    <div style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin-bottom: 0.5rem;">4.9★</div>
-                    <div style="color: #4a5568; font-weight: 600;">Average Rating</div>
+                    <div style="font-size: 2.5rem; font-weight: 900; color: var(--secondary-blue); margin-bottom: 0.5rem;">4.9★</div>
+                    <div style="color: var(--text-muted); font-weight: 600;">Average Rating</div>
                 </div>
                 <div class="glass-card" style="text-align: center; padding: 2rem;">
                     <div style="font-size: 3rem; margin-bottom: 1rem;">🏗️</div>
-                    <div style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin-bottom: 0.5rem;">Fair</div>
-                    <div style="color: #4a5568; font-weight: 600;">Family Pricing</div>
+                    <div style="font-size: 2.5rem; font-weight: 900; color: var(--secondary-blue); margin-bottom: 0.5rem;">Fair</div>
+                    <div style="color: var(--text-muted); font-weight: 600;">Family Pricing</div>
                 </div>
                 <div class="glass-card" style="text-align: center; padding: 2rem;">
                     <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
-                    <div style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin-bottom: 0.5rem;">24/7</div>
-                    <div style="color: #4a5568; font-weight: 600;">Emergency Service</div>
+                    <div style="font-size: 2.5rem; font-weight: 900; color: var(--secondary-blue); margin-bottom: 0.5rem;">24/7</div>
+                    <div style="color: var(--text-muted); font-weight: 600;">Emergency Service</div>
                 </div>
             </div>
         </div>
@@ -170,27 +176,27 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
                 <div>
                     <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem;">Roofing Detroit's Strongest Community</h2>
-                    <p style="font-size: 1.125rem; color: #4a5568; line-height: 1.8; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.125rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
                         Grandmont-Rosedale is one of Detroit's most engaged and vibrant communities, featuring beautiful mid-century homes, tree-lined streets, and a strong neighborhood association. This northwest Detroit gem includes the neighborhoods of Grandmont, Rosedale Park, North Rosedale Park, Minock Park, and Brightmoor.
                     </p>
-                    <p style="font-size: 1.125rem; color: #4a5568; line-height: 1.8; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.125rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
                         We're proud to serve this community-focused neighborhood. Our team understands the ranch-style and mid-century architecture prevalent here, providing quality roofing at fair prices that fit family budgets while protecting your most important investment.
                     </p>
                     <ul style="list-style: none; padding: 0;">
                         <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: #DC2626; font-size: 1.5rem;">✓</span>
+                            <span style="color: var(--secondary-blue); font-size: 1.5rem;">✓</span>
                             <span style="font-weight: 600;">Mid-century & ranch specialists</span>
                         </li>
                         <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: #DC2626; font-size: 1.5rem;">✓</span>
+                            <span style="color: var(--secondary-blue); font-size: 1.5rem;">✓</span>
                             <span style="font-weight: 600;">Family-friendly pricing & financing</span>
                         </li>
                         <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: #DC2626; font-size: 1.5rem;">✓</span>
+                            <span style="color: var(--secondary-blue); font-size: 1.5rem;">✓</span>
                             <span style="font-weight: 600;">Community-focused service</span>
                         </li>
                         <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: #DC2626; font-size: 1.5rem;">✓</span>
+                            <span style="color: var(--secondary-blue); font-size: 1.5rem;">✓</span>
                             <span style="font-weight: 600;">Storm damage & insurance experts</span>
                         </li>
                     </ul>
@@ -198,25 +204,25 @@
                 <div class="glass-card" style="padding: 2rem;">
                     <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center;">Grandmont-Rosedale Roofing Services</h3>
                     <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid #DC2626;">
-                            <div style="font-weight: 700; color: #DC2626; margin-bottom: 0.5rem;">Complete Roof Replacement</div>
-                            <div style="color: #4a5568; font-size: 0.9rem;">Quality architectural shingles</div>
-                            <div style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">$8,500 - $16,000</div>
+                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid var(--secondary-blue);">
+                            <div style="font-weight: 700; color: var(--secondary-blue); margin-bottom: 0.5rem;">Complete Roof Replacement</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Quality architectural shingles</div>
+                            <div style="color: var(--secondary-blue); font-weight: 600; margin-top: 0.5rem;">$8,500 - $16,000</div>
                         </div>
-                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid #DC2626;">
-                            <div style="font-weight: 700; color: #DC2626; margin-bottom: 0.5rem;">Roof Repairs</div>
-                            <div style="color: #4a5568; font-size: 0.9rem;">Leak repair, shingle replacement</div>
-                            <div style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">$400 - $2,500</div>
+                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid var(--secondary-blue);">
+                            <div style="font-weight: 700; color: var(--secondary-blue); margin-bottom: 0.5rem;">Roof Repairs</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Leak repair, shingle replacement</div>
+                            <div style="color: var(--secondary-blue); font-weight: 600; margin-top: 0.5rem;">$400 - $2,500</div>
                         </div>
-                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid #DC2626;">
-                            <div style="font-weight: 700; color: #DC2626; margin-bottom: 0.5rem;">Storm Damage Service</div>
-                            <div style="color: #4a5568; font-size: 0.9rem;">Emergency repair, insurance claims</div>
-                            <div style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">$1,500 - $7,000</div>
+                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid var(--secondary-blue);">
+                            <div style="font-weight: 700; color: var(--secondary-blue); margin-bottom: 0.5rem;">Storm Damage Service</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Emergency repair, insurance claims</div>
+                            <div style="color: var(--secondary-blue); font-weight: 600; margin-top: 0.5rem;">$1,500 - $7,000</div>
                         </div>
-                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid #DC2626;">
-                            <div style="font-weight: 700; color: #DC2626; margin-bottom: 0.5rem;">Gutters & Maintenance</div>
-                            <div style="color: #4a5568; font-size: 0.9rem;">Gutter installation, roof maintenance</div>
-                            <div style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">$1,200 - $4,500</div>
+                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid var(--secondary-blue);">
+                            <div style="font-weight: 700; color: var(--secondary-blue); margin-bottom: 0.5rem;">Gutters & Maintenance</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Gutter installation, roof maintenance</div>
+                            <div style="color: var(--secondary-blue); font-weight: 600; margin-top: 0.5rem;">$1,200 - $4,500</div>
                         </div>
                     </div>
                 </div>
@@ -250,12 +256,12 @@
     </section>
 
     <!-- CTA Section -->
-    <section style="padding: 80px 0; background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);">
+    <section style="padding: 80px 0; background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%);">
         <div class="container">
             <div style="text-align: center; color: white;">
                 <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">Protect Your Grandmont-Rosedale Home</h2>
                 <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">Quality roofing at family-friendly prices for Detroit's best community.</p>
-                <a href="../index.html#contact" class="btn btn-primary" style="background: white; color: #DC2626; padding: 18px 40px; font-size: 1.125rem;">
+                <a href="../index.html#contact" class="btn btn-primary" style="background: white; color: var(--secondary-blue); padding: 18px 40px; font-size: 1.125rem;">
                     Schedule Free Inspection
                 </a>
             </div>
@@ -263,30 +269,47 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer" style="background: #1a202c; color: white; padding: 60px 0 30px;">
+    <footer class="footer" style="background: rgba(20, 24, 38, 0.6); color: white; padding: 60px 0 30px;">
         <div class="container">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
                 <div>
                     <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">🏠 Elite Roofing</h3>
-                    <p style="color: #a0aec0; line-height: 1.8;">Grandmont-Rosedale's trusted roofing experts since 2009.</p>
+                    <p style="color: var(--text-muted); line-height: 1.8;">Grandmont-Rosedale's trusted roofing experts since 2009.</p>
                 </div>
                 <div>
                     <h4 style="margin-bottom: 1rem;">Contact</h4>
-                    <p style="color: #a0aec0;">📞 (313) 555-0100</p>
-                    <p style="color: #a0aec0;">📧 grandmontrosedale@eliteroofing.com</p>
+                    <p style="color: var(--text-muted);">📞 (313) 555-0100</p>
+                    <p style="color: var(--text-muted);">📧 grandmontrosedale@eliteroofing.com</p>
                 </div>
                 <div>
                     <h4 style="margin-bottom: 1rem;">Serving</h4>
-                    <p style="color: #a0aec0;">Grandmont-Rosedale</p>
-                    <p style="color: #a0aec0;">Northwest Detroit</p>
-                    <p style="color: #a0aec0;">Detroit MI</p>
+                    <p style="color: var(--text-muted);">Grandmont-Rosedale</p>
+                    <p style="color: var(--text-muted);">Northwest Detroit</p>
+                    <p style="color: var(--text-muted);">Detroit MI</p>
                 </div>
             </div>
-            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #a0aec0;">
-                <p>&copy; 2024 Elite Roofing. All rights reserved. | <a href="../cities/detroit.html" style="color: #EF4444;">View All Detroit Services</a></p>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(56, 189, 248, 0.2); color: var(--text-muted);">
+                <p>&copy; 2024 Elite Roofing. All rights reserved. | <a href="../cities/detroit.html" style="color: var(--secondary-blue);">View All Detroit Services</a></p>
             </div>
         </div>
     </footer>
+
+
+    <!-- Mobile Action Bar -->
+    <div class="mobile-bar">
+        <a href="tel:3135550100" class="mobile-btn btn-primary">
+            <span class="mobile-icon">📞</span>
+            <span>Call Now</span>
+        </a>
+        <a href="#contact" class="mobile-btn btn-secondary">
+            <span class="mobile-icon">📋</span>
+            <span>Free Inspection</span>
+        </a>
+        <a href="sms:3135550100" class="mobile-btn btn-primary">
+            <span class="mobile-icon">💬</span>
+            <span>Text Us</span>
+        </a>
+    </div>
 
     <script src="../js/script.js"></script>
 </body>

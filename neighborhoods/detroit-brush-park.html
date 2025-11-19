@@ -89,204 +89,254 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="../index.html" class="logo">
-                    <span class="logo-icon">🏠</span>
-                    <span class="logo-text">Elite Roofing</span>
-                </a>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                    <li><a href="../index.html#services" class="nav-link">Services</a></li>
-                    <li><a href="../cities/detroit.html" class="nav-link">Detroit</a></li>
-                    <li><a href="../index.html#contact" class="nav-link nav-cta">Free Inspection</a></li>
-                </ul>
-            </div>
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">Elite Roofing</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="../index.html#calculator" class="nav-link">Calculator</a></li>
+                <li><a href="../cities/detroit.html" class="nav-link">Detroit</a></li>
+                <li><a href="../index.html#contact" class="nav-link btn btn-primary">Get Quote</a></li>
+            </ul>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" style="background: linear-gradient(135deg, rgba(220, 38, 38, 0.9) 0%, rgba(239, 68, 68, 0.9) 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1440 320%22><path fill=%22%23ffffff%22 fill-opacity=%220.1%22 d=%22M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z%22></path></svg>'); min-height: 60vh; display: flex; align-items: center; padding: 80px 0;">
-        <div class="container">
-            <div style="text-align: center; color: white;">
-                <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); display: inline-block; padding: 8px 20px; border-radius: 20px; margin-bottom: 20px;">
-                    <span style="font-size: 14px; font-weight: 700;">BRUSH PARK, DETROIT MI</span>
+    <section class="hero" id="home">
+        <div class="hero-bg video-placeholder" style="background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%);"></div>
+
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">📍</span>
+                    <span>Brush Park, Detroit MI</span>
                 </div>
-                <h1 style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem; line-height: 1.2;">
-                    Victorian Restoration<br>Roofing Specialists
+
+                <h1 class="hero-title">
+                    Expert Roofing Services in<br>
+                    <span class="gradient-text">Brush Park, Detroit</span>
                 </h1>
-                <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">
-                    Preserving Detroit's Victorian architectural treasures since 2009.
+
+                <p class="hero-subtitle">
+                    Victorian restoration specialists - Preserving Detroit's architectural treasures since 2009. Licensed, insured, and locally owned roofing experts.
                 </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="../index.html#contact" class="btn btn-primary glow" style="background: white; color: #DC2626; padding: 15px 35px;">
-                        <span>Free Inspection</span>
+
+                <div class="hero-buttons">
+                    <a href="tel:3135550100" class="btn btn-primary btn-lg glow">
+                        <span>📞 Call Now: (313) 555-0100</span>
                     </a>
-                    <a href="tel:3135550100" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 2px solid white; color: white; padding: 15px 35px;">
-                        <span>📞 (313) 555-0100</span>
+                    <a href="../index.html#calculator" class="btn btn-secondary btn-lg">
+                        <span>Get Instant Quote</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Neighborhood Stats -->
-    <section style="padding: 60px 0; background: #f7fafc;">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">Why Brush Park Trusts Elite Roofing</h2>
-                <p style="font-size: 1.125rem; color: #4a5568;">Detroit's Victorian gem deserves expert restoration</p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                <div class="glass-card" style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏛️</div>
-                    <div style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin-bottom: 0.5rem;">290+</div>
-                    <div style="color: #4a5568; font-weight: 600;">Victorian Projects</div>
-                </div>
-                <div class="glass-card" style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">⭐</div>
-                    <div style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin-bottom: 0.5rem;">4.9★</div>
-                    <div style="color: #4a5568; font-weight: 600;">Average Rating</div>
-                </div>
-                <div class="glass-card" style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏗️</div>
-                    <div style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin-bottom: 0.5rem;">Historic</div>
-                    <div style="color: #4a5568; font-weight: 600;">Restoration Experts</div>
-                </div>
-                <div class="glass-card" style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
-                    <div style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin-bottom: 0.5rem;">24/7</div>
-                    <div style="color: #4a5568; font-weight: 600;">Emergency Service</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Brush Park -->
-    <section style="padding: 80px 0;">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-                <div>
-                    <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem;">Restoring Brush Park's Victorian Masterpieces</h2>
-                    <p style="font-size: 1.125rem; color: #4a5568; line-height: 1.8; margin-bottom: 1.5rem;">
-                        Brush Park is experiencing a renaissance. Once known as "Little Paris," this historic neighborhood features stunning Victorian, Queen Anne, and Italianate homes from the 1870s-1900s. These architectural treasures feature steep roofs, turrets, dormers, and decorative elements requiring specialized expertise.
-                    </p>
-                    <p style="font-size: 1.125rem; color: #4a5568; line-height: 1.8; margin-bottom: 1.5rem;">
-                        We're passionate about preserving Brush Park's architectural heritage. Our team combines traditional craftsmanship with modern materials to restore Victorian roofs while ensuring superior protection. We handle everything from historic restorations to new construction.
-                    </p>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: #DC2626; font-size: 1.5rem;">✓</span>
-                            <span style="font-weight: 600;">Victorian restoration specialists</span>
-                        </li>
-                        <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: #DC2626; font-size: 1.5rem;">✓</span>
-                            <span style="font-weight: 600;">Historic District certified</span>
-                        </li>
-                        <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: #DC2626; font-size: 1.5rem;">✓</span>
-                            <span style="font-weight: 600;">Period-appropriate materials</span>
-                        </li>
-                        <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: #DC2626; font-size: 1.5rem;">✓</span>
-                            <span style="font-weight: 600;">New construction & restoration</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="glass-card" style="padding: 2rem;">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center;">Brush Park Roofing Services</h3>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid #DC2626;">
-                            <div style="font-weight: 700; color: #DC2626; margin-bottom: 0.5rem;">Victorian Restoration</div>
-                            <div style="color: #4a5568; font-size: 0.9rem;">Historic preservation, period materials</div>
-                            <div style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">$18,000 - $35,000</div>
-                        </div>
-                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid #DC2626;">
-                            <div style="font-weight: 700; color: #DC2626; margin-bottom: 0.5rem;">New Construction</div>
-                            <div style="color: #4a5568; font-size: 0.9rem;">Modern homes, townhouses, condos</div>
-                            <div style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">$10,000 - $22,000</div>
-                        </div>
-                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid #DC2626;">
-                            <div style="font-weight: 700; color: #DC2626; margin-bottom: 0.5rem;">Slate & Tile Roofing</div>
-                            <div style="color: #4a5568; font-size: 0.9rem;">Premium materials, traditional installation</div>
-                            <div style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">$20,000 - $38,000</div>
-                        </div>
-                        <div style="padding: 1rem; background: #fef2f2; border-radius: 10px; border-left: 4px solid #DC2626;">
-                            <div style="font-weight: 700; color: #DC2626; margin-bottom: 0.5rem;">Custom Metalwork</div>
-                            <div style="color: #4a5568; font-size: 0.9rem;">Copper gutters, decorative elements</div>
-                            <div style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">$5,000 - $15,000</div>
-                        </div>
+                <!-- Trust Badges -->
+                <div class="trust-badges" style="margin-top: 3rem;">
+                    <div class="trust-badge glass-card">
+                        <div class="badge-icon">🏛️</div>
+                        <div class="badge-value">290+</div>
+                        <div class="badge-label">Victorian Projects</div>
+                    </div>
+                    <div class="trust-badge glass-card">
+                        <div class="badge-icon">⭐</div>
+                        <div class="badge-value">4.9/5.0</div>
+                        <div class="badge-label">Brush Park Rating</div>
+                    </div>
+                    <div class="trust-badge glass-card">
+                        <div class="badge-icon">🏗️</div>
+                        <div class="badge-value">Historic</div>
+                        <div class="badge-label">Restoration Experts</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Brush Park Neighborhoods Served -->
-    <section style="padding: 60px 0; background: #f7fafc;">
+    <!-- Brush Park Services -->
+    <section class="services-section" id="services" style="padding: 80px 0;">
         <div class="container">
-            <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem;">Brush Park Areas We Serve</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏛️</div>
-                    <div style="font-weight: 700;">Historic Core</div>
+            <div class="section-header">
+                <h2 class="section-title">Brush Park Roofing Services</h2>
+                <p class="section-subtitle">Specialized solutions for Detroit's Victorian architectural gem</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card glass-card">
+                    <div class="service-icon">🏛️</div>
+                    <h3 class="service-title">Victorian Restoration</h3>
+                    <p class="service-description">Historic preservation roofing for Brush Park's Queen Anne and Italianate homes with period-appropriate materials and techniques.</p>
+                    <ul style="list-style: none; padding: 0; margin: 1rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        <li>✓ Period-accurate materials</li>
+                        <li>✓ Historic District certified</li>
+                        <li>✓ Victorian architecture experts</li>
+                        <li>✓ Turret & dormer specialists</li>
+                    </ul>
+                    <div style="font-weight: 700; color: var(--secondary-blue); margin-top: 1rem;">$18,000 - $35,000</div>
+                    <a href="#contact" class="service-link">Schedule Inspection →</a>
                 </div>
-                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏗️</div>
-                    <div style="font-weight: 700;">New Development</div>
+
+                <div class="service-card glass-card">
+                    <div class="service-icon">🏗️</div>
+                    <h3 class="service-title">New Construction</h3>
+                    <p class="service-description">Modern roofing systems for Brush Park's new townhouses, condos, and residential developments with contemporary materials.</p>
+                    <ul style="list-style: none; padding: 0; margin: 1rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        <li>✓ Modern materials</li>
+                        <li>✓ Townhouse specialists</li>
+                        <li>✓ New development experts</li>
+                        <li>✓ Efficient installation</li>
+                    </ul>
+                    <div style="font-weight: 700; color: var(--secondary-blue); margin-top: 1rem;">$10,000 - $22,000</div>
+                    <a href="#contact" class="service-link">Learn More →</a>
                 </div>
-                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏰</div>
-                    <div style="font-weight: 700;">Alfred Street</div>
-                </div>
-                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎨</div>
-                    <div style="font-weight: 700;">Edmund Place</div>
+
+                <div class="service-card glass-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Slate & Tile Roofing</h3>
+                    <p class="service-description">Premium slate and tile roofing with traditional installation methods that preserve architectural integrity and provide lasting protection.</p>
+                    <ul style="list-style: none; padding: 0; margin: 1rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        <li>✓ Authentic slate materials</li>
+                        <li>✓ Custom tile work</li>
+                        <li>✓ Traditional installation</li>
+                        <li>✓ Copper flashing work</li>
+                    </ul>
+                    <div style="font-weight: 700; color: var(--secondary-blue); margin-top: 1rem;">$20,000 - $38,000</div>
+                    <a href="#contact" class="service-link">Get Quote →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section style="padding: 80px 0; background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);">
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact" style="padding: 100px 0;">
         <div class="container">
-            <div style="text-align: center; color: white;">
-                <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">Protect Your Brush Park Victorian Home</h2>
-                <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">Expert restoration roofing for Detroit's architectural treasures.</p>
-                <a href="../index.html#contact" class="btn btn-primary" style="background: white; color: #DC2626; padding: 18px 40px; font-size: 1.125rem;">
-                    Schedule Free Inspection
-                </a>
+            <div class="section-header">
+                <h2 class="section-title">Get Your Free Brush Park Roof Inspection</h2>
+                <p class="section-subtitle">Schedule your no-obligation consultation today</p>
+            </div>
+
+            <div style="max-width: 600px; margin: 3rem auto;">
+                <form class="contact-form glass-card" id="contactForm" style="padding: 3rem;">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Smith">
+                    </div>
+
+                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(313) 555-1234">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Brush Park Address</label>
+                        <input type="text" id="address" name="address" required placeholder="123 Alfred St, Detroit, MI 48201">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issue">Tell us about your roofing needs</label>
+                        <textarea id="issue" name="issue" rows="4" required placeholder="I need a roof inspection for my Brush Park home..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center;">
+                        <span>Schedule Free Inspection</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div id="contactSuccess" class="success-message glass-card" style="display: none; padding: 3rem; text-align: center; margin-top: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                    <h3 style="color: var(--secondary-blue); font-size: 1.5rem; margin-bottom: 1rem;">Thank You!</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">We've received your request. A Brush Park roofing specialist will contact you within 24 hours.</p>
+                    <button onclick="resetForm()" class="btn btn-secondary">Submit Another Request</button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" style="background: #1a202c; color: white; padding: 60px 0 30px;">
+    <footer class="footer" style="padding: 60px 0 30px; background: rgba(20, 24, 38, 0.6); border-top: 1px solid rgba(56, 189, 248, 0.2);">
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🏠</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Elite Roofing - Brush Park</h3>
+                <p style="color: var(--text-muted);">Detroit's Most Trusted Roofing Company</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem; text-align: center;">
                 <div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">🏠 Elite Roofing</h3>
-                    <p style="color: #a0aec0; line-height: 1.8;">Brush Park's trusted Victorian restoration experts since 2009.</p>
+                    <h4 style="color: var(--secondary-blue); margin-bottom: 1rem;">Contact</h4>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        📞 (313) 555-0100<br>
+                        📧 brushpark@eliteroofing.com<br>
+                        📍 Serving Brush Park, Detroit
+                    </p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 1rem;">Contact</h4>
-                    <p style="color: #a0aec0;">📞 (313) 555-0100</p>
-                    <p style="color: #a0aec0;">📧 brushpark@eliteroofing.com</p>
+                    <h4 style="color: var(--secondary-blue); margin-bottom: 1rem;">Hours</h4>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        Mon-Fri: 7am - 7pm<br>
+                        Sat: 8am - 5pm<br>
+                        Sun: Emergency Only
+                    </p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 1rem;">Serving</h4>
-                    <p style="color: #a0aec0;">Brush Park</p>
-                    <p style="color: #a0aec0;">Historic Detroit</p>
-                    <p style="color: #a0aec0;">Detroit MI</p>
+                    <h4 style="color: var(--secondary-blue); margin-bottom: 1rem;">Service Area</h4>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        Brush Park<br>
+                        <a href="../cities/detroit.html" style="color: var(--secondary-blue); text-decoration: none;">All Detroit Areas</a><br>
+                        Wayne County
+                    </p>
                 </div>
             </div>
-            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #a0aec0;">
-                <p>&copy; 2024 Elite Roofing. All rights reserved. | <a href="../cities/detroit.html" style="color: #EF4444;">View All Detroit Services</a></p>
+
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(56, 189, 248, 0.2); color: var(--text-muted);">
+                <p>&copy; 2024 Elite Roofing. All rights reserved. | Licensed & Insured | MI License #12345</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="../index.html" style="color: var(--secondary-blue);">Home</a> |
+                    <a href="../cities/detroit.html" style="color: var(--secondary-blue);">Detroit</a> |
+                    <a href="../index.html#services" style="color: var(--secondary-blue);">Services</a> |
+                    <a href="../index.html#contact" style="color: var(--secondary-blue);">Contact</a>
+                </p>
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Action Bar -->
+    <div class="mobile-bar">
+        <a href="tel:3135550100" class="mobile-btn btn-primary">
+            <span class="mobile-icon">📞</span>
+            <span>Call Now</span>
+        </a>
+        <a href="#contact" class="mobile-btn btn-secondary">
+            <span class="mobile-icon">📋</span>
+            <span>Free Inspection</span>
+        </a>
+        <a href="sms:3135550100" class="mobile-btn btn-primary">
+            <span class="mobile-icon">💬</span>
+            <span>Text Us</span>
+        </a>
+    </div>
 
     <script src="../js/script.js"></script>
 </body>

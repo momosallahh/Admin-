@@ -52,10 +52,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="../index.html" class="logo">
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-logo">
                     <span class="logo-icon">🏠</span>
                     <span class="logo-text">Elite Roofing</span>
                 </a>
@@ -66,9 +66,14 @@
                 </ul>
             </div>
         </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
     </nav>
 
-    <section style="background: linear-gradient(135deg, rgba(76, 29, 149, 0.9) 0%, rgba(109, 40, 217, 0.9) 100%); min-height: 60vh; display: flex; align-items: center; padding: 80px 0; color: white;">
+    <section style="background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%); min-height: 60vh; display: flex; align-items: center; padding: 80px 0; color: white;">
         <div class="container">
             <div style="text-align: center;">
                 <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); display: inline-block; padding: 8px 20px; border-radius: 20px; margin-bottom: 20px;">
@@ -81,7 +86,7 @@
                     Preserving Ann Arbor's Victorian heritage with expert craftsmanship since 2009
                 </p>
                 <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <a href="../index.html#contact" style="background: white; color: #6D28D9; padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 700;">Free Inspection</a>
+                    <a href="../index.html#contact" style="background: white; color: var(--secondary-blue); padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 700;">Free Inspection</a>
                     <a href="tel:7341234567" style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 700;">📞 (734) 123-4567</a>
                 </div>
             </div>
@@ -92,40 +97,57 @@
         <div class="container">
             <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem;">Why Old West Side Trusts Us</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
+                <div style="background: rgba(11, 15, 26, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
                     <div style="font-size: 2.5rem;">🏛️</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">Historic</div>
+                    <div style="font-size: 1.5rem; font-weight: 900; color: var(--secondary-blue); margin: 1rem 0;">Historic</div>
                     <div>Preservation Certified</div>
                 </div>
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
+                <div style="background: rgba(11, 15, 26, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
                     <div style="font-size: 2.5rem;">⭐</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">4.9★</div>
+                    <div style="font-size: 1.5rem; font-weight: 900; color: var(--secondary-blue); margin: 1rem 0;">4.9★</div>
                     <div>Average Rating</div>
                 </div>
-                <div style="background: rgba(109, 40, 217, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
+                <div style="background: rgba(11, 15, 26, 0.05); padding: 2rem; border-radius: 15px; text-align: center;">
                     <div style="font-size: 2.5rem;">🏠</div>
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #6D28D9; margin: 1rem 0;">200+</div>
+                    <div style="font-size: 1.5rem; font-weight: 900; color: var(--secondary-blue); margin: 1rem 0;">200+</div>
                     <div>Historic Homes Served</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 100%); color: white; text-align: center;">
+    <section style="padding: 80px 0; background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%); color: white; text-align: center;">
         <div class="container">
             <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">Protect Your Historic Investment</h2>
             <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">Expert roofing for Old West Side's Victorian treasures</p>
-            <a href="../index.html#contact" style="background: white; color: #6D28D9; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.125rem;">Get Free Historic Home Assessment</a>
+            <a href="../index.html#contact" style="background: white; color: var(--secondary-blue); padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.125rem;">Get Free Historic Home Assessment</a>
         </div>
     </section>
 
-    <footer style="background: #1a202c; color: white; padding: 60px 0 30px;">
+    <footer style="background: rgba(20, 24, 38, 0.6); color: white; padding: 60px 0 30px;">
         <div class="container">
-            <div style="text-align: center; color: #a0aec0;">
-                <p>&copy; 2024 Elite Roofing. All rights reserved. | <a href="../cities/ann-arbor.html" style="color: #8B5CF6;">View All Ann Arbor Services</a></p>
+            <div style="text-align: center; color: var(--text-muted);">
+                <p>&copy; 2024 Elite Roofing. All rights reserved. | <a href="../cities/ann-arbor.html" style="color: var(--secondary-blue);">View All Ann Arbor Services</a></p>
             </div>
         </div>
     </footer>
+
+
+    <!-- Mobile Action Bar -->
+    <div class="mobile-bar">
+        <a href="tel:7341234567" class="mobile-btn btn-primary">
+            <span class="mobile-icon">📞</span>
+            <span>Call Now</span>
+        </a>
+        <a href="#contact" class="mobile-btn btn-secondary">
+            <span class="mobile-icon">📋</span>
+            <span>Free Inspection</span>
+        </a>
+        <a href="sms:7341234567" class="mobile-btn btn-primary">
+            <span class="mobile-icon">💬</span>
+            <span>Text Us</span>
+        </a>
+    </div>
 
     <script src="../js/script.js"></script>
 </body>
