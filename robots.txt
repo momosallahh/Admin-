@@ -1,0 +1,51 @@
+# Elite Roofing Michigan - Robots.txt
+# Updated: January 19, 2025
+
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://eliteroofing.com/sitemap.xml
+
+# Block access to admin/config files (add these if you have them)
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /.git/
+
+# Allow all service pages
+Allow: /services/
+Allow: /cities/
+Allow: /blog/
+
+# Allow city guides
+Allow: /cities/guides/
+
+# Allow calculators
+Allow: /calculator.html
+Allow: /valuation-calculator.html
+
+# Crawl-delay for respectful crawling (optional)
+# Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots (optional - uncomment if you have issues)
+# User-agent: AhrefsBot
+# Disallow: /
+
+# User-agent: SemrushBot
+# Disallow: /
+
+# User-agent: MJ12bot
+# Disallow: /

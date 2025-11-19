@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | Elite Roofing Michigan | 500+ 5-Star Reviews</title>
+    <meta name="description" content="Read what Warren, Detroit, and Michigan homeowners say about Elite Roofing. 500+ verified reviews. 4.9/5 stars. Real customer experiences and testimonials.">
+    <meta name="keywords" content="Elite Roofing reviews, Michigan roofing reviews, Warren roofer reviews, Detroit roofing testimonials, customer reviews">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Elite Roofing Reviews | 500+ 5-Star Reviews">
+    <meta property="og:description" content="See why Michigan homeowners trust Elite Roofing. 500+ verified reviews, 4.9/5 stars.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eliteroofing.com/reviews">
+
+    <!-- Schema.org Markup for Reviews -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Elite Roofing Michigan",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "500",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": {
+                    "@type": "Person",
+                    "name": "John S."
+                },
+                "datePublished": "2025-01-15",
+                "reviewBody": "Elite Roofing did an amazing job on our Warren home. Professional, on-time, and the roof looks fantastic. Highly recommend!",
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                }
+            },
+            {
+                "@type": "Review",
+                "author": {
+                    "@type": "Person",
+                    "name": "Sarah M."
+                },
+                "datePublished": "2025-01-10",
+                "reviewBody": "Best roofing company in Detroit. They handled our storm damage claim from start to finish. Couldn't be happier with the service.",
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        .reviews-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #1a1f35 0%, #0B0F1A 100%);
+            text-align: center;
+        }
+
+        .reviews-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .review-stat {
+            text-align: center;
+        }
+
+        .review-stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1D4ED8, #38BDF8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .review-stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            border-color: rgba(56, 189, 248, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1D4ED8, #38BDF8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .reviewer-details h4 {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .reviewer-location {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .review-stars {
+            color: #FCD34D;
+            font-size: 1.2rem;
+        }
+
+        .review-date {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .review-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin: 1.5rem 0;
+        }
+
+        .review-verified {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22C55E;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(56, 189, 248, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, #1D4ED8, #38BDF8);
+            border-color: #38BDF8;
+            color: white;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(29, 78, 216, 0.1), rgba(56, 189, 248, 0.1));
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .reviews-stats {
+                gap: 2rem;
+            }
+
+            .review-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">Elite<span class="highlight">Roofing</span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="cities/index.html" class="nav-link">Service Areas</a></li>
+                <li><a href="reviews.html" class="nav-link active">Reviews</a></li>
+                <li><a href="index.html#contact" class="nav-link nav-cta">Free Inspection</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Reviews Hero -->
+    <section class="reviews-hero">
+        <div class="container">
+            <h1 class="hero-title">
+                What Our Customers Say
+            </h1>
+            <p class="hero-subtitle" style="max-width: 700px; margin: 1rem auto;">
+                Real reviews from real Michigan homeowners. See why families across Warren, Detroit, and beyond trust Elite Roofing.
+            </p>
+
+            <div class="reviews-stats">
+                <div class="review-stat">
+                    <div class="review-stat-number">4.9</div>
+                    <div class="review-stat-label">Average Rating</div>
+                </div>
+                <div class="review-stat">
+                    <div class="review-stat-number">500+</div>
+                    <div class="review-stat-label">Total Reviews</div>
+                </div>
+                <div class="review-stat">
+                    <div class="review-stat-number">2,500+</div>
+                    <div class="review-stat-label">Happy Customers</div>
+                </div>
+                <div class="review-stat">
+                    <div class="review-stat-number">98%</div>
+                    <div class="review-stat-label">Would Recommend</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section style="padding: 60px 0 20px; background: #0B0F1A;">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active">All Reviews</button>
+                <button class="filter-btn">Warren</button>
+                <button class="filter-btn">Detroit</button>
+                <button class="filter-btn">Ann Arbor</button>
+                <button class="filter-btn">Grand Rapids</button>
+                <button class="filter-btn">5 Stars</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section style="padding: 40px 0 80px; background: #0B0F1A;">
+        <div class="container">
+
+            <!-- TEMPLATE: Copy this block for each review -->
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">JS</div>
+                        <div class="reviewer-details">
+                            <h4>John S.</h4>
+                            <p class="reviewer-location">Warren, MI</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-text">
+                    "Elite Roofing replaced our entire roof after storm damage in 2024. From the initial inspection to the final cleanup, everything was professional and seamless. They worked directly with our insurance company and saved us thousands. The crew was respectful, on-time every day, and the roof looks amazing. Can't recommend them enough!"
+                </p>
+                <div class="review-verified">✓ Verified Customer</div>
+                <p class="review-date">January 15, 2025</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">SM</div>
+                        <div class="reviewer-details">
+                            <h4>Sarah M.</h4>
+                            <p class="reviewer-location">Detroit, MI</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-text">
+                    "Best roofing company in Detroit, hands down. We had severe ice dam damage during the winter storms, and Elite Roofing came out within 24 hours for emergency repairs. They explained everything clearly, gave us a fair quote, and completed the work in 3 days. Our roof has been perfect ever since. Great communication throughout!"
+                </p>
+                <div class="review-verified">✓ Verified Customer</div>
+                <p class="review-date">January 10, 2025</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">MJ</div>
+                        <div class="reviewer-details">
+                            <h4>Michael J.</h4>
+                            <p class="reviewer-location">Ann Arbor, MI</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-text">
+                    "We've used Elite Roofing twice now - once for our home and again for our rental property. Both experiences were excellent. Fair pricing, quality materials, and they stand behind their work. The lifetime warranty gives us peace of mind. If you're looking for honest roofers in Ann Arbor, look no further."
+                </p>
+                <div class="review-verified">✓ Verified Customer</div>
+                <p class="review-date">January 5, 2025</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">LP</div>
+                        <div class="reviewer-details">
+                            <h4>Linda P.</h4>
+                            <p class="reviewer-location">Grand Rapids, MI</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-text">
+                    "As a senior citizen on a fixed income, I was worried about affording a new roof. Elite Roofing offered flexible financing and helped me understand all my options. They never pressured me and were incredibly patient with all my questions. The crew was polite and cleaned up perfectly every day. Thank you!"
+                </p>
+                <div class="review-verified">✓ Verified Customer</div>
+                <p class="review-date">December 28, 2024</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">RK</div>
+                        <div class="reviewer-details">
+                            <h4>Robert K.</h4>
+                            <p class="reviewer-location">Warren, MI</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-text">
+                    "Elite Roofing installed a metal roof on our commercial building in Warren. The project was completed ahead of schedule and under budget. Their project manager kept us updated every step of the way, and they worked around our business hours to minimize disruption. True professionals!"
+                </p>
+                <div class="review-verified">✓ Verified Customer</div>
+                <p class="review-date">December 20, 2024</p>
+            </div>
+
+            <!-- ADD MORE REVIEWS HERE - Just copy the review-card div above -->
+
+            <!-- Placeholder message -->
+            <div class="glass-card" style="padding: 3rem; text-align: center; margin-top: 3rem;">
+                <h3 style="color: white; margin-bottom: 1rem;">📝 Add Your Real Reviews Here</h3>
+                <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
+                    <strong>Instructions:</strong><br>
+                    1. Copy the "review-card" div above<br>
+                    2. Replace with your actual Google Business reviews<br>
+                    3. Update: Name initials, full name, city, date, review text<br>
+                    4. Keep the schema markup updated in the &lt;head&gt; section<br>
+                    5. This template includes 5 examples - add as many as you want!
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Google Reviews Integration CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">Love Our Work?</h2>
+            <p class="section-subtitle" style="max-width: 600px; margin: 1rem auto 2rem;">
+                We'd love to hear from you! Leave us a review on Google to help other Michigan homeowners find quality roofing.
+            </p>
+            <a href="https://g.page/r/YOUR_GOOGLE_BUSINESS_ID/review" target="_blank" class="btn btn-primary btn-lg glow" style="margin-right: 1rem;">
+                <span>⭐ Leave a Google Review</span>
+            </a>
+            <a href="index.html#contact" class="btn btn-secondary btn-lg">
+                <span>Get Your Free Inspection</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #0a0e1a; padding: 60px 0 30px; color: rgba(255,255,255,0.7);">
+        <div class="container">
+            <div style="text-align: center;">
+                <div class="nav-logo" style="margin-bottom: 2rem;">
+                    <span class="logo-icon">🏠</span>
+                    <span class="logo-text">Elite<span class="highlight">Roofing</span></span>
+                </div>
+                <p style="margin-bottom: 2rem;">Michigan's Most Trusted Roofing Experts</p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <a href="index.html" style="color: inherit;">Home</a>
+                    <a href="index.html#services" style="color: inherit;">Services</a>
+                    <a href="cities/index.html" style="color: inherit;">Service Areas</a>
+                    <a href="reviews.html" style="color: inherit;">Reviews</a>
+                    <a href="blog/index.html" style="color: inherit;">Blog</a>
+                </div>
+                <p style="margin-top: 3rem; font-size: 0.9rem;">© 2025 Elite Roofing Michigan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
