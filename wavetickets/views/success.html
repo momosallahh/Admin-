@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Confirmed — WaveTickets</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    .success-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .checkmark-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(0,204,102,0.12);
+      border: 2px solid var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      margin: 0 auto 24px;
+      animation: popIn 0.4s ease;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    h1 { font-size: 1.8rem; font-weight: 900; margin-bottom: 8px; }
+    .subtitle { color: var(--text-muted); margin-bottom: 32px; font-size: 0.95rem; }
+
+    .ticket-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto 24px;
+    }
+    .fan-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 4px; }
+    .event-info { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 20px; }
+
+    .qr-wrap {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .qr-wrap img {
+      width: 200px;
+      height: 200px;
+      display: block;
+    }
+    .qr-placeholder {
+      width: 200px;
+      height: 200px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      color: #999;
+      font-size: 0.8rem;
+    }
+    .qr-hint { font-size: 0.75rem; color: var(--text-muted); }
+
+    .whatsapp-note {
+      background: rgba(37,211,102,0.08);
+      border: 1px solid rgba(37,211,102,0.2);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.85rem;
+      color: #5ccc6f;
+      max-width: 360px;
+      margin: 0 auto 24px;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 1s infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .loading-msg { font-size: 0.85rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo"><span>Wave</span>Tickets</a>
+    </div>
+  </nav>
+
+  <div class="success-wrap">
+    <div class="checkmark-circle">✓</div>
+    <h1>Payment Confirmed!</h1>
+    <p class="subtitle">Your ticket is being generated. It'll also arrive on WhatsApp.</p>
+
+    <div class="ticket-card" id="ticket-card">
+      <div id="loading-state">
+        <div class="qr-wrap">
+          <div class="qr-placeholder">
+            <span class="status-dot"></span>
+            <span>Generating QR...</span>
+          </div>
+        </div>
+        <p class="loading-msg" style="margin-top:12px"><span class="status-dot"></span> Processing your ticket...</p>
+      </div>
+
+      <div id="ticket-state" style="display:none">
+        <div class="fan-name" id="fan-name">—</div>
+        <div class="event-info" id="event-info">—</div>
+        <div class="qr-wrap">
+          <img id="qr-img" src="" alt="Your QR Code">
+        </div>
+        <p class="qr-hint">Screenshot this or show it at the door</p>
+      </div>
+    </div>
+
+    <div class="whatsapp-note">
+      📲 We've sent your QR ticket to WhatsApp. Check your messages!
+    </div>
+
+    <a href="/" class="btn btn-outline btn-sm" style="max-width:280px">Back to Home</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+
+    let attempts = 0;
+    const maxAttempts = 30; // poll for up to ~60 seconds
+
+    async function pollTicket() {
+      if (!sessionId) return;
+      try {
+        const res = await fetch(`/api/ticket/by-session/${encodeURIComponent(sessionId)}`);
+        const data = await res.json();
+
+        if (data.ready) {
+          document.getElementById('loading-state').style.display = 'none';
+          document.getElementById('ticket-state').style.display = 'block';
+          document.getElementById('fan-name').textContent = data.fan_name;
+          const d = data.event_date ? new Date(data.event_date).toLocaleDateString('en-GB', {
+            weekday: 'short', month: 'long', day: 'numeric'
+          }) : '';
+          document.getElementById('event-info').textContent =
+            [data.event_name, d, data.venue].filter(Boolean).join(' · ');
+          document.getElementById('qr-img').src = data.qr_code_image_url;
+          return;
+        }
+      } catch(e) {}
+
+      attempts++;
+      if (attempts < maxAttempts) {
+        setTimeout(pollTicket, 2000);
+      } else {
+        document.getElementById('loading-state').innerHTML =
+          '<p style="color:var(--text-muted);font-size:0.85rem">Ticket processing. Check your WhatsApp for the QR code.</p>';
+      }
+    }
+
+    if (sessionId) {
+      setTimeout(pollTicket, 1500);
+    } else {
+      document.getElementById('loading-state').innerHTML =
+        '<p style="color:var(--text-muted);font-size:0.85rem">Check your WhatsApp for your QR ticket.</p>';
+    }
+  </script>
+</body>
+</html>
