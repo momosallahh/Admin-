@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artist Login — WaveTickets</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+    .login-wrap { width: 100%; max-width: 380px; }
+    .login-logo {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .login-logo span { color: var(--text); }
+    .login-sub {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 32px;
+    }
+    .error-banner {
+      background: rgba(255,68,68,0.1);
+      border: 1px solid rgba(255,68,68,0.3);
+      color: #ff6666;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.875rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .error-banner.show { display: block; }
+    .forgot { text-align: right; font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-logo"><span>Wave</span>Tickets</div>
+    <p class="login-sub">Artist Portal</p>
+
+    <div class="error-banner" id="err-banner">
+      Invalid email or password. Please try again.
+    </div>
+
+    <div class="card">
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          >
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          >
+        </div>
+        <button type="submit" class="btn btn-gold" style="margin-top:8px">Sign In</button>
+      </form>
+    </div>
+
+    <p class="register-link">
+      New artist? Contact us to get set up.
+    </p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('error') === 'invalid' || params.get('error') === 'missing') {
+      document.getElementById('err-banner').classList.add('show');
+    }
+  </script>
+</body>
+</html>

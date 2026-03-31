@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{EVENT_NAME}} — WaveTickets</title>
+  <meta name="description" content="{{ARTIST_NAME}} · {{EVENT_NAME}} · {{EVENT_DATE}}">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .cover {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    .cover-placeholder {
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .event-wrap { padding: 0 0 80px; }
+    .event-header {
+      padding: 24px 16px 0;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .artist-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 6px;
+    }
+    .event-title {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+    .info-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .info-label { color: var(--text-muted); font-size: 0.75rem; display: block; }
+    .info-val { font-weight: 600; }
+    .ticket-price {
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255,215,0,0.06) 100%);
+      border: 1px solid rgba(255,215,0,0.25);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .price-label { font-size: 0.8rem; color: var(--text-muted); }
+    .price-amount { font-size: 1.8rem; font-weight: 900; color: var(--gold); }
+    .price-currency { font-size: 0.85rem; color: var(--text-muted); margin-left: 2px; }
+    .avail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+    .avail strong { color: var(--text); }
+    .avail.low strong { color: #ff9944; }
+    .avail.sold-out strong { color: var(--danger); }
+
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 200;
+      align-items: flex-end;
+      backdrop-filter: blur(4px);
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-radius: 20px 20px 0 0;
+      padding: 28px 20px 40px;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      animation: slideUp 0.25s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .modal-title { font-size: 1.15rem; font-weight: 800; }
+    .modal-close {
+      background: var(--bg-card2);
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .summary-box {
+      background: var(--bg-card2);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      font-size: 0.875rem;
+    }
+    .summary-box .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .summary-box .row:last-child { margin: 0; }
+    .summary-box .total {
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      margin-top: 8px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 14px 16px;
+      background: linear-gradient(to top, var(--bg) 60%, transparent);
+      max-width: 480px;
+      margin: 0 auto;
+      right: auto;
+      width: 100%;
+    }
+    @media (min-width: 480px) {
+      .sticky-bar { left: 50%; transform: translateX(-50%); width: 480px; }
+    }
+
+    .loader { display: none; }
+    .btn-loading .loader { display: inline-block; }
+    .btn-loading .btn-text { display: none; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(0,0,0,0.3);
+      border-top-color: #000;
+      border-radius: 50%;
+      display: inline-block;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo"><span>Wave</span>Tickets</a>
+    </div>
+  </nav>
+
+  <div class="event-wrap">
+    <img class="cover" src="{{COVER_IMAGE}}" alt="{{EVENT_NAME}}" onerror="this.style.display='none';document.getElementById('cover-ph').style.display='flex'">
+    <div class="cover-placeholder" id="cover-ph" style="display:none">🎵</div>
+
+    <div class="event-header container">
+      <p class="artist-tag">{{ARTIST_NAME}}</p>
+      <h1 class="event-title">{{EVENT_NAME}}</h1>
+
+      <div class="info-row">
+        <span class="info-icon">📅</span>
+        <div>
+          <span class="info-label">Date & Time</span>
+          <span class="info-val">{{EVENT_DATE}}</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <div>
+          <span class="info-label">Venue</span>
+          <span class="info-val">{{VENUE}}</span>
+        </div>
+      </div>
+
+      <div class="ticket-price">
+        <div>
+          <div class="price-label">Ticket Price</div>
+          <div>
+            <span class="price-amount">D{{PRICE}}</span>
+            <span class="price-currency">GMD</span>
+          </div>
+        </div>
+        <div class="avail {{SOLD_OUT}}">
+          <strong>{{TICKETS_REMAINING}}</strong><br>
+          of {{TOTAL_TICKETS}} left
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Buy Bar -->
+  <div class="sticky-bar container">
+    <button class="btn btn-gold {{SOLD_OUT}}" {{BUY_DISABLED}} onclick="openModal()" id="buy-btn">
+      {{BUY_TEXT}}
+    </button>
+  </div>
+
+  <!-- Purchase Modal -->
+  <div class="modal-backdrop" id="modal" onclick="closeOnBackdrop(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Get Your Ticket</span>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="summary-box">
+        <div class="row"><span>{{EVENT_NAME}}</span></div>
+        <div class="row"><span>{{EVENT_DATE}}</span></div>
+        <div class="row total"><span>Total</span><span>D{{PRICE}} GMD</span></div>
+      </div>
+
+      <form id="ticket-form" onsubmit="submitTicket(event)">
+        <input type="hidden" name="event_id" value="{{EVENT_ID}}">
+
+        <div class="form-group">
+          <label for="fan_name">Your Full Name</label>
+          <input
+            type="text"
+            id="fan_name"
+            name="fan_name"
+            placeholder="Amadou Jallow"
+            required
+            autocomplete="name"
+            maxlength="80"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="fan_phone">WhatsApp Number</label>
+          <input
+            type="tel"
+            id="fan_phone"
+            name="fan_phone"
+            placeholder="+220 7001234"
+            required
+            autocomplete="tel"
+          >
+          <p class="phone-hint">We'll send your QR ticket here. Include country code (e.g. +220)</p>
+        </div>
+
+        <button type="submit" class="btn btn-gold" id="submit-btn">
+          <span class="btn-text">Pay with Wave →</span>
+          <span class="loader"><span class="spinner"></span> Redirecting...</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal() { document.getElementById('modal').classList.add('open'); }
+    function closeModal() { document.getElementById('modal').classList.remove('open'); }
+    function closeOnBackdrop(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+
+    function submitTicket(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.classList.add('btn-loading');
+      btn.disabled = true;
+
+      const form = document.getElementById('ticket-form');
+      const data = new URLSearchParams(new FormData(form));
+
+      fetch('/tickets/initiate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data,
+        redirect: 'follow'
+      }).then(response => {
+        if (response.redirected) {
+          window.location.href = response.url;
+        } else {
+          return response.json().then(d => {
+            alert(d.error || 'Something went wrong. Please try again.');
+            btn.classList.remove('btn-loading');
+            btn.disabled = false;
+          });
+        }
+      }).catch(() => {
+        // If fetch follows redirect to Wave, the browser navigates away
+        // This catch handles non-redirect errors
+        window.location.href = '/error';
+      });
+    }
+  </script>
+</body>
+</html>

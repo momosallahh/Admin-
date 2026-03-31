@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Door Scanner — WaveTickets</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Result overlay */
+    #result-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      transition: background 0.2s;
+    }
+    #result-overlay.valid   { background: #00cc66; display: flex; }
+    #result-overlay.invalid { background: #ff2222; display: flex; }
+
+    .result-icon { font-size: 5rem; margin-bottom: 16px; }
+    .result-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; }
+    .result-sub { font-size: 1.1rem; opacity: 0.85; margin-bottom: 32px; }
+    .result-close {
+      background: rgba(0,0,0,0.25);
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 12px 32px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    /* Scanner UI */
+    #scanner-ui {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scan-header {
+      background: rgba(10,10,10,0.92);
+      border-bottom: 1px solid #222;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(8px);
+    }
+    .scan-logo { font-size: 1.1rem; font-weight: 800; color: #FFD700; }
+    .scan-logo span { color: #fff; }
+    .scan-status {
+      font-size: 0.75rem;
+      color: #9a9a9a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .scan-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #00cc66;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    .video-wrap {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Viewfinder overlay */
+    .viewfinder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(260px, 70vw);
+      height: min(260px, 70vw);
+      pointer-events: none;
+    }
+    .vf-corner {
+      position: absolute;
+      width: 28px; height: 28px;
+      border-color: #FFD700;
+      border-style: solid;
+    }
+    .vf-corner.tl { top: 0; left: 0; border-width: 3px 0 0 3px; border-radius: 4px 0 0 0; }
+    .vf-corner.tr { top: 0; right: 0; border-width: 3px 3px 0 0; border-radius: 0 4px 0 0; }
+    .vf-corner.bl { bottom: 0; left: 0; border-width: 0 0 3px 3px; border-radius: 0 0 0 4px; }
+    .vf-corner.br { bottom: 0; right: 0; border-width: 0 3px 3px 0; border-radius: 0 0 4px 0; }
+
+    .scan-line {
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #FFD700, transparent);
+      animation: scanLine 2.5s linear infinite;
+      top: 0;
+    }
+    @keyframes scanLine {
+      from { top: 0; }
+      to { top: 100%; }
+    }
+
+    .scan-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      pointer-events: none;
+    }
+
+    .error-msg {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #ff6666;
+      font-size: 0.9rem;
+      max-width: 260px;
+    }
+
+    canvas { display: none; }
+
+    /* processing state */
+    #processing {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: #FFD700;
+    }
+    #processing.show { display: flex; }
+    .spin {
+      width: 36px; height: 36px;
+      border: 3px solid rgba(255,215,0,0.2);
+      border-top-color: #FFD700;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <!-- Result Overlay -->
+  <div id="result-overlay">
+    <div class="result-icon" id="result-icon">✓</div>
+    <div class="result-title" id="result-title">Valid!</div>
+    <div class="result-sub" id="result-sub">Welcome!</div>
+    <button class="result-close" onclick="resumeScanning()">Scan Next →</button>
+  </div>
+
+  <!-- Processing -->
+  <div id="processing">
+    <div class="spin"></div>
+    <span>Validating...</span>
+  </div>
+
+  <!-- Scanner UI -->
+  <div id="scanner-ui">
+    <div class="scan-header">
+      <span class="scan-logo"><span>Wave</span>Tickets</span>
+      <span class="scan-status"><span class="scan-dot"></span> Door Scanner</span>
+    </div>
+
+    <div class="video-wrap">
+      <video id="video" playsinline autoplay muted></video>
+      <canvas id="canvas"></canvas>
+
+      <div class="viewfinder">
+        <div class="vf-corner tl"></div>
+        <div class="vf-corner tr"></div>
+        <div class="vf-corner bl"></div>
+        <div class="vf-corner br"></div>
+        <div class="scan-line"></div>
+      </div>
+
+      <div class="scan-hint">Point camera at attendee's QR code</div>
+      <div id="error-msg" class="error-msg" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- jsQR from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const overlay = document.getElementById('result-overlay');
+    const processing = document.getElementById('processing');
+    let scanning = true;
+    let lastScanned = null;
+
+    // Start camera
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } }
+        });
+        video.srcObject = stream;
+        video.play();
+        requestAnimationFrame(tick);
+      } catch(err) {
+        document.getElementById('error-msg').style.display = 'block';
+        document.getElementById('error-msg').textContent =
+          'Camera access denied. Please allow camera permission and refresh.';
+      }
+    }
+
+    function tick() {
+      if (!scanning) return requestAnimationFrame(tick);
+      if (video.readyState !== video.HAVE_ENOUGH_DATA) return requestAnimationFrame(tick);
+
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: 'dontInvert' });
+
+      if (code && code.data && code.data !== lastScanned) {
+        lastScanned = code.data;
+        scanning = false;
+        validate(code.data);
+      } else {
+        requestAnimationFrame(tick);
+      }
+    }
+
+    async function validate(qrCodeId) {
+      processing.classList.add('show');
+      try {
+        const res = await fetch('/api/scan/validate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ qr_code_id: qrCodeId })
+        });
+        const data = await res.json();
+        processing.classList.remove('show');
+        showResult(data);
+      } catch(e) {
+        processing.classList.remove('show');
+        showResult({ valid: false, message: 'Network error. Try again.' });
+      }
+    }
+
+    function showResult(data) {
+      const icon = document.getElementById('result-icon');
+      const title = document.getElementById('result-title');
+      const sub = document.getElementById('result-sub');
+
+      if (data.valid) {
+        overlay.className = 'valid';
+        icon.textContent = '✓';
+        title.textContent = data.fan_name || 'Welcome!';
+        sub.textContent = data.event_name ? `✓ ${data.event_name}` : 'Ticket is valid';
+        // Auto-dismiss after 4 seconds
+        setTimeout(resumeScanning, 4000);
+      } else {
+        overlay.className = 'invalid';
+        icon.textContent = '✗';
+        if (data.reason === 'already_used') {
+          title.textContent = 'Already Used';
+          sub.textContent = (data.fan_name ? data.fan_name + ' · ' : '') + 'This ticket was already scanned';
+        } else if (data.reason === 'not_found') {
+          title.textContent = 'Invalid Ticket';
+          sub.textContent = 'QR code not recognised';
+        } else {
+          title.textContent = 'Invalid';
+          sub.textContent = data.message || 'This ticket is not valid';
+        }
+      }
+      overlay.style.display = 'flex';
+    }
+
+    function resumeScanning() {
+      overlay.className = '';
+      overlay.style.display = 'none';
+      lastScanned = null;
+      scanning = true;
+      requestAnimationFrame(tick);
+    }
+
+    startCamera();
+  </script>
+</body>
+</html>
